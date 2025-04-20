@@ -1,42 +1,40 @@
 <template>
 	<view class="content">
-		<!-- 测试块 -->
-		<view class="test-block"></view>
-
 		<!-- 使用自定义轮播图组件 -->
-		<custom-swiper 
-			v-model:bannerList="banner"
-		/>
+		<custom-swiper v-model:bannerList="banner" />
 
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<text class="title">{{ title }}</text>
 		</view>
 		<ren-customer-navigator></ren-customer-navigator>
 	</view>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script>
 import CustomSwiper from '@/components/index/CustomSwiper/CustomSwiper.vue';
 
-const currentIndex = ref(0);
-const banner = ref([
-	{
-		id: 1,
-		url: 'https://picsum.photos/seed/1/800/400',
+export default {
+	data() {
+		return {
+			banner: [
+				{
+					url: 'https://picsum.photos/seed/1/800/400',
+				},
+				{
+					url: 'https://picsum.photos/seed/2/800/400',
+				},
+				{
+					url: 'https://picsum.photos/seed/3/800/400',
+				}
+			],
+			title: 'Hello World'
+		}
 	},
-	{
-		id: 2,
-		url: 'https://picsum.photos/seed/2/800/400',
-	},
-	{
-		id: 3,
-		url: 'https://picsum.photos/seed/3/800/400',
+	components: {
+		CustomSwiper
 	}
-]);
-
-const title = 'Hello World';
+}
 </script>
 
 <style>

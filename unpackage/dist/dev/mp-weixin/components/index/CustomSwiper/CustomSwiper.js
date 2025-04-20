@@ -1,50 +1,51 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
-  __name: "CustomSwiper",
+const _sfc_main = {
+  name: "CustomSwiper",
   props: {
-    bannerList: { default: () => [
-      { id: 1, url: "https://picsum.photos/seed/1/800/400" },
-      { id: 2, url: "https://picsum.photos/seed/2/800/400" },
-      { id: 3, url: "https://picsum.photos/seed/3/800/400" }
-    ] }
+    bannerList: {
+      type: Array,
+      default: () => [
+        { id: 1, url: "https://picsum.photos/seed/1/800/400" },
+        { id: 2, url: "https://picsum.photos/seed/2/800/400" },
+        { id: 3, url: "https://picsum.photos/seed/3/800/400" }
+      ]
+    }
   },
-  emits: ["update:bannerList"],
-  setup(__props, { emit: __emit }) {
-    const props = __props;
-    const fetchRandomImages = async () => {
+  data() {
+    return {
+      currentBannerList: this.bannerList
+    };
+  },
+  methods: {
+    async fetchRandomImages() {
       try {
-        return await Promise.all(
-          props.bannerList.map(async (item, index) => ({
+        this.currentBannerList = await Promise.all(
+          this.currentBannerList.map(async (item, index) => ({
             ...item,
             url: `https://picsum.photos/seed/${Date.now() + index}/800/400`
           }))
         );
+        this.$emit("update:bannerList", this.currentBannerList);
       } catch (error) {
-        common_vendor.index.__f__("error", "at components/index/CustomSwiper/CustomSwiper.vue:52", "获取轮播图失败:", error);
-        return props.bannerList.map((item, index) => ({
-          ...item,
-          url: `https://picsum.photos/seed/fallback${index}/800/400`
-        }));
+        common_vendor.index.__f__("error", "at components/index/CustomSwiper/CustomSwiper.vue:53", "获取轮播图失败:", error);
       }
-    };
-    const emit = __emit;
-    common_vendor.onMounted(async () => {
-      const randomImages = await fetchRandomImages();
-      emit("update:bannerList", randomImages);
-    });
-    return (_ctx, _cache) => {
-      return {
-        a: common_vendor.f(_ctx.bannerList, (item, index, i0) => {
-          return {
-            a: item.url,
-            b: item.id
-          };
-        })
-      };
-    };
+    }
+  },
+  mounted() {
+    this.fetchRandomImages();
   }
-});
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1751fea0"]]);
+};
+function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+  return {
+    a: common_vendor.f($props.bannerList, (item, index, i0) => {
+      return {
+        a: item.url,
+        b: item.id
+      };
+    })
+  };
+}
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-1751fea0"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/components/index/CustomSwiper/CustomSwiper.js.map

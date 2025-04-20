@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
-    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator",
-    "custom-swiper": "../../components/index/CustomSwiper/CustomSwiper"
+    "custom-swiper": "../../components/index/CustomSwiper/CustomSwiper",
+    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
   }
 }

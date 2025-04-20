@@ -1,24 +1,20 @@
 
 .carousel-container.data-v-da2bf28e {
-	width: 750rpx; /* 使用uni-app的屏幕宽度单位 */
+	width: 750rpx;
 	height: 400rpx;
 	position: relative;
 	overflow: hidden;
-	background-color: #f0f0f0; /* 添加背景色以便调试 */
-	margin: 0 auto; /* 居中 */
 }
 .carousel.data-v-da2bf28e {
-	width: 750rpx; /* 使用uni-app的屏幕宽度单位 */
+	width: 750rpx;
 	height: 400rpx;
-	background-color: #e0e0e0; /* 添加背景色以便调试 */
 }
 .carousel-item.data-v-da2bf28e {
-	width: 750rpx; /* 使用uni-app的屏幕宽度单位 */
+	width: 750rpx;
 	height: 400rpx;
-	background-color: #d0d0d0; /* 添加背景色以便调试 */
 }
 .carousel-image.data-v-da2bf28e {
-	width: 750rpx; /* 使用uni-app的屏幕宽度单位 */
+	width: 750rpx;
 	height: 400rpx;
 	border-radius: 16rpx;
 }
