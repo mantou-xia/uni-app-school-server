@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
+  }
+}

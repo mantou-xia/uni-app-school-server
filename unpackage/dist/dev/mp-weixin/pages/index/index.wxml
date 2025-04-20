@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="{{a}}"></image><view class="text-area"><text class="title">{{b}}</text></view><ren-customer-navigator u-i="243edfda-0" bind:__l="__l"></ren-customer-navigator></view>

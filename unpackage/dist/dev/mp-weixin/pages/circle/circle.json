@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "圈子",
+  "usingComponents": {
+    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
+  }
+}
