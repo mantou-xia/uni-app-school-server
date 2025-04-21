@@ -53,6 +53,13 @@
   /* 图标间距 */
   margin-bottom: 20rpx;
 }
+.placeholder-title.data-v-7ee7d1b4 {
+  /* 标题样式 */
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 15rpx;
+}
 .placeholder-text.data-v-7ee7d1b4 {
   /* 字体大小 */
   font-size: 32rpx;
@@ -62,6 +69,12 @@
   font-weight: 400;
   /* 间距 */
   margin: 20rpx 0;
+}
+.placeholder-description.data-v-7ee7d1b4 {
+  /* 描述文本样式 */
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 10rpx;
 }
 .placeholder-action.data-v-7ee7d1b4 {
   /* 操作按钮间距 */
@@ -73,7 +86,13 @@
 .custom-placeholder-screen.data-v-7ee7d1b4 {
     background-color: rgba(50, 50, 50, 0.9);
 }
+.placeholder-title.data-v-7ee7d1b4 {
+    color: #f0f0f0;
+}
 .placeholder-text.data-v-7ee7d1b4 {
     color: #cccccc;
+}
+.placeholder-description.data-v-7ee7d1b4 {
+    color: #999999;
 }
 }

@@ -47,9 +47,20 @@
 		},
 		// 接收外部传入的文本
 		props: {
+			// 标题
+			title: {
+				type: String,
+				default: ''
+			},
+			// 主要文本
 			text: {
 				type: String,
 				default: '暂无数据'
+			},
+			// 描述信息
+			description: {
+				type: String,
+				default: ''
 			},
 			// 是否显示操作按钮
 			showAction: {
@@ -123,6 +134,14 @@
 		margin-bottom: 20rpx;
 	}
 
+	.placeholder-title {
+		/* 标题样式 */
+		font-size: 36rpx;
+		font-weight: 600;
+		color: #333333;
+		margin-bottom: 15rpx;
+	}
+
 	.placeholder-text {
 		/* 字体大小 */
 		font-size: 32rpx;
@@ -137,6 +156,13 @@
 		margin: 20rpx 0;
 	}
 
+	.placeholder-description {
+		/* 描述文本样式 */
+		font-size: 28rpx;
+		color: #999999;
+		margin-top: 10rpx;
+	}
+
 	.placeholder-action {
 		/* 操作按钮间距 */
 		margin-top: 30rpx;
@@ -148,8 +174,16 @@
 			background-color: rgba(50, 50, 50, 0.9);
 		}
 		
+		.placeholder-title {
+			color: #f0f0f0;
+		}
+		
 		.placeholder-text {
 			color: #cccccc;
+		}
+		
+		.placeholder-description {
+			color: #999999;
 		}
 	}
 </style>

@@ -16,9 +16,20 @@ const _sfc_main = {
   },
   // 接收外部传入的文本
   props: {
+    // 标题
+    title: {
+      type: String,
+      default: ""
+    },
+    // 主要文本
     text: {
       type: String,
       default: "暂无数据"
+    },
+    // 描述信息
+    description: {
+      type: String,
+      default: ""
     },
     // 是否显示操作按钮
     showAction: {
@@ -63,14 +74,14 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       size: "50",
       color: "#bfbfbf"
     }),
-    b: _ctx.title
-  }, _ctx.title ? {
-    c: common_vendor.t(_ctx.title)
+    b: $props.title
+  }, $props.title ? {
+    c: common_vendor.t($props.title)
   } : {}, {
     d: common_vendor.t($props.text),
-    e: _ctx.description
-  }, _ctx.description ? {
-    f: common_vendor.t(_ctx.description)
+    e: $props.description
+  }, $props.description ? {
+    f: common_vendor.t($props.description)
   } : {}, {
     g: $props.showAction
   }, $props.showAction ? {
