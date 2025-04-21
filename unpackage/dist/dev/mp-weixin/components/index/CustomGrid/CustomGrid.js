@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
+const static_utils_goToPage = require("../../../static/utils/goToPage.js");
 const hrGridSwiper = () => "../../../uni_modules/hr-grid-swiper/components/hr-grid-swiper/hr-grid-swiper.js";
 const _sfc_main = {
   name: "CustomGrid",
@@ -12,42 +13,50 @@ const _sfc_main = {
         {
           name: "campusErrand",
           label: "校园跑腿",
-          icon: "icon-xiaoyuanpaotui"
+          icon: "icon-xiaoyuanpaotui",
+          path: "/pages/index_campusErrand/index_campusErrand"
         },
         {
           name: "snackShop",
           label: "零食小店",
-          icon: "icon-shangdianmendian"
+          icon: "icon-shangdianmendian",
+          path: "/pages/index_snackShop/index_snackShop"
         },
         {
           name: "secondHandMarket",
           label: "二手闲置",
-          icon: "icon-ershoushichang-01"
+          icon: "icon-ershoushichang-01",
+          path: "/pages/index_secondHandMarket/index_secondHandMarket"
         },
         {
           name: "organizationConsult",
           label: "机构咨询",
-          icon: "icon-zixun"
+          icon: "icon-zixun",
+          path: "/pages/index_organizationConsult/index_organizationConsult"
         },
         {
           name: "otherHelp",
           label: "其他帮助",
-          icon: "icon-yonghuzhongxin-bangzhuzhongxin"
+          icon: "icon-yonghuzhongxin-bangzhuzhongxin",
+          path: "/pages/index_otherHelp/index_otherHelp"
         },
         {
           name: "newCar",
           label: "买新车",
-          icon: "icon-maiche"
+          icon: "icon-maiche",
+          path: "/pages/index_newCar/index_newCar"
         },
         {
           name: "schoolMaterials",
           label: "学校资料",
-          icon: "icon-wenjianziliao"
+          icon: "icon-wenjianziliao",
+          path: "/pages/index_schoolMaterials/index_schoolMaterials"
         },
         {
           name: "campusMap",
           label: "校园地图",
-          icon: "icon-ditu"
+          icon: "icon-ditu",
+          path: "/pages/index_campusMap/index_campusMap"
         }
       ]
     };
@@ -56,14 +65,44 @@ const _sfc_main = {
     this.$nextTick(() => {
       const query = common_vendor.index.createSelectorQuery().in(this);
       query.select(".grid-wrapper").boundingClientRect((rect) => {
-        common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:75", "Grid wrapper width:", rect ? rect.width : "No rect");
+        common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:96", "Grid wrapper width:", rect ? rect.width : "No rect");
       }).exec();
     });
   },
   methods: {
-    // 手动触发宽度计算
-    forceWidthCalculation() {
-      this.$refs.gridSwiper.fetchContainerWidth();
+    // 处理网格项点击事件
+    handleGridItemClick(event) {
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:104", "Complete event:", event);
+      let item, index;
+      if (event && typeof event === "object") {
+        if (typeof event.item === "number" && typeof event.index === "object") {
+          index = event.item;
+          item = event.index;
+        } else if ("index" in event && "item" in event) {
+          index = event.index;
+          item = event.item;
+        } else if (event.name) {
+          item = event;
+          index = this.gridData.findIndex((gridItem) => gridItem.name === event.name);
+        }
+      }
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:128", "Extracted index:", index);
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:129", "Extracted item:", item);
+      if (!item) {
+        common_vendor.index.showToast({
+          title: "点击项目无效",
+          icon: "none"
+        });
+        return;
+      }
+      if (!item.path) {
+        common_vendor.index.showToast({
+          title: `${item.label || "该功能"} 暂未开放`,
+          icon: "none"
+        });
+        return;
+      }
+      static_utils_goToPage.goToPage(item.path, {}, "navigateTo");
     }
   }
 };
@@ -96,7 +135,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       vueId: "ddae7040-0"
     }),
     b: common_vendor.sr("gridSwiper", "ddae7040-0"),
-    c: common_vendor.p({
+    c: common_vendor.o($options.handleGridItemClick),
+    d: common_vendor.p({
       ["grid-data"]: $data.gridData,
       columns: 4,
       rows: 2,

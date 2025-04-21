@@ -7,16 +7,24 @@ if (!Math) {
   "./pages/order/order.js";
   "./pages/my/my.js";
   "./pages/message/message.js";
+  "./pages/index_campusErrand/index_campusErrand.js";
+  "./pages/index_snackShop/index_snackShop.js";
+  "./pages/index_secondHandMarket/index_secondHandMarket.js";
+  "./pages/index_organizationConsult/index_organizationConsult.js";
+  "./pages/index_otherHelp/index_otherHelp.js";
+  "./pages/index_newCar/index_newCar.js";
+  "./pages/index_schoolMaterials/index_schoolMaterials.js";
+  "./pages/index_campusMap/index_campusMap.js";
 }
 const _sfc_main = {
   onLaunch: function() {
-    common_vendor.index.__f__("log", "at App.vue:4", "App Launch");
+    common_vendor.index.__f__("log", "at App.vue:5", "App Launch");
   },
   onShow: function() {
-    common_vendor.index.__f__("log", "at App.vue:7", "App Show");
+    common_vendor.index.__f__("log", "at App.vue:8", "App Show");
   },
   onHide: function() {
-    common_vendor.index.__f__("log", "at App.vue:10", "App Hide");
+    common_vendor.index.__f__("log", "at App.vue:11", "App Hide");
   }
 };
 function createApp() {

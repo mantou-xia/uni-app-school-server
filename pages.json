@@ -40,6 +40,62 @@
 			{
 				"navigationBarTitleText" : "消息"
 			}
+		},
+		{
+			"path" : "pages/index_campusErrand/index_campusErrand",
+			"style" : 
+			{
+				"navigationBarTitleText" : "校园跑腿"
+			}
+		},
+		{
+			"path" : "pages/index_snackShop/index_snackShop",
+			"style" : 
+			{
+				"navigationBarTitleText" : "零食小店"
+			}
+		},
+		{
+			"path" : "pages/index_secondHandMarket/index_secondHandMarket",
+			"style" : 
+			{
+				"navigationBarTitleText" : "二手闲置"
+			}
+		},
+		{
+			"path" : "pages/index_organizationConsult/index_organizationConsult",
+			"style" : 
+			{
+				"navigationBarTitleText" : "机构咨询"
+			}
+		},
+		{
+			"path" : "pages/index_otherHelp/index_otherHelp",
+			"style" : 
+			{
+				"navigationBarTitleText" : "其他帮助"
+			}
+		},
+		{
+			"path" : "pages/index_newCar/index_newCar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "买新车"
+			}
+		},
+		{
+			"path" : "pages/index_schoolMaterials/index_schoolMaterials",
+			"style" : 
+			{
+				"navigationBarTitleText" : "学校资料"
+			}
+		},
+		{
+			"path" : "pages/index_campusMap/index_campusMap",
+			"style" : 
+			{
+				"navigationBarTitleText" : "校园地图"
+			}
 		}
 	],
 	"globalStyle": {
