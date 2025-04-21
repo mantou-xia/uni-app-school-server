@@ -27,8 +27,12 @@ const _sfc_main = {
     common_vendor.index.__f__("log", "at App.vue:11", "App Hide");
   }
 };
+const renCustomerNavigator = () => "./components/ren-customer-navigator/ren-customer-navigator.js";
+const CustomPlaceholder = () => "./components/common/CustomPlaceholder/CustomPlaceholder.js";
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
+  app.component("custom-placeholder", CustomPlaceholder);
+  app.component("ren-customer-navigator", renCustomerNavigator);
   return {
     app
   };

@@ -1,1 +1,1 @@
-<view></view>
+<view><custom-placeholder wx:if="{{a}}" u-i="5710731d-0" bind:__l="__l" u-p="{{a}}"/></view>
