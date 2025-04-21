@@ -54,9 +54,9 @@
 				},
 				{
 					pagePath: "pages/order/order",
-					text: "订单",
-					iconPath: "../../static/tabbar/订单-未选中.png",
-					selectedIconPath: "../../static/tabbar/订单-选中.png"
+					text: "消息",
+					iconPath: "../../static/tabbar/消息-未选中.png",
+					selectedIconPath: "../../static/tabbar/消息-选中.png"
 				},
 				{
 					pagePath: 'pages/my/my',
