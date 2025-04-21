@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "hr-grid-swiper": "../../../uni_modules/hr-grid-swiper/components/hr-grid-swiper/hr-grid-swiper"
+  }
+}
