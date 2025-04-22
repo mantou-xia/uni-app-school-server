@@ -18,10 +18,6 @@ import Vue from 'vue'
 // 导入uni-app的Promise适配器
 import './uni.promisify.adaptor'
 
-// 全局挂载uni对象
-import uni from 'uni-app'
-Vue.prototype.uni = uni
-
 // 关闭Vue的生产模式提示
 Vue.config.productionTip = false
 

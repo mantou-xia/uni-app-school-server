@@ -43,7 +43,7 @@ const _sfc_main = {
         {
           name: "newCar",
           label: "买新车",
-          icon: "icon-maiche",
+          icon: "icon-diandongche",
           path: "/pages/index_newCar/index_newCar"
         },
         {

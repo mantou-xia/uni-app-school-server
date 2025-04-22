@@ -93,7 +93,7 @@
 	transform: translateY(-50%);
 	color: #999999;
 	font-size: 64rpx;
-	z-index: 999;
+	z-index: 2;
 }
 
 .search-input {
