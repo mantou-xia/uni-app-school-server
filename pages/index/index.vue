@@ -9,8 +9,9 @@
 		<!-- 添加功能网格组件 -->
 		<custom-grid></custom-grid>
 
-		<!-- 使用自定义搜索组件，添加输入和搜索事件 -->
+		<!-- 使用自定义搜索组件，添加输入和搜索事件，指定搜索类型 -->
 		<custom-search 
+			type="shopping"
 			@input="handleSearchInput" 
 			@search="handleSearch"
 		></custom-search>
@@ -53,20 +54,38 @@
 		},
 		methods: {
 			// 处理搜索输入事件
-			handleSearchInput(keyword) {
+			handleSearchInput(searchData) {
+				const { keyword, type } = searchData;
 				this.searchKeyword = keyword;
-				console.log('正在输入:', keyword);
+				console.log(`正在${type === 'shopping' ? '商城' : '发现'}搜索:`, keyword);
 			},
 
 			// 处理搜索确认事件
-			handleSearch(keyword) {
-				// 显示搜索关键词的弹窗
-				uni.showModal({
-					title: '搜索提示',
-					content: `您搜索的内容是：${keyword}`,
-					showCancel: false,
-					confirmText: '确定'
-				});
+			handleSearch(searchData) {
+				const { keyword, type } = searchData;
+				
+				// 根据搜索类型执行不同的搜索逻辑
+				if (type === 'shopping') {
+					// 商城搜索逻辑
+					uni.showModal({
+						title: '商城搜索',
+						content: `您在商城搜索：${keyword}`,
+						showCancel: false,
+						confirmText: '确定'
+					});
+					// 可以添加跳转到商城搜索结果页的逻辑
+					// uni.navigateTo({ url: `/pages/shopping/search?keyword=${keyword}` });
+				} else {
+					// 发现页搜索逻辑
+					uni.showModal({
+						title: '发现搜索',
+						content: `您在发现页搜索：${keyword}`,
+						showCancel: false,
+						confirmText: '确定'
+					});
+					// 可以添加跳转到发现页搜索结果页的逻辑
+					// uni.navigateTo({ url: `/pages/find/search?keyword=${keyword}` });
+				}
 			}
 		}
 	}

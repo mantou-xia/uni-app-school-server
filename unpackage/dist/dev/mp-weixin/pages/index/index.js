@@ -33,18 +33,29 @@ const _sfc_main = {
   },
   methods: {
     // 处理搜索输入事件
-    handleSearchInput(keyword) {
+    handleSearchInput(searchData) {
+      const { keyword, type } = searchData;
       this.searchKeyword = keyword;
-      common_vendor.index.__f__("log", "at pages/index/index.vue:58", "正在输入:", keyword);
+      common_vendor.index.__f__("log", "at pages/index/index.vue:60", `正在${type === "shopping" ? "商城" : "发现"}搜索:`, keyword);
     },
     // 处理搜索确认事件
-    handleSearch(keyword) {
-      common_vendor.index.showModal({
-        title: "搜索提示",
-        content: `您搜索的内容是：${keyword}`,
-        showCancel: false,
-        confirmText: "确定"
-      });
+    handleSearch(searchData) {
+      const { keyword, type } = searchData;
+      if (type === "shopping") {
+        common_vendor.index.showModal({
+          title: "商城搜索",
+          content: `您在商城搜索：${keyword}`,
+          showCancel: false,
+          confirmText: "确定"
+        });
+      } else {
+        common_vendor.index.showModal({
+          title: "发现搜索",
+          content: `您在发现页搜索：${keyword}`,
+          showCancel: false,
+          confirmText: "确定"
+        });
+      }
     }
   }
 };
@@ -71,8 +82,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     d: common_vendor.o($options.handleSearchInput),
     e: common_vendor.o($options.handleSearch),
-    f: common_assets._imports_0,
-    g: common_vendor.t($data.title)
+    f: common_vendor.p({
+      type: "shopping"
+    }),
+    g: common_assets._imports_0,
+    h: common_vendor.t($data.title)
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);

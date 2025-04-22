@@ -32,7 +32,7 @@ const _sfc_main = {
           selectedIconPath: "../../static/tabbar/社区-激活.png"
         },
         {
-          pagePath: "pages/order/order",
+          pagePath: "pages/message/message",
           text: "消息",
           iconPath: "../../static/tabbar/消息-未选中.png",
           selectedIconPath: "../../static/tabbar/消息-选中.png"

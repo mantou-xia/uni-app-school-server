@@ -2,9 +2,9 @@
   font-family: "iconfont"; /* Project id 4895747 */
   /* Color fonts */
   src: 
-       url('iconfont.woff2?t=1745316797813') format('woff2'),
-       url('iconfont.woff?t=1745316797813') format('woff'),
-       url('iconfont.ttf?t=1745316797813') format('truetype');
+       url('iconfont.woff2?t=1745328628227') format('woff2'),
+       url('iconfont.woff?t=1745328628227') format('woff'),
+       url('iconfont.ttf?t=1745328628227') format('truetype');
 }
 
 .iconfont {
@@ -13,6 +13,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-all:before {
+  content: "\e83c";
+}
+
+.icon--warning:before {
+  content: "\e62d";
+}
+
+.icon-other:before {
+  content: "\e714";
+}
+
+.icon-qiuzhu:before {
+  content: "\e62e";
+}
+
+.icon--complain:before {
+  content: "\e615";
+}
+
+.icon-recommend:before {
+  content: "\e6a1";
+}
+
+.icon-jingsaixitong:before {
+  content: "\e611";
+}
+
+.icon-pinglun:before {
+  content: "\1017c";
+}
+
+.icon-icon:before {
+  content: "\e651";
+}
+
+.icon-icon-copy:before {
+  content: "\e770";
 }
 
 .icon-diandongche:before {

@@ -1,1 +1,1 @@
-<view></view>
+<view> 消息 <ren-customer-navigator u-i="2f4c0686-0" bind:__l="__l"></ren-customer-navigator></view>

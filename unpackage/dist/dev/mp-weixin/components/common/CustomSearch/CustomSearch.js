@@ -21,6 +21,13 @@ const _sfc_main = {
     placeholder: {
       type: String,
       default: "请输入搜索内容"
+    },
+    // 搜索类型
+    type: {
+      type: String,
+      default: "find",
+      // 默认为发现页搜索
+      validator: (value) => ["shopping", "find"].includes(value)
     }
   },
   // 组件的响应式数据
@@ -35,11 +42,17 @@ const _sfc_main = {
     // 处理输入事件
     handleInput(e) {
       this.searchKeyword = e.detail.value;
-      this.$emit("input", this.searchKeyword);
+      this.$emit("input", {
+        keyword: this.searchKeyword,
+        type: this.type
+      });
     },
     // 处理搜索确认事件
     handleSearch() {
-      this.$emit("search", this.searchKeyword);
+      this.$emit("search", {
+        keyword: this.searchKeyword,
+        type: this.type
+      });
     }
   }
 };

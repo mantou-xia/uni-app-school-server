@@ -1,1 +1,1 @@
-<view> circle <ren-customer-navigator u-i="4668472d-0" bind:__l="__l"></ren-customer-navigator></view>
+<view><custom-search wx:if="{{c}}" bindinput="{{a}}" bindsearch="{{b}}" u-i="4668472d-0" bind:__l="__l" u-p="{{c}}"></custom-search><custom-hot-list u-i="4668472d-1" bind:__l="__l"></custom-hot-list><custom-orders u-i="4668472d-2" bind:__l="__l"></custom-orders><ren-customer-navigator u-i="4668472d-3" bind:__l="__l"></ren-customer-navigator></view>
