@@ -3,5 +3,6 @@
   "projectname": "school-server-demo",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "3.7.12"
 }

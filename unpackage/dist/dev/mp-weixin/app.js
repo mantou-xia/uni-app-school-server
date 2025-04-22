@@ -29,10 +29,12 @@ const _sfc_main = {
 };
 const renCustomerNavigator = () => "./components/ren-customer-navigator/ren-customer-navigator.js";
 const CustomPlaceholder = () => "./components/common/CustomPlaceholder/CustomPlaceholder.js";
+const CustomSearch = () => "./components/common/CustomSearch/CustomSearch.js";
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
   app.component("custom-placeholder", CustomPlaceholder);
   app.component("ren-customer-navigator", renCustomerNavigator);
+  app.component("custom-search", CustomSearch);
   return {
     app
   };

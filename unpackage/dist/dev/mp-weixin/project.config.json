@@ -19,7 +19,7 @@
     "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
-  "libVersion": "3.8.1",
+  "libVersion": "",
   "appid": "wxa3f450fa8973faba",
   "projectname": "school-server-demo",
   "condition": {},

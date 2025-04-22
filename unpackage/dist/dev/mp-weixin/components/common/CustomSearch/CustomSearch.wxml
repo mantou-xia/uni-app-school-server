@@ -1,0 +1,1 @@
+<view class="custom-search data-v-93553e88"><view class="search-wrapper data-v-93553e88"><text class="iconfont icon-xinxichaxun search-icon data-v-93553e88"></text><input class="search-input data-v-93553e88" type="text" placeholder="{{a}}" bindinput="{{b}}" bindconfirm="{{c}}"/></view></view>
