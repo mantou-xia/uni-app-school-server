@@ -41,6 +41,12 @@
 			placeholder: {
 				type: String,
 				default: '请输入搜索内容'
+			},
+			// 搜索类型
+			type: {
+				type: String,
+				default: 'find', // 默认为发现页搜索
+				validator: (value) => ['shopping', 'find'].includes(value)
 			}
 		},
 
@@ -57,14 +63,20 @@
 			// 处理输入事件
 			handleInput(e) {
 				this.searchKeyword = e.detail.value;
-				// 触发输入事件
-				this.$emit('input', this.searchKeyword);
+				// 触发输入事件，同时传递搜索类型
+				this.$emit('input', {
+					keyword: this.searchKeyword,
+					type: this.type
+				});
 			},
 
 			// 处理搜索确认事件
 			handleSearch() {
-				// 触发搜索事件
-				this.$emit('search', this.searchKeyword);
+				// 触发搜索事件，同时传递搜索类型
+				this.$emit('search', {
+					keyword: this.searchKeyword,
+					type: this.type
+				});
 			}
 		}
 	}

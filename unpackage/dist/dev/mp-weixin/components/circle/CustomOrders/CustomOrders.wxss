@@ -1,0 +1,323 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page {
+  min-height: 30rpx;
+  background: linear-gradient(to right, #f5f7fa, #f5f7fa);
+}
+.custom-orders-container {
+  width: 100%;
+  background: linear-gradient(to right, #f5f7fa, #f5f7fa);
+  padding: 20rpx 0;
+  overflow: hidden;
+  position: relative;
+}
+.orders-scroll-view {
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+  padding: 0;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.orders-scroll-view::-webkit-scrollbar {
+  display: none;
+}
+.order-item {
+  display: inline-block;
+  margin: 0 10rpx;
+  border-radius: 30rpx;
+  background-color: #f0f0f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.08);
+  min-width: 120rpx;
+  height: 60rpx;
+  text-align: center;
+  flex-shrink: 0;
+}
+.order-item .order-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 30rpx;
+}
+.order-item .order-item-content .order-item-text {
+  font-size: 25rpx;
+  color: #666;
+  text-align: center;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.order-item.active {
+  background: linear-gradient(135deg, #4a90e2, #6fb1ff);
+  box-shadow: 0 6rpx 10rpx rgba(74, 144, 226, 0.3);
+  transform: scale(1.05);
+}
+.order-item.active .order-item-content .order-item-text {
+  color: white;
+  font-weight: bold;
+}
+.category-content {
+  padding: 0 0 20rpx 0;
+  margin: 0 20rpx;
+  padding-left: 20rpx;
+  min-height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+}
+.category-content .content-header {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.category-content .content-header .iconfont {
+  font-size: 40rpx;
+  margin-right: 10rpx;
+}
+.category-content .content-header .category-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.category-content .content-body .loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-size: 28rpx;
+}
+.category-content .content-body .post-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  padding: 0 10rpx;
+}
+.category-content .content-body .post-card {
+  width: calc(100% - 100rpx);
+  margin: 0 auto;
+  max-width: 600rpx;
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+.category-content .content-body .post-card .post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+  position: relative;
+}
+.category-content .content-body .post-card .post-header .post-category-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 22rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 15rpx;
+  color: white;
+  opacity: 0.9;
+}
+.category-content .content-body .post-card .post-header .category-help {
+  background-color: #27ae60;
+}
+.category-content .content-body .post-card .post-header .category-complain {
+  background-color: #e74c3c;
+}
+.category-content .content-body .post-card .post-header .category-recommend {
+  background-color: #f39c12;
+}
+.category-content .content-body .post-card .post-header .category-warning {
+  background-color: #d35400;
+}
+.category-content .content-body .post-card .post-header .category-competition {
+  background-color: #8e44ad;
+}
+.category-content .content-body .post-card .post-header .category-other {
+  background-color: #34495e;
+}
+.category-content .content-body .post-card .post-header .post-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.category-content .content-body .post-card .post-header .post-user-info {
+  display: flex;
+  flex-direction: column;
+}
+.category-content .content-body .post-card .post-header .post-user-info .post-username {
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.category-content .content-body .post-card .post-header .post-user-info .post-time {
+  color: #999;
+  font-size: 24rpx;
+}
+.category-content .content-body .post-card .post-content {
+  margin-bottom: 15rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.category-content .content-body .post-card .post-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.category-content .content-body .post-card .post-footer .post-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.category-content .content-body .post-card .post-footer .post-actions .like-container {
+  display: flex;
+  align-items: center;
+  gap: 5rpx;
+}
+.category-content .content-body .post-card .post-footer .post-actions .like-container .iconfont {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.category-content .content-body .post-card .post-footer .post-actions .like-container .iconfont::before {
+  margin-right: 5rpx;
+}
+.category-content .content-body .post-card .post-footer .post-actions .like-container .like-count {
+  font-size: 24rpx;
+  color: #666;
+}
+.category-content .content-body .post-card .post-footer .post-actions .like-container .icon-icon-copy {
+  color: #ff4d4f;
+}
+.category-content .content-body .post-card .post-footer .post-actions .iconfont {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.category-content .content-body .post-card .post-footer .post-actions .iconfont::before {
+  margin-right: 5rpx;
+}
+.category-content .content-body .placeholder {
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+  width: 100%;
+}
+.category-content.content-all {
+  background-color: #e6f2ff;
+  color: #4a90e2;
+}
+.category-content.content-help {
+  background-color: #e8f5e9;
+  color: #27ae60;
+}
+.category-content.content-complain {
+  background-color: #ffebee;
+  color: #e74c3c;
+}
+.category-content.content-recommend {
+  background-color: #fff3e0;
+  color: #f39c12;
+}
+.category-content.content-warning {
+  background-color: #fff0f0;
+  color: #d35400;
+}
+.category-content.content-competition {
+  background-color: #f3e5f5;
+  color: #8e44ad;
+}
+.category-content.content-other {
+  background-color: #f5f5f5;
+  color: #34495e;
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+page {
+    background: linear-gradient(to right, #2c2c2c, #2c2c2c);
+}
+.custom-orders-container {
+    background: linear-gradient(to right, #2c2c2c, #2c2c2c);
+}
+.order-item {
+    background-color: #444;
+}
+.order-item .order-item-content .order-item-text {
+    color: #d0d0d0;
+}
+.order-item.active {
+    background: linear-gradient(135deg, #3a80d2, #5aa3ff);
+    box-shadow: 0 6rpx 10rpx rgba(58, 128, 210, 0.3);
+}
+.order-item.active .order-item-content .order-item-text {
+    color: white;
+}
+.category-content {
+    background-color: #3a3a3a !important;
+}
+.category-content:hover {
+    background-color: #505050;
+}
+.content-body .post-card {
+    background-color: #2c2c2c;
+    box-shadow: 0 4rpx 6rpx rgba(255, 255, 255, 0.1);
+}
+.content-body .post-card .post-content {
+    color: #ddd;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-all {
+    color: #4a90e2;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-help {
+    color: #27ae60;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-complain {
+    color: #e74c3c;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-recommend {
+    color: #f39c12;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-warning {
+    color: #d35400;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-competition {
+    color: #8e44ad;
+}
+.content-body .post-card .post-footer .post-actions .iconfont.icon-other {
+    color: #34495e;
+}
+}
