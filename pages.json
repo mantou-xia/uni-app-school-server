@@ -1,5 +1,5 @@
 {
-	// 自动扫描组件
+	
 	"easycom": {
 		"autoscan": true,
 		"custom": {
@@ -7,7 +7,7 @@
 			"l-swiper": "uni_modules/l-swiper/components/l-swiper/l-swiper.vue"
 		}
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -95,6 +95,77 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "校园地图"
+			}
+		},
+		{
+			"path": "pages/my/order/rateDetails",
+			"style": {
+				"navigationBarTitleText": "费率明细"
+			}
+		},
+		{
+			"path": "pages/my/order/apply",
+			"style": {
+				"navigationBarTitleText": "申请骑手"
+			}
+		},
+		{
+			"path": "pages/my/order/pushSettings",
+			"style": {
+				"navigationBarTitleText": "订单推送设置"
+			}
+		},
+		{
+			"path": "pages/my/order/ranking",
+			"style": {
+				"navigationBarTitleText": "接单排行"
+			}
+		},
+		{
+			"path": "pages/my/function/myOrders",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		},
+		{
+			"path": "pages/my/function/myPublish",
+			"style": {
+				"navigationBarTitleText": "我的发布"
+			}
+		},
+		{
+			"path": "pages/my/function/myAccept",
+			"style": {
+				"navigationBarTitleText": "我的接单"
+			}
+		},
+		{
+			"path": "pages/my/function/myWallet",
+			"style": {
+				"navigationBarTitleText": "我的钱包"
+			}
+		},
+		{
+			"path": "pages/my/function/myCoupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		},
+		{
+			"path": "pages/my/function/settings",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/my/bottom/campusService",
+			"style": {
+				"navigationBarTitleText": "校园客服"
+			}
+		},{
+			"path": "pages/my/bottom/about",
+			"style": {
+				"navigationBarTitleText": "关于我们"
 			}
 		}
 	],

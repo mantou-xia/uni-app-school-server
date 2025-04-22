@@ -7290,9 +7290,9 @@ function initOnError() {
   };
 }
 function initRuntimeSocketService() {
-  const hosts = "192.168.197.1,192.168.226.1,192.168.43.169,127.0.0.1";
+  const hosts = "10.0.252.72,127.0.0.1";
   const port = "8090";
-  const id = "mp-weixin_-P7V4I";
+  const id = "mp-weixin_Prixof";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -8232,6 +8232,7 @@ const createSubpackageApp = initCreateSubpackageApp();
   wx.createSubpackageApp = global.createSubpackageApp = createSubpackageApp;
 }
 exports._export_sfc = _export_sfc;
+exports.computed = computed;
 exports.createSSRApp = createSSRApp;
 exports.e = e;
 exports.f = f;
@@ -8239,8 +8240,10 @@ exports.index = index;
 exports.initVueI18n = initVueI18n;
 exports.n = n;
 exports.o = o;
+exports.onMounted = onMounted;
 exports.p = p;
 exports.r = r;
+exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.s = s;
 exports.sr = sr;
