@@ -14,6 +14,8 @@
     "pages/index_schoolMaterials/index_schoolMaterials",
     "pages/index_campusMap/index_campusMap",
     "pages/post/create/create",
+    "pages/my/order/rateDetails",
+    "pages/my/order/apply",
     "pages/my/order/pushSettings",
     "pages/my/order/ranking",
     "pages/my/function/myOrders",
@@ -23,7 +25,8 @@
     "pages/my/function/myCoupon",
     "pages/my/function/settings",
     "pages/my/bottom/campusService",
-    "pages/my/bottom/about"
+    "pages/my/bottom/about",
+    "pages/post/postview/postview"
   ],
   "window": {
     "navigationBarTextStyle": "black",

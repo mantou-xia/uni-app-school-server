@@ -187,8 +187,11 @@ export default {
 					icon: 'success',
 					duration: 2000,
 					success: () => {
-						// 使用 goToPage 跳转到圈子页面
-						goToPage('/pages/circle/circle');
+						console.log('尝试跳转到圈子页面');
+						uni.switchTab({ url: '/pages/circle/circle' });
+					},
+					fail: (err) => {
+						console.error('Toast 失败:', err);
 					}
 				});
 			}, 1500);
@@ -282,7 +285,11 @@ if (typeof wx !== 'undefined') {
 							icon: 'success',
 							duration: 2000,
 							success: () => {
-								wx.navigateBack();
+								console.log('尝试跳转到圈子页面');
+								uni.switchTab({ url: '/pages/circle/circle' });
+							},
+							fail: (err) => {
+								console.error('Toast 失败:', err);
 							}
 						});
 					}

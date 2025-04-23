@@ -34,18 +34,7 @@ const _sfc_main = {
     },
     // 显示详情模态框
     showItemDetail(item, index) {
-      common_vendor.index.showModal({
-        title: `NO.${index + 1} ${item.title}`,
-        content: "暂无详细内容",
-        showCancel: true,
-        cancelText: "关闭",
-        confirmText: "查看详情",
-        success: (res) => {
-          if (res.confirm) {
-            common_vendor.index.__f__("log", "at components/circle/CustomHotList/CustomHotList.vue:88", "跳转页面");
-          }
-        }
-      });
+      common_vendor.index.navigateTo({ url: "/pages/post/postview/postview?id=" + item.id });
     }
   }
 };

@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const static_utils_goToPage = require("../../../static/utils/goToPage.js");
 const _sfc_main = {
   name: "CustomAdd",
   // 明确定义组件选项
@@ -26,7 +25,7 @@ const _sfc_main = {
         cancelText: "取消",
         success: (res) => {
           if (res.confirm) {
-            static_utils_goToPage.goToPage("/pages/post/create/create");
+            common_vendor.index.navigateTo({ url: "/pages/post/create/create" });
           }
         }
       });

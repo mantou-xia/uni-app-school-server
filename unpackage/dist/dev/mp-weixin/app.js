@@ -16,6 +16,8 @@ if (!Math) {
   "./pages/index_schoolMaterials/index_schoolMaterials.js";
   "./pages/index_campusMap/index_campusMap.js";
   "./pages/post/create/create.js";
+  "./pages/my/order/rateDetails.js";
+  "./pages/my/order/apply.js";
   "./pages/my/order/pushSettings.js";
   "./pages/my/order/ranking.js";
   "./pages/my/function/myOrders.js";
@@ -26,6 +28,7 @@ if (!Math) {
   "./pages/my/function/settings.js";
   "./pages/my/bottom/campusService.js";
   "./pages/my/bottom/about.js";
+  "./pages/post/postview/postview.js";
 }
 const _sfc_main = {
   onLaunch: function() {

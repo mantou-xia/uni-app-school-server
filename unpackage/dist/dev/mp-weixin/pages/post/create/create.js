@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const static_utils_goToPage = require("../../../static/utils/goToPage.js");
 const _sfc_main = {
   // 页面名称
   name: "CreatePostPage",
@@ -82,7 +81,11 @@ const _sfc_main = {
           icon: "success",
           duration: 2e3,
           success: () => {
-            static_utils_goToPage.goToPage("/pages/circle/circle");
+            common_vendor.index.__f__("log", "at pages/post/create/create.vue:190", "尝试跳转到圈子页面");
+            common_vendor.index.switchTab({ url: "/pages/circle/circle" });
+          },
+          fail: (err) => {
+            common_vendor.index.__f__("error", "at pages/post/create/create.vue:194", "Toast 失败:", err);
           }
         });
       }, 1500);
@@ -90,10 +93,10 @@ const _sfc_main = {
   },
   // 页面生命周期钩子
   onLoad(options) {
-    common_vendor.index.__f__("log", "at pages/post/create/create.vue:201", "创建帖子页面加载", options);
+    common_vendor.index.__f__("log", "at pages/post/create/create.vue:204", "创建帖子页面加载", options);
   },
   onShow() {
-    common_vendor.index.__f__("log", "at pages/post/create/create.vue:206", "创建帖子页面显示");
+    common_vendor.index.__f__("log", "at pages/post/create/create.vue:209", "创建帖子页面显示");
   },
   // 为了确保依赖分析，添加额外标识
   __uniPageId: "create-post-page",
@@ -111,10 +114,10 @@ if (typeof common_vendor.wx$1 !== "undefined") {
       availableTags: ["求助", "吐槽", "推荐", "避雷", "竞赛", "其他"]
     },
     onLoad(options) {
-      common_vendor.index.__f__("log", "at pages/post/create/create.vue:227", "页面加载", options);
+      common_vendor.index.__f__("log", "at pages/post/create/create.vue:230", "页面加载", options);
     },
     onShow() {
-      common_vendor.index.__f__("log", "at pages/post/create/create.vue:230", "页面显示");
+      common_vendor.index.__f__("log", "at pages/post/create/create.vue:233", "页面显示");
     },
     handleTitleInput(e) {
       this.setData({
@@ -167,7 +170,11 @@ if (typeof common_vendor.wx$1 !== "undefined") {
               icon: "success",
               duration: 2e3,
               success: () => {
-                common_vendor.wx$1.navigateBack();
+                common_vendor.index.__f__("log", "at pages/post/create/create.vue:288", "尝试跳转到圈子页面");
+                common_vendor.index.switchTab({ url: "/pages/circle/circle" });
+              },
+              fail: (err) => {
+                common_vendor.index.__f__("error", "at pages/post/create/create.vue:292", "Toast 失败:", err);
               }
             });
           }

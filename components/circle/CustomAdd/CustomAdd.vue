@@ -37,7 +37,7 @@ export default {
 				success: (res) => {
 					if (res.confirm) {
 						// 使用 goToPage 方法跳转
-						goToPage('/pages/post/create/create');
+						uni.navigateTo({ url: '/pages/post/create/create' });
 					}
 				}
 			});

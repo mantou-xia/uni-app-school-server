@@ -1,5 +1,5 @@
 {
-	
+
 	"easycom": {
 		"autoscan": true,
 		"custom": {
@@ -7,8 +7,7 @@
 			"l-swiper": "uni_modules/l-swiper/components/l-swiper/l-swiper.vue"
 		}
 	},
-	"pages": [ 
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页"
@@ -21,89 +20,78 @@
 			}
 		},
 		{
-			"path" : "pages/order/order",
-			"style" : 
-			{
-				"navigationBarTitleText" : "订单"
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "订单"
 			}
 		},
 		{
-			"path" : "pages/my/my",
-			"style" : 
-			{
-				"navigationBarTitleText" : "我的"
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
 			}
 		},
 		{
-			"path" : "pages/message/message",
-			"style" : 
-			{
-				"navigationBarTitleText" : "消息"
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "消息"
 			}
 		},
 		{
-			"path" : "pages/index_campusErrand/index_campusErrand",
-			"style" : 
-			{
-				"navigationBarTitleText" : "校园跑腿"
+			"path": "pages/index_campusErrand/index_campusErrand",
+			"style": {
+				"navigationBarTitleText": "校园跑腿"
 			}
 		},
 		{
-			"path" : "pages/index_snackShop/index_snackShop",
-			"style" : 
-			{
-				"navigationBarTitleText" : "零食小店"
+			"path": "pages/index_snackShop/index_snackShop",
+			"style": {
+				"navigationBarTitleText": "零食小店"
 			}
 		},
 		{
-			"path" : "pages/index_secondHandMarket/index_secondHandMarket",
-			"style" : 
-			{
-				"navigationBarTitleText" : "二手闲置"
+			"path": "pages/index_secondHandMarket/index_secondHandMarket",
+			"style": {
+				"navigationBarTitleText": "二手闲置"
 			}
 		},
 		{
-			"path" : "pages/index_organizationConsult/index_organizationConsult",
-			"style" : 
-			{
-				"navigationBarTitleText" : "机构咨询"
+			"path": "pages/index_organizationConsult/index_organizationConsult",
+			"style": {
+				"navigationBarTitleText": "机构咨询"
 			}
 		},
 		{
-			"path" : "pages/index_otherHelp/index_otherHelp",
-			"style" : 
-			{
-				"navigationBarTitleText" : "其他帮助"
+			"path": "pages/index_otherHelp/index_otherHelp",
+			"style": {
+				"navigationBarTitleText": "其他帮助"
 			}
 		},
 		{
-			"path" : "pages/index_newCar/index_newCar",
-			"style" : 
-			{
-				"navigationBarTitleText" : "买新车"
+			"path": "pages/index_newCar/index_newCar",
+			"style": {
+				"navigationBarTitleText": "买新车"
 			}
 		},
 		{
-			"path" : "pages/index_schoolMaterials/index_schoolMaterials",
-			"style" : 
-			{
-				"navigationBarTitleText" : "学校资料"
+			"path": "pages/index_schoolMaterials/index_schoolMaterials",
+			"style": {
+				"navigationBarTitleText": "学校资料"
 			}
 		},
 		{
-			"path" : "pages/index_campusMap/index_campusMap",
-			"style" : 
-			{
-				"navigationBarTitleText" : "校园地图"
+			"path": "pages/index_campusMap/index_campusMap",
+			"style": {
+				"navigationBarTitleText": "校园地图"
 			}
 		},
 		{
-<<<<<<< HEAD
-			"path" : "pages/post/create/create",
-			"style" : 
-			{
-				"navigationBarTitleText" : "发布帖子"
-=======
+			"path": "pages/post/create/create",
+			"style": {
+				"navigationBarTitleText": "发布帖子"
+			}
+		},
+		{
 			"path": "pages/my/order/rateDetails",
 			"style": {
 				"navigationBarTitleText": "费率明细"
@@ -168,11 +156,18 @@
 			"style": {
 				"navigationBarTitleText": "校园客服"
 			}
-		},{
+		},
+		{
 			"path": "pages/my/bottom/about",
 			"style": {
 				"navigationBarTitleText": "关于我们"
->>>>>>> c114d631351655671b40f2cc30276e634088054c
+			}
+		},
+		{
+			"path" : "pages/post/postview/postview",
+			"style" : 
+			{
+				"navigationBarTitleText" : "帖子"
 			}
 		}
 	],

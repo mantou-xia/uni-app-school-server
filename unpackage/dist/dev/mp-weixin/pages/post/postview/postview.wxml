@@ -1,0 +1,1 @@
+<view><custom-post-content wx:if="{{a}}" u-i="cf5b995c-0" bind:__l="__l" u-p="{{b}}"/><custom-add u-i="cf5b995c-1" bind:__l="__l"/></view>
