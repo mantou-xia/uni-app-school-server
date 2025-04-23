@@ -15,6 +15,7 @@ if (!Math) {
   "./pages/index_newCar/index_newCar.js";
   "./pages/index_schoolMaterials/index_schoolMaterials.js";
   "./pages/index_campusMap/index_campusMap.js";
+  "./pages/post/create/create.js";
 }
 const _sfc_main = {
   onLaunch: function() {

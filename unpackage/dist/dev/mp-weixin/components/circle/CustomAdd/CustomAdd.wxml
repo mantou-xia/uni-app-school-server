@@ -1,0 +1,1 @@
+<view class="custom-add-button" bindtap="{{a}}"><text class="iconfont icon-add"></text></view>

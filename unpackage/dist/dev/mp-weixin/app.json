@@ -12,7 +12,8 @@
     "pages/index_otherHelp/index_otherHelp",
     "pages/index_newCar/index_newCar",
     "pages/index_schoolMaterials/index_schoolMaterials",
-    "pages/index_campusMap/index_campusMap"
+    "pages/index_campusMap/index_campusMap",
+    "pages/post/create/create"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -96,6 +96,13 @@
 			{
 				"navigationBarTitleText" : "校园地图"
 			}
+		},
+		{
+			"path" : "pages/post/create/create",
+			"style" : 
+			{
+				"navigationBarTitleText" : "发布帖子"
+			}
 		}
 	],
 	"globalStyle": {
