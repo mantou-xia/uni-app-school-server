@@ -1,0 +1,40 @@
+
+/* 底部功能区样式 */
+.bottom-section {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    padding: 0 15px;
+}
+.bottom-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.bottom-item:last-child {
+    border-bottom: none;
+}
+.bottom-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+.bottom-info {
+    flex: 1;
+}
+.bottom-title {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+}
+.bottom-desc {
+    font-size: 12px;
+    color: #999;
+    display: block;
+}

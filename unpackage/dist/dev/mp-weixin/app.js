@@ -16,6 +16,16 @@ if (!Math) {
   "./pages/index_schoolMaterials/index_schoolMaterials.js";
   "./pages/index_campusMap/index_campusMap.js";
   "./pages/post/create/create.js";
+  "./pages/my/order/pushSettings.js";
+  "./pages/my/order/ranking.js";
+  "./pages/my/function/myOrders.js";
+  "./pages/my/function/myPublish.js";
+  "./pages/my/function/myAccept.js";
+  "./pages/my/function/myWallet.js";
+  "./pages/my/function/myCoupon.js";
+  "./pages/my/function/settings.js";
+  "./pages/my/bottom/campusService.js";
+  "./pages/my/bottom/about.js";
 }
 const _sfc_main = {
   onLaunch: function() {

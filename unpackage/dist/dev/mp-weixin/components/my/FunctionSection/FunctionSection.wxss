@@ -1,0 +1,33 @@
+
+/* 功能区样式 */
+.function-section {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.function-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.function-item {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+}
+.icon-wrapper {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.function-text {
+    font-size: 14px;
+    color: #333;
+}

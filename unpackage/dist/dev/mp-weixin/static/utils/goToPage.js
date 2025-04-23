@@ -1,6 +1,10 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 function goToPage(url, params = {}, type = "navigateTo") {
+  if (typeof common_vendor.index === "undefined") {
+    common_vendor.index.__f__("error", "at static/utils/goToPage.js:9", "Error: uni is not defined. This utility must be used in a Uni-App environment.");
+    throw new Error("uni is not defined");
+  }
   const fullUrl = params && Object.keys(params).length ? `${url}?${Object.keys(params).map(
     (key) => (
       // 对每个参数键值对进行 URL 编码，确保特殊字符能正确传递

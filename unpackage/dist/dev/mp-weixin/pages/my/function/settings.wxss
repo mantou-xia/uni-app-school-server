@@ -1,0 +1,38 @@
+
+.settings {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+.settings-group {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.settings-item:last-child {
+    border-bottom: none;
+}
+.item-label {
+    font-size: 15px;
+    color: #333;
+}
+.cache-size, .version {
+    font-size: 14px;
+    color: #999;
+}
+.logout-btn {
+    width: 90%;
+    height: 44px;
+    background-color: #fff;
+    color: #e74c3c;
+    border-radius: 22px;
+    font-size: 16px;
+    margin: 30px auto;
+}

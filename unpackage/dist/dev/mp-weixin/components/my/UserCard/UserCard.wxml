@@ -1,0 +1,1 @@
+<view class="user-card"><view class="user-info"><image class="avatar" src="{{a}}" mode="aspectFill"></image><view class="user-details"><text class="username">憋佬仔</text><text class="phone">电话：138****8888</text><text class="school">学校：南京信息工程大学</text></view></view></view>

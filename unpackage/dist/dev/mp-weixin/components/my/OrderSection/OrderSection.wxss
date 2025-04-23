@@ -1,0 +1,52 @@
+
+/* 接单功能区样式 */
+.order-section {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 4px solid #3498db;
+}
+.order-grid {
+    display: flex;
+    flex-direction: column;
+}
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.order-item:last-child {
+    border-bottom: none;
+}
+.order-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+.order-info {
+    flex: 1;
+}
+.order-title {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+}
+.order-desc {
+    font-size: 12px;
+    color: #999;
+    display: block;
+}

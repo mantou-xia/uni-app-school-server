@@ -13,7 +13,17 @@
     "pages/index_newCar/index_newCar",
     "pages/index_schoolMaterials/index_schoolMaterials",
     "pages/index_campusMap/index_campusMap",
-    "pages/post/create/create"
+    "pages/post/create/create",
+    "pages/my/order/pushSettings",
+    "pages/my/order/ranking",
+    "pages/my/function/myOrders",
+    "pages/my/function/myPublish",
+    "pages/my/function/myAccept",
+    "pages/my/function/myWallet",
+    "pages/my/function/myCoupon",
+    "pages/my/function/settings",
+    "pages/my/bottom/campusService",
+    "pages/my/bottom/about"
   ],
   "window": {
     "navigationBarTextStyle": "black",

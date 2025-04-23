@@ -1,6 +1,10 @@
 {
   "navigationBarTitleText": "我的",
   "usingComponents": {
+    "bottom-section": "../../components/my/BottomSection/BottomSection",
+    "function-section": "../../components/my/FunctionSection/FunctionSection",
+    "order-section": "../../components/my/OrderSection/OrderSection",
+    "user-card": "../../components/my/UserCard/UserCard",
     "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
   }
 }
