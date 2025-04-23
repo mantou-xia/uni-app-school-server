@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "消息通知",
+  "usingComponents": {
+    "uni-icons": "../../../../uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
+}

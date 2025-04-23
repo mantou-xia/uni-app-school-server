@@ -34,7 +34,16 @@ const _sfc_main = {
       }
     ]);
     const navigateTo = (url) => {
-      common_vendor.index.navigateTo({ url });
+      common_vendor.index.navigateTo({
+        url,
+        fail: (err) => {
+          common_vendor.index.__f__("error", "at pages/my/function/myWallet.vue:86", "导航失败：", err);
+          common_vendor.index.showToast({
+            title: "页面跳转失败",
+            icon: "none"
+          });
+        }
+      });
     };
     const showHelp = () => {
       common_vendor.index.showModal({
@@ -45,9 +54,9 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/recharge")),
-        b: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/withdraw")),
-        c: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/transactions")),
+        a: common_vendor.o(($event) => navigateTo("/pages/my/function/myWalletPage/recharge")),
+        b: common_vendor.o(($event) => navigateTo("/pages/my/function/myWalletPage/withdraw")),
+        c: common_vendor.o(($event) => navigateTo("/pages/my/function/myWalletPage/transactions")),
         d: common_vendor.f(transactions.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.type),
@@ -59,29 +68,17 @@ const _sfc_main = {
           };
         }),
         e: common_vendor.p({
-          type: "card",
-          size: "24",
-          color: "#3498db"
-        }),
-        f: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/bank-cards")),
-        g: common_vendor.p({
           type: "list",
           size: "24",
           color: "#e74c3c"
         }),
-        h: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/bills")),
-        i: common_vendor.p({
-          type: "locked",
-          size: "24",
-          color: "#2ecc71"
-        }),
-        j: common_vendor.o(($event) => navigateTo("/pages/my/function/wallet/security")),
-        k: common_vendor.p({
+        f: common_vendor.o(($event) => navigateTo("/pages/my/function/myWalletPage/bills")),
+        g: common_vendor.p({
           type: "help",
           size: "24",
           color: "#f1c40f"
         }),
-        l: common_vendor.o(showHelp)
+        h: common_vendor.o(showHelp)
       };
     };
   }

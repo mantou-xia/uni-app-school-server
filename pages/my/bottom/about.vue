@@ -22,15 +22,15 @@
         </view>
 
         <view class="link-section">
-            <view class="link-item" @click="navigateTo('/pages/about/privacy')">
+            <view class="link-item" @click="navigateTo('/pages/my/bottom/aboutpage/privacy')">
                 <text class="link-text">隐私政策</text>
                 <uni-icons type="right" size="16" color="#999"></uni-icons>
             </view>
-            <view class="link-item" @click="navigateTo('/pages/about/agreement')">
+            <view class="link-item" @click="navigateTo('/pages/my/bottom/aboutpage/agreement')">
                 <text class="link-text">用户协议</text>
                 <uni-icons type="right" size="16" color="#999"></uni-icons>
             </view>
-            <view class="link-item" @click="navigateTo('/pages/about/disclaimer')">
+            <view class="link-item" @click="navigateTo('/pages/my/bottom/aboutpage/disclaimer')">
                 <text class="link-text">免责声明</text>
                 <uni-icons type="right" size="16" color="#999"></uni-icons>
             </view>

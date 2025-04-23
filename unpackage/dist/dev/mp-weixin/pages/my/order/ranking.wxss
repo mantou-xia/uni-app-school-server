@@ -1,11 +1,43 @@
 
 .ranking {
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     min-height: 100vh;
+    padding-bottom: 180rpx;
+}
+.tab-header {
+    display: flex;
+    background: #fff;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #eee;
+}
+.tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rpx 0;
+    position: relative;
+}
+.tab-item.active {
+    color: #3498db;
+}
+.tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 40rpx;
+    height: 4rpx;
+    background: #3498db;
+    border-radius: 2rpx;
+}
+.tab-desc {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 6rpx;
 }
 .top-three {
-    background: linear-gradient(180deg, #3498db, #f5f5f5);
-    padding: 60px 20px 30px;
+    background: linear-gradient(180deg, #3498db, #2980b9);
+    padding: 80rpx 40rpx 60rpx;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -15,44 +47,83 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin: 0 10px;
+    margin: 0 20rpx;
+    opacity: 0;
+    transform: translateY(30rpx);
+}
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
 }
 .rank-first {
-    margin-top: -30px;
+    margin-top: -40rpx;
+}
+.crown {
+    width: 60rpx;
+    height: 60rpx;
+    position: absolute;
+    top: -40rpx;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.gold {
+    background-image: linear-gradient(45deg, #FFD700, #FFA500);
+}
+.silver {
+    background-image: linear-gradient(45deg, #C0C0C0, #A9A9A9);
+}
+.bronze {
+    background-image: linear-gradient(45deg, #CD7F32, #8B4513);
 }
 .avatar {
-    width: 60px;
-    height: 60px;
+    width: 120rpx;
+    height: 120rpx;
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 4rpx solid #fff;
+    box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.1);
 }
 .rank-first .avatar {
-    width: 80px;
-    height: 80px;
+    width: 160rpx;
+    height: 160rpx;
+}
+.rank-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16rpx;
 }
 .nickname {
-    font-size: 14px;
-    color: #333;
-    margin-top: 8px;
+    font-size: 28rpx;
+    color: #fff;
+    font-weight: bold;
 }
 .count {
-    font-size: 12px;
-    color: #666;
-    margin-top: 4px;
+    font-size: 24rpx;
+    color: rgba(255,255,255,0.9);
+    margin-top: 8rpx;
+}
+.earnings {
+    font-size: 24rpx;
+    color: #FFD700;
+    margin-top: 4rpx;
 }
 .rank-num {
     position: absolute;
-    top: -20px;
-    width: 24px;
-    height: 24px;
-    background-color: #f1c40f;
+    top: -20rpx;
+    width: 48rpx;
+    height: 48rpx;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 14px;
+    font-size: 28rpx;
     font-weight: bold;
+    box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.1);
+}
+.rank-first .rank-num {
+    background-color: #f1c40f;
 }
 .rank-second .rank-num {
     background-color: #bdc3c7;
@@ -62,37 +133,59 @@
 }
 .rank-list {
     background-color: #fff;
-    margin: 10px;
-    border-radius: 8px;
-    padding: 10px;
+    margin: 20rpx;
+    border-radius: 16rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+}
+.list-header {
+    display: flex;
+    padding: 20rpx;
+    background: #f8f9fa;
+    font-size: 24rpx;
+    color: #666;
+}
+.list-header text {
+    flex: 1;
+    text-align: center;
+}
+.list-content {
+    max-height: 600rpx;
 }
 .list-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #f0f0f0;
 }
-.list-item:last-child {
-    border-bottom: none;
+.list-item.highlight {
+    background-color: rgba(52,152,219,0.1);
 }
 .list-rank {
-    width: 30px;
+    width: 60rpx;
     color: #666;
-    font-size: 14px;
+    font-size: 28rpx;
+    text-align: center;
+}
+.user-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 .list-avatar {
-    width: 40px;
-    height: 40px;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 20rpx;
 }
 .list-nickname {
-    flex: 1;
-    font-size: 14px;
+    font-size: 28rpx;
     color: #333;
 }
-.list-count {
-    font-size: 14px;
+.list-count, .list-earnings {
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
     color: #666;
 }
 .my-rank {
@@ -101,25 +194,60 @@
     left: 0;
     right: 0;
     background-color: #fff;
-    padding: 15px 20px;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    padding: 30rpx;
+    box-shadow: 0 -4rpx 10rpx rgba(0,0,0,0.05);
 }
 .my-rank-info {
     display: flex;
     align-items: center;
 }
-.my-rank-text {
-    font-size: 14px;
-    color: #666;
+.my-avatar {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+.my-info {
+    flex: 1;
+}
+.my-basic-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16rpx;
+}
+.my-name {
+    font-size: 32rpx;
+    color: #333;
+    font-weight: bold;
+    margin-right: 20rpx;
+}
+.my-rank-tag {
+    background: rgba(52,152,219,0.1);
+    color: #3498db;
+    padding: 4rpx 16rpx;
+    border-radius: 20rpx;
+    font-size: 24rpx;
 }
 .my-rank-num {
-    font-size: 20px;
-    color: #3498db;
     font-weight: bold;
-    margin: 0 10px;
+    font-size: 28rpx;
 }
-.my-order-count {
-    font-size: 14px;
+.my-stats {
+    display: flex;
+    justify-content: space-between;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stat-label {
+    font-size: 24rpx;
     color: #666;
-    margin-left: auto;
+    margin-bottom: 4rpx;
+}
+.stat-value {
+    font-size: 28rpx;
+    color: #333;
+    font-weight: bold;
 }

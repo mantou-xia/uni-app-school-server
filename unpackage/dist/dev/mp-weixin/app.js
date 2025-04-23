@@ -27,6 +27,16 @@ if (!Math) {
   "./pages/my/function/settings.js";
   "./pages/my/bottom/campusService.js";
   "./pages/my/bottom/about.js";
+  "./pages/my/bottom/aboutpage/privacy.js";
+  "./pages/my/bottom/aboutpage/agreement.js";
+  "./pages/my/bottom/aboutpage/disclaimer.js";
+  "./pages/my/order/orderpage/agreement.js";
+  "./pages/my/function/settingsPage/notification.js";
+  "./pages/my/function/settingsPage/privacy.js";
+  "./pages/my/function/myWalletPage/recharge.js";
+  "./pages/my/function/myWalletPage/withdraw.js";
+  "./pages/my/function/myWalletPage/transactions.js";
+  "./pages/my/function/myWalletPage/bills.js";
 }
 const _sfc_main = {
   onLaunch: function() {

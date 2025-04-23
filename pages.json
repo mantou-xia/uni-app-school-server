@@ -162,10 +162,75 @@
 			"style": {
 				"navigationBarTitleText": "校园客服"
 			}
-		},{
+		},
+		{
 			"path": "pages/my/bottom/about",
 			"style": {
 				"navigationBarTitleText": "关于我们"
+			}
+		},
+		{
+			"path": "pages/my/bottom/aboutpage/privacy",
+			"style": {
+				"navigationBarTitleText": "隐私政策"
+			}
+		},
+		{
+			"path": "pages/my/bottom/aboutpage/agreement",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		},
+		{
+			"path": "pages/my/bottom/aboutpage/disclaimer",
+			"style": {
+				"navigationBarTitleText": "免责声明"
+			}
+		},
+		{
+			"path": "pages/my/order/orderpage/agreement",
+			"style": {
+				"navigationBarTitleText": "骑手服务协议"
+			}
+		},
+		{
+			"path": "pages/my/function/settingsPage/notification",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		},
+		{
+			"path": "pages/my/function/settingsPage/privacy",
+			"style": {
+				"navigationBarTitleText": "隐私设置"
+			}
+		},
+		{
+			"path": "pages/my/function/myWalletPage/recharge",
+			"style": {
+				"navigationBarTitleText": "充值"
+			}
+		},
+		{
+			"path": "pages/my/function/myWalletPage/withdraw",
+			"style": {
+				"navigationBarTitleText": "提现"
+			}
+		},
+		{
+			"path": "pages/my/function/myWalletPage/transactions",
+			"style": {
+				"navigationBarTitleText": "交易记录"
+			}
+		},
+		{
+			"path": "pages/my/function/myWalletPage/bills",
+			"style": {
+				"navigationBarTitleText": "账单明细",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		}
 	],
