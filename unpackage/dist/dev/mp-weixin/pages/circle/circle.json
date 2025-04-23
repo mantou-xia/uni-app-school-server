@@ -1,9 +1,10 @@
 {
   "navigationBarTitleText": "圈子",
   "usingComponents": {
-    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator",
     "custom-search": "../../components/common/CustomSearch/CustomSearch",
     "custom-hot-list": "../../components/circle/CustomHotList/CustomHotList",
-    "custom-orders": "../../components/circle/CustomOrders/CustomOrders"
+    "custom-orders": "../../components/circle/CustomOrders/CustomOrders",
+    "custom-add": "../../components/circle/CustomAdd/CustomAdd",
+    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
   }
 }

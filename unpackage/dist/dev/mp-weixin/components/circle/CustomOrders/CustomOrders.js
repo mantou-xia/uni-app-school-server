@@ -250,6 +250,11 @@ const _sfc_main = {
     // 获取点赞数量
     getLikeCount(post) {
       return post.likes;
+    },
+    showItemDetail(post) {
+      if (post && post.id) {
+        common_vendor.index.navigateTo({ url: "/pages/post/postview/postview?id=" + post.id });
+      }
     }
   },
   // 页面加载时获取初始帖子列表
@@ -283,7 +288,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         h: common_vendor.t(post.likes),
         i: common_vendor.o(($event) => $options.toggleLike(post), index),
         j: common_vendor.t(post.comments),
-        k: index
+        k: index,
+        l: common_vendor.o(($event) => $options.showItemDetail(post), index)
       };
     })
   } : {

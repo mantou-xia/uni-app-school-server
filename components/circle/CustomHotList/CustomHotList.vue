@@ -77,18 +77,7 @@
 
 			// 显示详情模态框
 			showItemDetail(item, index) {
-				uni.showModal({
-					title: `NO.${index + 1} ${item.title}`,
-					content: '暂无详细内容',
-					showCancel: true,
-					cancelText: '关闭',
-					confirmText: '查看详情',
-					success: (res) => {
-						if (res.confirm) {
-							console.log('跳转页面');
-						}
-					}
-				});
+				uni.navigateTo({ url: '/pages/post/postview/postview?id=' + item.id });
 			}
 		}
 	}

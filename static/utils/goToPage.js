@@ -5,6 +5,10 @@
  * @param {string} [type='navigateTo'] 跳转类型 
  */
 export function goToPage(url, params = {}, type = 'navigateTo') {
+  if (typeof uni === 'undefined') {
+    console.error('Error: uni is not defined. This utility must be used in a Uni-App environment.');
+    throw new Error('uni is not defined');
+  }
   // 检查是否有传入参数，并且参数对象不为空
   const fullUrl = params && Object.keys(params).length 
     // 如果有参数，则构建带参数的 URL
@@ -49,6 +53,10 @@ export function goToPage(url, params = {}, type = 'navigateTo') {
  * @param {number} [delta=1] 返回的页面数，默认返回一页
  */
 export function goBack(delta = 1) {
+  if (typeof uni === 'undefined') {
+    console.error('Error: uni is not defined. This utility must be used in a Uni-App environment.');
+    throw new Error('uni is not defined');
+  }
   // 调用 uni-app 的返回方法，可以返回多级页面
   uni.navigateBack({ delta });
 }

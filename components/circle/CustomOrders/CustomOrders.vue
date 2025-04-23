@@ -23,7 +23,7 @@
 				
 				<!-- 帖子列表 -->
 				<view v-else-if="postList.length > 0" class="post-list">
-					<view v-for="(post, index) in postList" :key="index" class="post-card">
+					<view v-for="(post, index) in postList" :key="index" class="post-card" @click="showItemDetail(post)">
 						<view class="post-header">
 							<image :src="post.avatar" class="post-avatar"></image>
 							<view class="post-user-info">
@@ -42,7 +42,7 @@
 						</view>
 						<view class="post-footer">
 							<view class="post-actions">
-								<view class="like-container" @click="toggleLike(post)">
+								<view class="like-container" @click.stop="toggleLike(post)">
 									<text 
 										class="iconfont" 
 										:class="getLikeIcon(post)"
@@ -345,6 +345,12 @@ export default {
 		// 获取点赞数量
 		getLikeCount(post) {
 			return post.likes;
+		},
+
+		showItemDetail(post) {
+			if (post && post.id) {
+				uni.navigateTo({ url: '/pages/post/postview/postview?id=' + post.id });
+			}
 		}
 	},
 	// 页面加载时获取初始帖子列表

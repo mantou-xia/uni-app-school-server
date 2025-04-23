@@ -15,6 +15,7 @@ if (!Math) {
   "./pages/index_newCar/index_newCar.js";
   "./pages/index_schoolMaterials/index_schoolMaterials.js";
   "./pages/index_campusMap/index_campusMap.js";
+  "./pages/post/create/create.js";
   "./pages/my/order/rateDetails.js";
   "./pages/my/order/apply.js";
   "./pages/my/order/pushSettings.js";
@@ -27,6 +28,7 @@ if (!Math) {
   "./pages/my/function/settings.js";
   "./pages/my/bottom/campusService.js";
   "./pages/my/bottom/about.js";
+<<<<<<< HEAD
   "./pages/my/bottom/aboutpage/privacy.js";
   "./pages/my/bottom/aboutpage/agreement.js";
   "./pages/my/bottom/aboutpage/disclaimer.js";
@@ -37,6 +39,9 @@ if (!Math) {
   "./pages/my/function/myWalletPage/withdraw.js";
   "./pages/my/function/myWalletPage/transactions.js";
   "./pages/my/function/myWalletPage/bills.js";
+=======
+  "./pages/post/postview/postview.js";
+>>>>>>> bcc05805f0771eeb1aa40c9390dae63e73dc6f94
 }
 const _sfc_main = {
   onLaunch: function() {
