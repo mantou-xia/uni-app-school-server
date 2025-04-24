@@ -30,7 +30,7 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_assets._imports_0$1,
+    a: common_assets._imports_0$3,
     b: common_vendor.t($props.noticeContent),
     c: common_vendor.o((...args) => $options.showFullNotice && $options.showFullNotice(...args)),
     d: common_vendor.o($options.closePopup),

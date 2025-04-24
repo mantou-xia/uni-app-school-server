@@ -1,0 +1,119 @@
+
+.withdraw {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 30rpx;
+}
+.balance-section {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-radius: 12rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    color: #fff;
+}
+.balance-label {
+    font-size: 28rpx;
+    opacity: 0.9;
+    display: block;
+    margin-bottom: 10rpx;
+}
+.balance-amount {
+    font-size: 48rpx;
+    font-weight: bold;
+}
+.section-title {
+    font-size: 28rpx;
+    color: #666;
+    margin-bottom: 20rpx;
+    display: block;
+}
+.amount-section {
+    background-color: #fff;
+    border-radius: 12rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    position: relative;
+}
+.amount-input {
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid #f0f0f0;
+    padding: 20rpx 0;
+}
+.currency {
+    font-size: 40rpx;
+    color: #333;
+    margin-right: 20rpx;
+}
+.amount-input input {
+    flex: 1;
+    font-size: 40rpx;
+    color: #333;
+}
+.withdraw-all {
+    position: absolute;
+    right: 30rpx;
+    top: 30rpx;
+    font-size: 24rpx;
+    color: #3498db;
+}
+.withdraw-section {
+    background-color: #fff;
+    border-radius: 12rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+}
+.withdraw-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20rpx;
+}
+.withdraw-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    border-radius: 8rpx;
+    background-color: #f8f9fa;
+}
+.withdraw-item.active {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+.method-info {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+}
+.method-name {
+    font-size: 28rpx;
+    color: #333;
+}
+.withdraw-btn {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+    font-size: 32rpx;
+    border-radius: 44rpx;
+    margin: 40rpx 0;
+}
+.withdraw-btn[disabled] {
+    opacity: 0.6;
+    background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+}
+.notice {
+    padding: 30rpx;
+}
+.notice-title {
+    font-size: 24rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+    display: block;
+}
+.notice-item {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1.6;
+    display: block;
+}

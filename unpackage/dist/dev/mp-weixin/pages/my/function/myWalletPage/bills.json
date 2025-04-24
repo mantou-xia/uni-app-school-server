@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "账单明细",
+  "enablePullDownRefresh": true,
+  "path": "pages/post/postview/postview",
+  "style": {
+    "navigationBarTitleText": "帖子"
+  },
+  "usingComponents": {
+    "uni-icons": "../../../../uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
+}

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "费率明细",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
 }

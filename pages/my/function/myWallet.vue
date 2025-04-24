@@ -8,8 +8,8 @@
                 <text class="balance-amount">¥128.50</text>
             </view>
             <view class="balance-actions">
-                <button class="action-btn" @click="navigateTo('/pages/my/function/wallet/recharge')">充值</button>
-                <button class="action-btn" @click="navigateTo('/pages/my/function/wallet/withdraw')">提现</button>
+                <button class="action-btn" @click="navigateTo('/pages/my/function/myWalletPage/recharge')">充值</button>
+                <button class="action-btn" @click="navigateTo('/pages/my/function/myWalletPage/withdraw')">提现</button>
             </view>
         </view>
 
@@ -17,7 +17,7 @@
         <view class="transaction-section">
             <view class="section-header">
                 <text class="section-title">收支明细</text>
-                <text class="section-more" @click="navigateTo('/pages/my/function/wallet/transactions')">查看全部</text>
+                <text class="section-more" @click="navigateTo('/pages/my/function/myWalletPage/transactions')">查看全部</text>
             </view>
             
             <view class="transaction-list">
@@ -36,26 +36,14 @@
         <!-- 快捷功能 -->
         <view class="quick-actions">
             <view class="action-grid">
-                <view class="grid-item" @click="navigateTo('/pages/my/function/wallet/bank-cards')">
-                    <view class="icon-wrapper">
-                        <uni-icons type="card" size="24" color="#3498db"></uni-icons>
-                    </view>
-                    <text class="grid-text">银行卡</text>
-                </view>
-                <view class="grid-item" @click="navigateTo('/pages/my/function/wallet/bills')">
-                    <view class="icon-wrapper">
+                <view class="grid-item" @click="navigateTo('/pages/my/function/myWalletPage/bills')">
+                    <view class="icon-wrapper bill">
                         <uni-icons type="list" size="24" color="#e74c3c"></uni-icons>
                     </view>
                     <text class="grid-text">账单</text>
                 </view>
-                <view class="grid-item" @click="navigateTo('/pages/my/function/wallet/security')">
-                    <view class="icon-wrapper">
-                        <uni-icons type="locked" size="24" color="#2ecc71"></uni-icons>
-                    </view>
-                    <text class="grid-text">安全</text>
-                </view>
                 <view class="grid-item" @click="showHelp">
-                    <view class="icon-wrapper">
+                    <view class="icon-wrapper help">
                         <uni-icons type="help" size="24" color="#f1c40f"></uni-icons>
                     </view>
                     <text class="grid-text">帮助</text>
@@ -92,7 +80,16 @@ const transactions = ref([
 ])
 
 const navigateTo = (url) => {
-    uni.navigateTo({ url })
+    uni.navigateTo({
+        url,
+        fail: (err) => {
+            console.error('导航失败：', err)
+            uni.showToast({
+                title: '页面跳转失败',
+                icon: 'none'
+            })
+        }
+    })
 }
 
 const showHelp = () => {
@@ -225,11 +222,12 @@ const showHelp = () => {
 
 .action-grid {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10px 30px;
 }
 
 .grid-item {
-    width: 25%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -245,6 +243,19 @@ const showHelp = () => {
     justify-content: center;
     align-items: center;
     margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.icon-wrapper.bill {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.icon-wrapper.help {
+    background-color: rgba(241, 196, 15, 0.1);
+}
+
+.grid-item:active .icon-wrapper {
+    transform: scale(0.95);
 }
 
 .grid-text {

@@ -26,6 +26,15 @@
     "pages/my/function/settings",
     "pages/my/bottom/campusService",
     "pages/my/bottom/about",
+    "pages/my/bottom/aboutpage/privacy",
+    "pages/my/bottom/aboutpage/agreement",
+    "pages/my/bottom/aboutpage/disclaimer",
+    "pages/my/order/orderpage/agreement",
+    "pages/my/function/settingsPage/notification",
+    "pages/my/function/settingsPage/privacy",
+    "pages/my/function/myWalletPage/recharge",
+    "pages/my/function/myWalletPage/withdraw",
+    "pages/my/function/myWalletPage/transactions",
     "pages/post/postview/postview"
   ],
   "window": {

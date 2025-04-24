@@ -1,0 +1,1 @@
+{"version":3,"file":"disclaimer.js","sources":["../../软件/HBuilderX/plugins/uniapp-cli-vite/uniPage:/cGFnZXMvbXkvYm90dG9tL2Fib3V0L2Rpc2NsYWltZXIudnVl"],"sourcesContent":["import MiniProgramPage from 'D:/项目/uni-app-school-server/pages/my/bottom/about/disclaimer.vue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;;;;;;AACA,GAAG,WAAW,eAAe;"}

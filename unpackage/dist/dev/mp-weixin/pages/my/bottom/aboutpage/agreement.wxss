@@ -1,0 +1,157 @@
+
+.agreement-container {
+	min-height: 100vh;
+	background-color: #f8f9fa;
+	padding-bottom: 40rpx;
+}
+.header {
+	background: linear-gradient(135deg, #2ecc71, #27ae60);
+	padding: 40rpx 30rpx;
+	color: #fff;
+}
+.header-title {
+	font-size: 36rpx;
+	font-weight: bold;
+	margin-bottom: 10rpx;
+}
+.header-desc {
+	font-size: 24rpx;
+	opacity: 0.8;
+}
+.content {
+	padding: 30rpx;
+}
+.intro-card {
+	background: #fff;
+	border-radius: 16rpx;
+	padding: 30rpx;
+	margin-bottom: 30rpx;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+.intro-text {
+	margin-left: 20rpx;
+	font-size: 28rpx;
+	color: #34495e;
+	flex: 1;
+	line-height: 1.6;
+}
+.section {
+	background: #fff;
+	border-radius: 16rpx;
+	padding: 30rpx;
+	margin-bottom: 30rpx;
+	box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+.section-header {
+	margin-bottom: 30rpx;
+}
+.section-title {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15rpx;
+}
+.title-number {
+	width: 40rpx;
+	height: 40rpx;
+	background: #2ecc71;
+	color: #fff;
+	border-radius: 20rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24rpx;
+	margin-right: 15rpx;
+}
+.title-text {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #2c3e50;
+}
+.divider {
+	height: 2rpx;
+	background: linear-gradient(to right, #2ecc71, transparent);
+	margin-top: 15rpx;
+}
+.service-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20rpx;
+}
+.service-item {
+	background: #f8f9fa;
+	padding: 20rpx;
+	border-radius: 12rpx;
+	display: flex;
+	align-items: center;
+}
+.service-item text {
+	margin-left: 10rpx;
+	font-size: 28rpx;
+	color: #34495e;
+}
+.obligation-list {
+	padding: 10rpx 0;
+}
+.obligation-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+.item-dot {
+	width: 12rpx;
+	height: 12rpx;
+	background: #2ecc71;
+	border-radius: 50%;
+	margin-right: 15rpx;
+}
+.item-text {
+	font-size: 28rpx;
+	color: #34495e;
+}
+.rules-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 20rpx;
+	padding: 20rpx 0;
+}
+.rule-card {
+	flex: 1;
+	background: #f8f9fa;
+	padding: 30rpx 20rpx;
+	border-radius: 12rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.rule-icon {
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 16rpx;
+}
+.cancel-icon {
+	background-color: rgba(231, 76, 60, 0.1);
+}
+.delivery-icon {
+	background-color: rgba(46, 204, 113, 0.1);
+}
+.privacy-icon {
+	background-color: rgba(241, 196, 15, 0.1);
+}
+.rule-title {
+	font-size: 28rpx;
+	color: #2c3e50;
+	font-weight: bold;
+	margin-bottom: 8rpx;
+}
+.rule-desc {
+	font-size: 24rpx;
+	color: #7f8c8d;
+	line-height: 1.4;
+}

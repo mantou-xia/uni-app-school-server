@@ -48,19 +48,19 @@ const _sfc_main = {
           size: "16",
           color: "#999"
         }),
-        f: common_vendor.o(($event) => navigateTo("/pages/about/privacy")),
+        f: common_vendor.o(($event) => navigateTo("/pages/my/bottom/aboutpage/privacy")),
         g: common_vendor.p({
           type: "right",
           size: "16",
           color: "#999"
         }),
-        h: common_vendor.o(($event) => navigateTo("/pages/about/agreement")),
+        h: common_vendor.o(($event) => navigateTo("/pages/my/bottom/aboutpage/agreement")),
         i: common_vendor.p({
           type: "right",
           size: "16",
           color: "#999"
         }),
-        j: common_vendor.o(($event) => navigateTo("/pages/about/disclaimer"))
+        j: common_vendor.o(($event) => navigateTo("/pages/my/bottom/aboutpage/disclaimer"))
       };
     };
   }
