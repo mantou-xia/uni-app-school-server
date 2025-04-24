@@ -5,6 +5,8 @@
 			<image :src="effectivePostData.avatar" class="poster-avatar"></image>
 			<view class="poster-details">
 				<text class="poster-nickname">{{ effectivePostData.nickname }}</text>
+				<!-- 角色身份，分为大一，大二，大三，大四，研究生，博士生，不同的身份颜色不同 -->
+				<text v-if="effectivePostData.role" class="role-text" v-bind:class="getRoleClass(effectivePostData.role)">{{ effectivePostData.role }}</text>
 			</view>
 		</view>
 
@@ -25,12 +27,12 @@
 		<view class="interaction-container">
 			<view class="clickable-area like-area" @click="handleLike">
 				<text class="iconfont" v-bind:class="isLiked ? 'icon-icon-copy' : 'icon-icon'"></text>
-				<text class="count-text">{{ likeCount }}</text>  <!-- 动态点赞数 -->
+				<text class="count-text">{{ likeCount }}</text> <!-- 动态点赞数 -->
 			</view>
 			<view class="divider"></view> <!-- 添加分隔线 -->
 			<view class="clickable-area share-area" @click="handleShare">
 				<text class="iconfont icon-qufenxiang"></text>
-				<text class="count-text">0</text> <!-- 示例转发数 -->
+				<text class="count-text">{{ shareCount }}</text> <!-- 动态分享数 -->
 			</view>
 		</view>
 
@@ -41,202 +43,229 @@
 </template>
 
 <script>
-export default {
-	name: "CustomPostContent",
-	props: {
-		postData: {
-			type: Object,
-			default: () => ({})  // 默认空对象
-		}
-	},
-	data() {
-		return {
-			simulatedPostData: {
-				title: '示例帖子标题',
-				content: '这是一条模拟帖子内容，用于测试组件显示。',
-				tag: '求助',
-				images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-				avatar: 'https://picsum.photos/50/50',
-				nickname: '模拟用户',
-				time: '2023-10-01 12:00'
-			},
-			isLiked: false,  // 点赞状态
-			likeCount: 1  // 初始点赞数
-		};
-	},
-	computed: {
-		effectivePostData() {
-			return Object.keys(this.postData).length > 0 ? this.postData : this.simulatedPostData;
-		}
-	},
-	mounted() {
-		if (this.effectivePostData && this.effectivePostData.content) {
-			console.log('组件已挂载，数据加载:', this.effectivePostData);
-		}
-	},
-	methods: {
-		handleLike() {
-			if (this.isLiked) {
-				this.isLiked = false;
-				this.likeCount--;
-			} else {
-				this.isLiked = true;
-				this.likeCount++;
+	export default {
+		name: "CustomPostContent",
+		props: {
+			postData: {
+				type: Object,
+				default: () => ({}) // 默认空对象
 			}
 		},
-		handleShare() {
-			console.log('转发功能触发');
-			// 这里可以添加实际转发逻辑，如使用 uni.share
-		},
-		getTagClass(tag) {
-			const map = {
-				'求助': 'help',
-				'吐槽': 'complain',
-				'推荐': 'recommend',
-				'避雷': 'warning',
-				'竞赛': 'competition',
-				'其他': 'other'
+		data() {
+			return {
+				simulatedPostData: {
+					title: '示例帖子标题',
+					content: '这是一条模拟帖子内容，用于测试组件显示。',
+					tag: '求助',
+					images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
+					avatar: 'https://picsum.photos/50/50',
+					nickname: '模拟用户',
+					time: '2023-10-01 12:00',
+					role: '大一'  // 添加角色字段作为示例
+				},
+				isLiked: false, // 点赞状态
+				likeCount: 1, // 初始点赞数
+				shareCount: 0 // 初始分享数
 			};
-			return 'category-' + (map[tag] || 'other');  // 默认使用 'other' 类
+		},
+		computed: {
+			effectivePostData() {
+				return Object.keys(this.postData).length > 0 ? this.postData : this.simulatedPostData;
+			}
+		},
+		mounted() {
+			if (this.effectivePostData && this.effectivePostData.content) {
+				console.log('组件已挂载，数据加载:', this.effectivePostData);
+			}
+		},
+		methods: {
+			handleLike() {
+				if (this.isLiked) {
+					this.isLiked = false;
+					this.likeCount--;
+				} else {
+					this.isLiked = true;
+					this.likeCount++;
+				}
+			},
+			handleShare() {
+				this.$emit('onShare', this.effectivePostData);  // Emit event with post data
+			},
+			getTagClass(tag) {
+				const map = {
+					'求助': 'help',
+					'吐槽': 'complain',
+					'推荐': 'recommend',
+					'避雷': 'warning',
+					'竞赛': 'competition',
+					'其他': 'other'
+				};
+				return 'category-' + (map[tag] || 'other'); // 默认使用 'other' 类
+			},
+			getRoleClass(role) {  // 新增方法用于角色颜色
+				const roleMap = {
+					'大一': 'freshman',
+					'大二': 'sophomore',
+					'大三': 'junior',
+					'大四': 'senior',
+					'研究生': 'graduate',
+					'博士生': 'doctoral'
+				};
+				return 'role-' + (roleMap[role] || 'other'); // 默认使用 'other' 类
+			}
 		}
 	}
-}
 </script>
 
 <style lang="scss">
-.post-content-container {
-	padding: 10rpx;
-	background-color: #fff;
-	border-radius: 25rpx;
-	margin: 10rpx 0;
+	.post-content-container {
+		padding: 10rpx;
+		background-color: #fff;
+		border-radius: 25rpx;
+		margin: 10rpx 0;
 
-}
+	}
 
-.poster-info {
-	display: flex;
-	align-items: center;
-	gap: 10rpx;
-	margin-bottom: 40rpx;
-}
+	.poster-info {
+		display: flex;
+		align-items: center;
+		gap: 10rpx;
+		margin-bottom: 40rpx;
+	}
 
-.poster-avatar {
-	width: 75rpx;
-	height: 75rpx;
-	border-radius: 50%;
-}
+	.poster-avatar {
+		width: 75rpx;
+		height: 75rpx;
+		border-radius: 50%;
+	}
 
-.poster-nickname {
-	font-size: 42rpx;
-	font-weight: bold;
-	color: #74879a;
-	margin-left: 20rpx;
-}
+	.poster-nickname {
+		font-size: 42rpx;
+		font-weight: bold;
+		color: #74879a;
+		margin-left: 20rpx;
+	}
 
-.post-time {
-	font-size: 30rpx;
-	color: #888888;
-	margin-left: 10rpx;
-}
+	.post-time {
+		font-size: 30rpx;
+		color: #888888;
+		margin-left: 10rpx;
+	}
 
-.post-title {
-	font-size: 48rpx;
-	font-weight: bold;
-	color: #000000;
-	margin-top: 45rpx;
-	margin: 10rpx 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: block;
-}
+	.post-title {
+		font-size: 48rpx;
+		font-weight: bold;
+		color: #000000;
+		margin-top: 45rpx;
+		margin: 10rpx 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+	}
 
-.post-text {
-	font-size: 39rpx;
-	color: #000000;
-	line-height: 1.6;
-	margin: 15rpx 0;
-}
+	.post-text {
+		font-size: 39rpx;
+		color: #000000;
+		line-height: 1.6;
+		margin: 15rpx 0;
+	}
 
-.post-tag {
-	font-size: 36rpx;
-	color: #ffffff; // 假设标签文本为白色以在背景上突出
-	padding: 5rpx 10rpx; // 添加一些填充以显示背景
-	margin-right: 10rpx;
+	.post-tag {
+		font-size: 36rpx;
+		color: #ffffff; // 假设标签文本为白色以在背景上突出
+		padding: 5rpx 10rpx; // 添加一些填充以显示背景
+		margin-right: 10rpx;
 
-	border-radius: 15rpx;
-}
+		border-radius: 15rpx;
+	}
 
-.category-help {
-	background-color: #27ae60;
-}
+	.category-help {
+		background-color: #27ae60;
+	}
 
-.category-complain {
-	background-color: #e74c3c;
-}
+	.category-complain {
+		background-color: #e74c3c;
+	}
 
-.category-recommend {
-	background-color: #f39c12;
-}
+	.category-recommend {
+		background-color: #f39c12;
+	}
 
-.category-warning {
-	background-color: #d35400;
-}
+	.category-warning {
+		background-color: #d35400;
+	}
 
-.category-competition {
-	background-color: #8e44ad;
-}
+	.category-competition {
+		background-color: #8e44ad;
+	}
 
-.category-other {
-	background-color: #34495e;
-}
+	.category-other {
+		background-color: #34495e;
+	}
 
-.post-images {
-	display: flex;
-	flex-direction: column;
-	gap: 10rpx;
-}
+	.post-images {
+		display: flex;
+		flex-direction: column;
+		gap: 10rpx;
+	}
 
-.image-item {
-	width: 100%;
-	height: auto;
-	border-radius: 5rpx;
-	margin-bottom: 10rpx;
-}
+	.image-item {
+		width: 100%;
+		height: auto;
+		border-radius: 5rpx;
+		margin-bottom: 10rpx;
+	}
 
-.interaction-container {
-	display: flex;
-	justify-content: space-between; // 横向排列并占满宽度
-	width: 100%;
-	margin-top: 20rpx;
-}
+	.interaction-container {
+		display: flex;
+		justify-content: space-between; // 横向排列并占满宽度
+		width: 100%;
+		margin-top: 20rpx;
+	}
 
-.clickable-area {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1; // 每个区域平分宽度
-}
+	.clickable-area {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1; // 每个区域平分宽度
+	}
 
-.iconfont {
-	font-size: 64rpx; // 缩小至原大小的 0.8 倍
-	cursor: pointer;
-}
+	.iconfont {
+		font-size: 64rpx; // 缩小至原大小的 0.8 倍
+		cursor: pointer;
+	}
 
-.count-text {
-	font-size: 45rpx; // 缩小至原大小的 0.8 倍
-	color: black;
-	margin-top: 5rpx;
-}
+	.count-text {
+		font-size: 45rpx; // 缩小至原大小的 0.8 倍
+		color: black;
+		margin-top: 5rpx;
+	}
 
-.divider {
-	width: 1rpx; // 细线宽度
-	height: 60rpx; // 增加高度以使细线变长
-	background-color: #000000; // 黑色细线
-	margin: auto 10rpx; // 自动垂直居中，并添加水平间距
-}
+	.divider {
+		width: 1rpx; // 细线宽度
+		height: 60rpx; // 增加高度以使细线变长
+		background-color: #000000; // 黑色细线
+		margin: auto 10rpx; // 自动垂直居中，并添加水平间距
+	}
 
-.no-data {
-	padding: 10rpx;
-	color: #888888;
-}
+	.no-data {
+		padding: 10rpx;
+		color: #888888;
+	}
+
+	.role-text {
+		font-size: 23.04rpx;
+		padding: 5rpx 10rpx;
+		border-radius: 40rpx;
+		color: #ffffff;
+		margin-left: 20rpx;
+	}
+	.role-freshman { background-color: #27ae60; }
+	.role-sophomore { background-color: #2ecc71; }
+	.role-junior { background-color: #f1c40f; }
+	.role-senior { background-color: #e67e22; }
+	.role-graduate { background-color: #3498db; }
+	.role-doctoral { background-color: #9b59b6; }
+	.role-other { background-color: #95a5a6; }
 </style>

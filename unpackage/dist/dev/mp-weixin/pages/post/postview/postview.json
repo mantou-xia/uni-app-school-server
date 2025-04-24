@@ -2,6 +2,7 @@
   "navigationBarTitleText": "帖子",
   "usingComponents": {
     "custom-add": "../../../components/circle/CustomAdd/CustomAdd",
-    "custom-post-content": "../../../components/circle/post/CustomPostContent/CustomPostContent"
+    "custom-post-content": "../../../components/circle/post/CustomPostContent/CustomPostContent",
+    "custom-post-comment": "../../../components/circle/post/CustomPostComment/CustomPostComment"
   }
 }

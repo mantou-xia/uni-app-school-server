@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6880937",
+      "name": "编写",
+      "font_class": "bianxie",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
       "icon_id": "35043290",
       "name": "add",
       "font_class": "add",
@@ -202,13 +209,6 @@
       "unicode_decimal": 58904
     },
     {
-      "icon_id": "16616080",
-      "name": "退出登录",
-      "font_class": "tuichudenglu",
-      "unicode": "e61f",
-      "unicode_decimal": 58911
-    },
-    {
       "icon_id": "16618994",
       "name": "返回",
       "font_class": "fanhui",
@@ -242,13 +242,6 @@
       "font_class": "gouwuche",
       "unicode": "e62a",
       "unicode_decimal": 58922
-    },
-    {
-      "icon_id": "16623316",
-      "name": "设置",
-      "font_class": "shezhi",
-      "unicode": "e630",
-      "unicode_decimal": 58928
     }
   ]
 }

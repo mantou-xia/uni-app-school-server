@@ -135,3 +135,31 @@
   padding: 10rpx;
   color: #888888;
 }
+.role-text {
+  font-size: 23.04rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 40rpx;
+  color: #ffffff;
+  margin-left: 20rpx;
+}
+.role-freshman {
+  background-color: #27ae60;
+}
+.role-sophomore {
+  background-color: #2ecc71;
+}
+.role-junior {
+  background-color: #f1c40f;
+}
+.role-senior {
+  background-color: #e67e22;
+}
+.role-graduate {
+  background-color: #3498db;
+}
+.role-doctoral {
+  background-color: #9b59b6;
+}
+.role-other {
+  background-color: #95a5a6;
+}
