@@ -72,7 +72,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
     a: $data.id
   }, $data.id ? {
-    b: common_vendor.sr("customPostContent", "0b26ef54-0"),
+    b: common_vendor.sr("customPostContent", "cf5b995c-0"),
     c: common_vendor.o($options.onShareTriggered),
     d: common_vendor.p({
       ["post-id"]: $data.id

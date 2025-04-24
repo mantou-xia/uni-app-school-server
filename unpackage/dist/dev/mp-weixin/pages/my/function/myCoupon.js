@@ -174,14 +174,14 @@ const _sfc_main = {
               }, index === 0 ? {
                 f: common_vendor.o(($event) => useCoupon(item), idx)
               } : index === 1 ? {
-                g: "7f88115c-0-" + i0 + "-" + i1,
+                g: "20d76950-0-" + i0 + "-" + i1,
                 h: common_vendor.p({
                   type: "checkmarkempty",
                   size: "12",
                   color: "#999"
                 })
               } : {
-                i: "7f88115c-1-" + i0 + "-" + i1,
+                i: "20d76950-1-" + i0 + "-" + i1,
                 j: common_vendor.p({
                   type: "closeempty",
                   size: "12",

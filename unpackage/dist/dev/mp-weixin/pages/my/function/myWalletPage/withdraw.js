@@ -98,14 +98,14 @@ const _sfc_main = {
         c: common_vendor.o(withdrawAll),
         d: common_vendor.f(withdrawMethods, (method, index, i0) => {
           return {
-            a: "4dbd1c4b-0-" + i0,
+            a: "0967fbcf-0-" + i0,
             b: common_vendor.p({
               type: method.icon,
               size: "24",
               color: method.color
             }),
             c: common_vendor.t(method.name),
-            d: "4dbd1c4b-1-" + i0,
+            d: "0967fbcf-1-" + i0,
             e: common_vendor.p({
               type: selectedMethod.value === index ? "checkbox-filled" : "circle",
               size: "20",
