@@ -14,7 +14,27 @@ const _sfc_main = {
     OrderSection,
     UserCard
   },
-  methods: {}
+  methods: {
+    goToVerify() {
+      if (!this.userInfo) {
+        common_vendor.index.showToast({
+          title: "请先登录",
+          icon: "none"
+        });
+        return;
+      }
+      if (this.userInfo.isVerified) {
+        common_vendor.index.showToast({
+          title: "您已完成实名认证",
+          icon: "none"
+        });
+        return;
+      }
+      common_vendor.index.navigateTo({
+        url: "/pages/my/verify/verify"
+      });
+    }
+  }
 };
 if (!Array) {
   const _component_UserCard = common_vendor.resolveComponent("UserCard");

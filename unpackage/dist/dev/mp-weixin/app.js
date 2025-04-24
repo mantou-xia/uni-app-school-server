@@ -37,7 +37,12 @@ if (!Math) {
   "./pages/my/function/myWalletPage/recharge.js";
   "./pages/my/function/myWalletPage/withdraw.js";
   "./pages/my/function/myWalletPage/transactions.js";
+  "./pages/my/function/myWalletPage/bills.js";
   "./pages/post/postview/postview.js";
+  "./pages/my/function/settingsPage/verify.js";
+  "./pages/my/function/OrdersPage/chat.js";
+  "./pages/my/function/OrdersPage/edit.js";
+  "./pages/my/function/OrdersPage/publish.js";
 }
 const _sfc_main = {
   onLaunch: function() {

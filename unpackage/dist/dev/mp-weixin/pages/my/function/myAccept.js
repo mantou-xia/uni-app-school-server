@@ -30,7 +30,8 @@ const _sfc_main = {
         baseFee: "5.00",
         extraFee: "2.00",
         orderNo: "KD20240310143022",
-        time: "2024-03-10 14:30"
+        time: "2024-03-10 14:30",
+        contactInfo: "张同学 13800138000"
       },
       {
         type: "食堂打饭",
@@ -42,7 +43,8 @@ const _sfc_main = {
         baseFee: "6.00",
         extraFee: "2.00",
         orderNo: "ST20240310120012",
-        time: "2024-03-10 12:00"
+        time: "2024-03-10 12:00",
+        contactInfo: "李同学 13900139000"
       },
       {
         type: "代跑腿",
@@ -54,7 +56,8 @@ const _sfc_main = {
         baseFee: "8.00",
         extraFee: "5.00",
         orderNo: "PT20240310153044",
-        time: "2024-03-10 15:30"
+        time: "2024-03-10 15:30",
+        contactInfo: "王同学 13700137000"
       },
       {
         type: "快递代取",
@@ -66,7 +69,8 @@ const _sfc_main = {
         baseFee: "4.00",
         extraFee: "1.00",
         orderNo: "KD20240310162033",
-        time: "2024-03-10 16:20"
+        time: "2024-03-10 16:20",
+        contactInfo: "赵同学 13600136000"
       },
       {
         type: "食堂打饭",
@@ -78,7 +82,8 @@ const _sfc_main = {
         baseFee: "7.00",
         extraFee: "3.00",
         orderNo: "ST20240310171055",
-        time: "2024-03-10 17:10"
+        time: "2024-03-10 17:10",
+        contactInfo: "陈同学 13500135000"
       },
       {
         type: "代跑腿",
@@ -90,7 +95,8 @@ const _sfc_main = {
         baseFee: "6.00",
         extraFee: "0.00",
         orderNo: "PT20240310144023",
-        time: "2024-03-10 14:40"
+        time: "2024-03-10 14:40",
+        contactInfo: "孙同学 13400134000"
       },
       {
         type: "快递代取",
@@ -102,7 +108,8 @@ const _sfc_main = {
         baseFee: "8.00",
         extraFee: "4.00",
         orderNo: "KD20240310182011",
-        time: "2024-03-10 18:20"
+        time: "2024-03-10 18:20",
+        contactInfo: "周同学 13300133000"
       },
       {
         type: "食堂打饭",
@@ -114,7 +121,8 @@ const _sfc_main = {
         baseFee: "8.00",
         extraFee: "2.00",
         orderNo: "ST20240310134077",
-        time: "2024-03-10 13:40"
+        time: "2024-03-10 13:40",
+        contactInfo: "吴同学 13200132000"
       },
       {
         type: "代跑腿",
@@ -126,7 +134,8 @@ const _sfc_main = {
         baseFee: "5.00",
         extraFee: "3.00",
         orderNo: "PT20240310155099",
-        time: "2024-03-10 15:50"
+        time: "2024-03-10 15:50",
+        contactInfo: "郑同学 13100131000"
       },
       {
         type: "代跑腿",
@@ -138,7 +147,8 @@ const _sfc_main = {
         baseFee: "7.00",
         extraFee: "5.00",
         orderNo: "PT20240310163088",
-        time: "2024-03-10 16:30"
+        time: "2024-03-10 16:30",
+        contactInfo: "黄同学 13000130000"
       }
     ]);
     const filteredOrders = common_vendor.computed(() => {
@@ -209,8 +219,23 @@ const _sfc_main = {
       });
     };
     const goToAccept = () => {
-      common_vendor.index.navigateTo({
-        url: "/pages/index/index"
+      common_vendor.index.getStorageSync("token");
+      common_vendor.index.switchTab({
+        url: "/pages/index/index",
+        //跳转购买页面
+        success: () => {
+          common_vendor.index.showToast({
+            title: "欢迎来到接单大厅",
+            icon: "none"
+          });
+        },
+        fail: (err) => {
+          common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:379", "跳转失败：", err);
+          common_vendor.index.showToast({
+            title: "跳转失败，请重试",
+            icon: "none"
+          });
+        }
       });
     };
     return (_ctx, _cache) => {
@@ -229,11 +254,11 @@ const _sfc_main = {
         }),
         b: !filteredOrders.value.length
       }, !filteredOrders.value.length ? {
-        c: common_assets._imports_0$1
+        c: common_assets._imports_0
       } : {
         d: common_vendor.f(filteredOrders.value, (item, index, i0) => {
           return common_vendor.e({
-            a: "fbc8318c-0-" + i0,
+            a: "120fad3e-0-" + i0,
             b: common_vendor.p({
               type: getOrderIcon(item.type),
               size: "18",
@@ -248,19 +273,20 @@ const _sfc_main = {
           }, item.items ? {
             i: common_vendor.t(item.items)
           } : {}, {
-            j: common_vendor.t(item.baseFee),
-            k: item.extraFee > 0
+            j: common_vendor.t(item.contactInfo),
+            k: common_vendor.t(item.baseFee),
+            l: item.extraFee > 0
           }, item.extraFee > 0 ? {
-            l: common_vendor.t(item.extraFee)
+            m: common_vendor.t(item.extraFee)
           } : {}, {
-            m: common_vendor.t((Number(item.baseFee) + Number(item.extraFee)).toFixed(2)),
-            n: common_vendor.t(item.orderNo),
-            o: common_vendor.t(item.time),
-            p: item.status === "accepted"
+            n: common_vendor.t((Number(item.baseFee) + Number(item.extraFee)).toFixed(2)),
+            o: common_vendor.t(item.orderNo),
+            p: common_vendor.t(item.time),
+            q: item.status === "accepted"
           }, item.status === "accepted" ? {
-            q: common_vendor.o(($event) => completeOrder(), index)
+            r: common_vendor.o(($event) => completeOrder(), index)
           } : {}, {
-            r: index
+            s: index
           });
         })
       }, {

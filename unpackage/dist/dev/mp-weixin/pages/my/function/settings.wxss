@@ -29,6 +29,11 @@
     align-items: center;
     gap: 20rpx;
 }
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 8rpx;
+}
 .item-label {
     font-size: 28rpx;
     color: #2c3e50;
@@ -37,6 +42,13 @@
 .cache-size, .version {
     font-size: 26rpx;
     color: #95a5a6;
+}
+.verify-status {
+    font-size: 26rpx;
+    color: #ff6b6b;
+}
+.verify-status.verified {
+    color: #2ecc71;
 }
 .logout-btn {
     width: 90%;

@@ -158,7 +158,7 @@ const _sfc_main = {
           return common_vendor.e({
             a: !coupons.value[index].length
           }, !coupons.value[index].length ? common_vendor.e({
-            b: common_assets._imports_0$2,
+            b: common_assets._imports_0$1,
             c: common_vendor.t(getEmptyText(index)),
             d: index === 0
           }, index === 0 ? {
@@ -174,14 +174,14 @@ const _sfc_main = {
               }, index === 0 ? {
                 f: common_vendor.o(($event) => useCoupon(item), idx)
               } : index === 1 ? {
-                g: "20d76950-0-" + i0 + "-" + i1,
+                g: "7f88115c-0-" + i0 + "-" + i1,
                 h: common_vendor.p({
                   type: "checkmarkempty",
                   size: "12",
                   color: "#999"
                 })
               } : {
-                i: "20d76950-1-" + i0 + "-" + i1,
+                i: "7f88115c-1-" + i0 + "-" + i1,
                 j: common_vendor.p({
                   type: "closeempty",
                   size: "12",

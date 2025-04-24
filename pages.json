@@ -232,6 +232,30 @@
 			"style": {
 				"navigationBarTitleText": "帖子"
 			}
+		},
+		{
+			"path": "pages/my/function/settingsPage/verify",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/my/function/OrdersPage/chat",
+			"style": {
+				"navigationBarTitleText": "聊天"
+			}
+		},
+		{
+			"path": "pages/my/function/OrdersPage/edit",
+			"style": {
+				"navigationBarTitleText": "编辑发布"
+			}
+		},
+		{
+			"path": "pages/my/function/OrdersPage/publish",
+			"style": {
+				"navigationBarTitleText": "发布订单"
+			}
 		}
 	],
 	"globalStyle": {

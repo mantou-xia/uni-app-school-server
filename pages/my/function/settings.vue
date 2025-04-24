@@ -18,6 +18,18 @@
         </view>
 
         <view class="settings-group">
+            <view class="settings-item" @click="navigateTo('/pages/my/function/settingsPage/verify')">
+                <view class="item-left">
+                    <uni-icons type="person" size="20" color="#3498db"></uni-icons>
+                    <text class="item-label">实名认证</text>
+                </view>
+                <view class="item-right">
+                    <text class="verify-status" :class="{ 'verified': isVerified }">
+                        {{ isVerified ? '已认证' : '未认证' }}
+                    </text>
+                    <uni-icons type="right" size="16" color="#999"></uni-icons>
+                </view>
+            </view>
             <view class="settings-item" @click="navigateTo('/pages/my/function/settingsPage/privacy')">
                 <view class="item-left">
                     <uni-icons type="locked" size="20" color="#2ecc71"></uni-icons>
@@ -50,82 +62,98 @@
     </view>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const soundEnabled = ref(true)
-const cacheSize = ref('23.5MB')
-
-const navigateTo = (url) => {
-    uni.navigateTo({ url })
-}
-
-const toggleSound = (e) => {
-    soundEnabled.value = e.detail.value
-    uni.showToast({
-        title: soundEnabled.value ? '声音已开启' : '声音已关闭',
-        icon: 'none'
-    })
-}
-
-const clearCache = () => {
-    uni.showModal({
-        title: '清除缓存',
-        content: '确定要清除缓存数据吗？清除后将无法恢复',
-        confirmColor: '#3498db',
-        success: (res) => {
-            if (res.confirm) {
-                uni.showLoading({
-                    title: '清理中'
-                })
-                setTimeout(() => {
-                    uni.hideLoading()
-                    uni.showToast({
-                        title: '清理完成',
-                        icon: 'success'
-                    })
-                    cacheSize.value = '0B'
-                }, 1500)
-            }
+<script>
+export default {
+    data() {
+        return {
+            soundEnabled: true,
+            cacheSize: '23.5MB',
+            isVerified: false
         }
-    })
-}
+    },
+    
+    methods: {
+        navigateTo(url) {
+            uni.navigateTo({ url })
+        },
 
-const checkUpdate = () => {
-    uni.showLoading({
-        title: '检查更新中'
-    })
-    setTimeout(() => {
-        uni.hideLoading()
-        uni.showModal({
-            title: '版本信息',
-            content: '当前已是最新版本 1.0.0',
-            showCancel: false,
-            confirmText: '确定',
-            confirmColor: '#3498db'
-        })
-    }, 1500)
-}
+        toggleSound(e) {
+            this.soundEnabled = e.detail.value
+            uni.showToast({
+                title: this.soundEnabled ? '声音已开启' : '声音已关闭',
+                icon: 'none'
+            })
+        },
 
-const logout = () => {
-    uni.showModal({
-        title: '退出登录',
-        content: '确定要退出当前账号吗？',
-        confirmColor: '#e74c3c',
-        success: (res) => {
-            if (res.confirm) {
-                uni.showLoading({
-                    title: '退出中'
+        clearCache() {
+            uni.showModal({
+                title: '清除缓存',
+                content: '确定要清除缓存数据吗？清除后将无法恢复',
+                confirmColor: '#3498db',
+                success: (res) => {
+                    if (res.confirm) {
+                        uni.showLoading({
+                            title: '清理中'
+                        })
+                        setTimeout(() => {
+                            uni.hideLoading()
+                            uni.showToast({
+                                title: '清理完成',
+                                icon: 'success'
+                            })
+                            this.cacheSize = '0B'
+                        }, 1500)
+                    }
+                }
+            })
+        },
+
+        checkUpdate() {
+            uni.showLoading({
+                title: '检查更新中'
+            })
+            setTimeout(() => {
+                uni.hideLoading()
+                uni.showModal({
+                    title: '版本信息',
+                    content: '当前已是最新版本 1.0.0',
+                    showCancel: false,
+                    confirmText: '确定',
+                    confirmColor: '#3498db'
                 })
-                setTimeout(() => {
-                    uni.hideLoading()
-                    uni.reLaunch({
-                        url: '/pages/index/index'
-                    })
-                }, 1000)
-            }
+            }, 1500)
+        },
+
+        logout() {
+            uni.showModal({
+                title: '退出登录',
+                content: '确定要退出当前账号吗？',
+                confirmColor: '#e74c3c',
+                success: (res) => {
+                    if (res.confirm) {
+                        uni.showLoading({
+                            title: '退出中'
+                        })
+                        setTimeout(() => {
+                            uni.hideLoading()
+                            uni.reLaunch({
+                                url: '/pages/index/index'
+                            })
+                        }, 1000)
+                    }
+                }
+            })
+        },
+
+        checkVerifyStatus() {
+            const verifyStatus = uni.getStorageSync('userVerifyStatus')
+            this.isVerified = verifyStatus?.isVerified || false
         }
-    })
+    },
+
+    onShow() {
+        this.checkVerifyStatus()
+    }
 }
 </script>
 
@@ -166,6 +194,12 @@ const logout = () => {
     gap: 20rpx;
 }
 
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 8rpx;
+}
+
 .item-label {
     font-size: 28rpx;
     color: #2c3e50;
@@ -175,6 +209,15 @@ const logout = () => {
 .cache-size, .version {
     font-size: 26rpx;
     color: #95a5a6;
+}
+
+.verify-status {
+    font-size: 26rpx;
+    color: #ff6b6b;
+}
+
+.verify-status.verified {
+    color: #2ecc71;
 }
 
 .logout-btn {

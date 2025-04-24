@@ -30,7 +30,7 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_assets._imports_0$3,
+    a: common_assets._imports_0$2,
     b: common_vendor.t($props.noticeContent),
     c: common_vendor.o((...args) => $options.showFullNotice && $options.showFullNotice(...args)),
     d: common_vendor.o($options.closePopup),
@@ -40,7 +40,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       content: $props.noticeContent,
       ["before-close"]: true
     }),
-    g: common_vendor.sr("popup", "9dc85ac0-0"),
+    g: common_vendor.sr("popup", "c129deb8-0"),
     h: common_vendor.p({
       type: "dialog"
     })

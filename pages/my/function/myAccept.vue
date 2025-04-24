@@ -22,7 +22,7 @@
             :refresher-triggered="isRefreshing"
         >
             <view class="empty" v-if="!filteredOrders.length">
-                <image src="/static/empty-order.png" mode="aspectFit" class="empty-img"></image>
+                <image src="/static/logo.png" mode="aspectFit" class="empty-img"></image>
                 <text class="empty-text">暂无相关订单</text>
             </view>
             <view v-else class="order-list">
@@ -51,6 +51,13 @@
                             <view class="info-item">
                                 <text class="label">物品信息</text>
                                 <text class="value">{{item.items}}</text>
+                            </view>
+                        </view>
+
+                        <view class="info-row">
+                            <view class="info-item">
+                                <text class="label">委托人联系方式</text>
+                                <text class="value">{{item.contactInfo}}</text>
                             </view>
                         </view>
 
@@ -122,7 +129,8 @@ const orderList = ref([
         baseFee: '5.00',
         extraFee: '2.00',
         orderNo: 'KD20240310143022',
-        time: '2024-03-10 14:30'
+        time: '2024-03-10 14:30',
+        contactInfo: '张同学 13800138000'
     },
     {
         type: '食堂打饭',
@@ -134,7 +142,8 @@ const orderList = ref([
         baseFee: '6.00',
         extraFee: '2.00',
         orderNo: 'ST20240310120012',
-        time: '2024-03-10 12:00'
+        time: '2024-03-10 12:00',
+        contactInfo: '李同学 13900139000'
     },
     {
         type: '代跑腿',
@@ -146,7 +155,8 @@ const orderList = ref([
         baseFee: '8.00',
         extraFee: '5.00',
         orderNo: 'PT20240310153044',
-        time: '2024-03-10 15:30'
+        time: '2024-03-10 15:30',
+        contactInfo: '王同学 13700137000'
     },
     {
         type: '快递代取',
@@ -158,7 +168,8 @@ const orderList = ref([
         baseFee: '4.00',
         extraFee: '1.00',
         orderNo: 'KD20240310162033',
-        time: '2024-03-10 16:20'
+        time: '2024-03-10 16:20',
+        contactInfo: '赵同学 13600136000'
     },
     {
         type: '食堂打饭',
@@ -170,7 +181,8 @@ const orderList = ref([
         baseFee: '7.00',
         extraFee: '3.00',
         orderNo: 'ST20240310171055',
-        time: '2024-03-10 17:10'
+        time: '2024-03-10 17:10',
+        contactInfo: '陈同学 13500135000'
     },
     {
         type: '代跑腿',
@@ -182,7 +194,8 @@ const orderList = ref([
         baseFee: '6.00',
         extraFee: '0.00',
         orderNo: 'PT20240310144023',
-        time: '2024-03-10 14:40'
+        time: '2024-03-10 14:40',
+        contactInfo: '孙同学 13400134000'
     },
     {
         type: '快递代取',
@@ -194,7 +207,8 @@ const orderList = ref([
         baseFee: '8.00',
         extraFee: '4.00',
         orderNo: 'KD20240310182011',
-        time: '2024-03-10 18:20'
+        time: '2024-03-10 18:20',
+        contactInfo: '周同学 13300133000'
     },
     {
         type: '食堂打饭',
@@ -206,7 +220,8 @@ const orderList = ref([
         baseFee: '8.00',
         extraFee: '2.00',
         orderNo: 'ST20240310134077',
-        time: '2024-03-10 13:40'
+        time: '2024-03-10 13:40',
+        contactInfo: '吴同学 13200132000'
     },
     {
         type: '代跑腿',
@@ -218,7 +233,8 @@ const orderList = ref([
         baseFee: '5.00',
         extraFee: '3.00',
         orderNo: 'PT20240310155099',
-        time: '2024-03-10 15:50'
+        time: '2024-03-10 15:50',
+        contactInfo: '郑同学 13100131000'
     },
     {
         type: '代跑腿',
@@ -230,7 +246,8 @@ const orderList = ref([
         baseFee: '7.00',
         extraFee: '5.00',
         orderNo: 'PT20240310163088',
-        time: '2024-03-10 16:30'
+        time: '2024-03-10 16:30',
+        contactInfo: '黄同学 13000130000'
     }
 ])
 
@@ -317,8 +334,54 @@ const completeOrder = (order) => {
 }
 
 const goToAccept = () => {
-    uni.navigateTo({
-        url: '/pages/index/index'
+    // 检查用户是否已登录
+    const token = uni.getStorageSync('token')
+    // if (!token) {
+    //     uni.showToast({
+    //         title: '请先登录',
+    //         icon: 'none'
+    //     })
+    //     setTimeout(() => {
+    //         uni.switchTab({
+    //             url: '/pages/my/my'
+    //         })
+    //     }, 1500)
+    //     return
+    // }
+
+    // 检查用户是否已完成实名认证
+    // const userInfo = uni.getStorageSync('userInfo')
+    // if (!userInfo?.isVerified) {
+    //     uni.showModal({
+    //         title: '提示',
+    //         content: '接单需要完成实名认证，是否前往认证？',
+    //         success: (res) => {
+    //             if (res.confirm) {
+    //                 uni.switchTab({
+    //                     url: '/pages/my/my'
+    //                 })
+    //             }
+    //         }
+    //     })
+    //     return
+    // }
+
+    // 跳转到接单大厅
+    uni.switchTab({
+        url: '/pages/index/index',//跳转购买页面
+        success: () => {
+            uni.showToast({
+                title: '欢迎来到接单大厅',
+                icon: 'none'
+            })
+        },
+        fail: (err) => {
+            console.error('跳转失败：', err)
+            uni.showToast({
+                title: '跳转失败，请重试',
+                icon: 'none'
+            })
+        }
     })
 }
 </script>

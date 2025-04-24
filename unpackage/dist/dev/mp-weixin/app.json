@@ -35,7 +35,12 @@
     "pages/my/function/myWalletPage/recharge",
     "pages/my/function/myWalletPage/withdraw",
     "pages/my/function/myWalletPage/transactions",
-    "pages/post/postview/postview"
+    "pages/my/function/myWalletPage/bills",
+    "pages/post/postview/postview",
+    "pages/my/function/settingsPage/verify",
+    "pages/my/function/OrdersPage/chat",
+    "pages/my/function/OrdersPage/edit",
+    "pages/my/function/OrdersPage/publish"
   ],
   "window": {
     "navigationBarTextStyle": "black",
