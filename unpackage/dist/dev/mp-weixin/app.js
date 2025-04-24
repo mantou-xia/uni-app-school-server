@@ -6,7 +6,6 @@ if (!Math) {
   "./pages/circle/circle.js";
   "./pages/order/order.js";
   "./pages/my/my.js";
-  "./pages/message/message.js";
   "./pages/index_campusErrand/index_campusErrand.js";
   "./pages/index_snackShop/index_snackShop.js";
   "./pages/index_secondHandMarket/index_secondHandMarket.js";
@@ -43,6 +42,7 @@ if (!Math) {
   "./pages/my/function/OrdersPage/chat.js";
   "./pages/my/function/OrdersPage/edit.js";
   "./pages/my/function/OrdersPage/publish.js";
+  "./pages/index_campusErrand/order_detail/order_detail.js";
 }
 const _sfc_main = {
   onLaunch: function() {

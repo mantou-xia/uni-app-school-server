@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../../common/vendor.js");
-const static_utils_goToPage = require("../../../static/utils/goToPage.js");
 const hrGridSwiper = () => "../../../uni_modules/hr-grid-swiper/components/hr-grid-swiper/hr-grid-swiper.js";
 const _sfc_main = {
   name: "CustomGrid",
@@ -65,14 +64,14 @@ const _sfc_main = {
     this.$nextTick(() => {
       const query = common_vendor.index.createSelectorQuery().in(this);
       query.select(".grid-wrapper").boundingClientRect((rect) => {
-        common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:96", "Grid wrapper width:", rect ? rect.width : "No rect");
+        common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:95", "Grid wrapper width:", rect ? rect.width : "No rect");
       }).exec();
     });
   },
   methods: {
     // 处理网格项点击事件
     handleGridItemClick(event) {
-      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:104", "Complete event:", event);
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:103", "Complete event:", event);
       let item, index;
       if (event && typeof event === "object") {
         if (typeof event.item === "number" && typeof event.index === "object") {
@@ -86,8 +85,8 @@ const _sfc_main = {
           index = this.gridData.findIndex((gridItem) => gridItem.name === event.name);
         }
       }
-      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:128", "Extracted index:", index);
-      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:129", "Extracted item:", item);
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:127", "Extracted index:", index);
+      common_vendor.index.__f__("log", "at components/index/CustomGrid/CustomGrid.vue:128", "Extracted item:", item);
       if (!item) {
         common_vendor.index.showToast({
           title: "点击项目无效",
@@ -102,7 +101,7 @@ const _sfc_main = {
         });
         return;
       }
-      static_utils_goToPage.goToPage(item.path, {}, "navigateTo");
+      common_vendor.index.navigateTo({ url: item.path });
     }
   }
 };

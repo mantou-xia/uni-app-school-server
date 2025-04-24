@@ -1,1 +1,1 @@
-<view><custom-post-content wx:if="{{a}}" class="r" bindonShare="{{c}}" u-r="customPostContent" u-i="0b26ef54-0" bind:__l="__l" u-p="{{d}}"/><custom-post-comment u-i="0b26ef54-1" bind:__l="__l"/><custom-add u-i="0b26ef54-2" bind:__l="__l"/></view>
+<view><custom-post-content wx:if="{{a}}" class="r" bindonShare="{{c}}" u-r="customPostContent" u-i="cf5b995c-0" bind:__l="__l" u-p="{{d}}"/><custom-post-comment u-i="cf5b995c-1" bind:__l="__l"/><custom-add u-i="cf5b995c-2" bind:__l="__l"/></view>

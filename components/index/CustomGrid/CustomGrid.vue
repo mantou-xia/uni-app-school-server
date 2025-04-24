@@ -27,7 +27,6 @@
 
 <script>
 	import hrGridSwiper from "@/uni_modules/hr-grid-swiper/components/hr-grid-swiper/hr-grid-swiper.vue"
-	import { goToPage } from '@/static/utils/goToPage.js'
 
 	export default {
 		name: "CustomGrid",
@@ -145,9 +144,7 @@
 					});
 					return;
 				}
-
-				// 使用 goToPage 跳转
-				goToPage(item.path, {}, 'navigateTo');
+				uni.navigateTo({ url: item.path });
 			}
 		}
 	}

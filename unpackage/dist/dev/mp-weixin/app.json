@@ -4,7 +4,6 @@
     "pages/circle/circle",
     "pages/order/order",
     "pages/my/my",
-    "pages/message/message",
     "pages/index_campusErrand/index_campusErrand",
     "pages/index_snackShop/index_snackShop",
     "pages/index_secondHandMarket/index_secondHandMarket",
@@ -40,7 +39,8 @@
     "pages/my/function/settingsPage/verify",
     "pages/my/function/OrdersPage/chat",
     "pages/my/function/OrdersPage/edit",
-    "pages/my/function/OrdersPage/publish"
+    "pages/my/function/OrdersPage/publish",
+    "pages/index_campusErrand/order_detail/order_detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -67,10 +67,10 @@
         "selectedIconPath": "static/tabbar/社区-激活.png"
       },
       {
-        "pagePath": "pages/message/message",
-        "text": "消息",
-        "iconPath": "static/tabbar/消息-未选中.png",
-        "selectedIconPath": "static/tabbar/消息-选中.png"
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "static/tabbar/订单-未选中.png",
+        "selectedIconPath": "static/tabbar/订单-选中.png"
       },
       {
         "pagePath": "pages/my/my",

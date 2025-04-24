@@ -1,0 +1,1 @@
+<view class="detail-page"><text>订单详情 - ID: {{a}}</text></view>

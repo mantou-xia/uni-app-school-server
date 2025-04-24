@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "消息",
-  "usingComponents": {
-    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
-  }
-}
