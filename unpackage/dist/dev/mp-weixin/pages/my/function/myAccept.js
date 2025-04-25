@@ -218,6 +218,29 @@ const _sfc_main = {
         }
       });
     };
+    const contactService = (order) => {
+      common_vendor.index.showModal({
+        title: "联系客服",
+        content: "是否进入在线客服聊天？",
+        success: (res) => {
+          if (res.confirm) {
+            common_vendor.index.navigateTo({
+              url: `/pages/my/function/myAcceptPage/chat?orderNo=${order.orderNo}`,
+              success: () => {
+                common_vendor.index.__f__("log", "at pages/my/function/myAccept.vue:351", "跳转到客服聊天页面成功");
+              },
+              fail: (err) => {
+                common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:354", "跳转到客服聊天页面失败：", err);
+                common_vendor.index.showToast({
+                  title: "跳转失败，请重试",
+                  icon: "none"
+                });
+              }
+            });
+          }
+        }
+      });
+    };
     const goToAccept = () => {
       common_vendor.index.getStorageSync("token");
       common_vendor.index.switchTab({
@@ -230,7 +253,7 @@ const _sfc_main = {
           });
         },
         fail: (err) => {
-          common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:379", "跳转失败：", err);
+          common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:409", "跳转失败：", err);
           common_vendor.index.showToast({
             title: "跳转失败，请重试",
             icon: "none"
@@ -286,7 +309,8 @@ const _sfc_main = {
           }, item.status === "accepted" ? {
             r: common_vendor.o(($event) => completeOrder(), index)
           } : {}, {
-            s: index
+            s: common_vendor.o(($event) => contactService(item), index),
+            t: index
           });
         })
       }, {

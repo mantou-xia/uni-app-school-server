@@ -1,4 +1,5 @@
 <template>
+    <!-- 待完善功能 -->
     <view class="publish">
         <view class="header">
             <view class="tabs">

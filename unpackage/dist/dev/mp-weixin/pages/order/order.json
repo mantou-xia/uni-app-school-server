@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "订单",
+  "navigationBarTitleText": "订单大厅",
   "usingComponents": {
-    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator"
+    "ren-customer-navigator": "../../components/ren-customer-navigator/ren-customer-navigator",
+    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons"
   }
 }
