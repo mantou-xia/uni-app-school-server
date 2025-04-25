@@ -43,6 +43,8 @@ if (!Math) {
   "./pages/my/function/OrdersPage/edit.js";
   "./pages/my/function/OrdersPage/publish.js";
   "./pages/index_campusErrand/order_detail/order_detail.js";
+  "./pages/my/function/myAcceptPage/chat.js";
+  "./pages/order/orderDetail/orderDetail.js";
 }
 const _sfc_main = {
   onLaunch: function() {

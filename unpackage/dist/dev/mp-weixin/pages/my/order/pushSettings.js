@@ -101,7 +101,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     m: common_vendor.t($data.orderTypes.length),
     n: common_vendor.f($data.orderTypes, (type, index, i0) => {
       return common_vendor.e({
-        a: "79f8e602-0-" + i0,
+        a: "4edf2eb7-0-" + i0,
         b: common_vendor.p({
           type: type.icon,
           size: "30",

@@ -22,7 +22,7 @@
 		{
 			"path": "pages/order/order",
 			"style": {
-				"navigationBarTitleText": "订单"
+				"navigationBarTitleText": "订单大厅"
 			}
 		},
 		{
@@ -253,6 +253,19 @@
 		},
 		{
 			"path" : "pages/index_campusErrand/order_detail/order_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单"
+			}
+		},
+		{
+			"path": "pages/my/function/myAcceptPage/chat",
+			"style": {
+				"navigationBarTitleText": "客服聊天"
+			}
+		},
+		{
+			"path" : "pages/order/orderDetail/orderDetail",
 			"style" : 
 			{
 				"navigationBarTitleText" : "订单详情"

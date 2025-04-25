@@ -40,7 +40,9 @@
     "pages/my/function/OrdersPage/chat",
     "pages/my/function/OrdersPage/edit",
     "pages/my/function/OrdersPage/publish",
-    "pages/index_campusErrand/order_detail/order_detail"
+    "pages/index_campusErrand/order_detail/order_detail",
+    "pages/my/function/myAcceptPage/chat",
+    "pages/order/orderDetail/orderDetail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -95,6 +95,11 @@
                             v-if="item.status === 'accepted'"
                             @click="completeOrder(item)"
                         >完成配送</button>
+                        <button 
+                            class="btn service" 
+                            size="mini"
+                            @click="contactService(item)"
+                        >联系客服</button>
                     </view>
                 </view>
             </view>
@@ -327,6 +332,31 @@ const completeOrder = (order) => {
                 uni.showToast({
                     title: '订单已完成',
                     icon: 'success'
+                })
+            }
+        }
+    })
+}
+
+const contactService = (order) => {
+    uni.showModal({
+        title: '联系客服',
+        content: '是否进入在线客服聊天？',
+        success: (res) => {
+            if (res.confirm) {
+                // 跳转到在线客服聊天页面
+                uni.navigateTo({
+                    url: `/pages/my/function/myAcceptPage/chat?orderNo=${order.orderNo}`,
+                    success: () => {
+                        console.log('跳转到客服聊天页面成功')
+                    },
+                    fail: (err) => {
+                        console.error('跳转到客服聊天页面失败：', err)
+                        uni.showToast({
+                            title: '跳转失败，请重试',
+                            icon: 'none'
+                        })
+                    }
                 })
             }
         }
@@ -595,6 +625,7 @@ const goToAccept = () => {
     margin-top: 30rpx;
     padding-top: 30rpx;
     border-top: 2rpx solid #f5f5f5;
+    gap: 20rpx;
 }
 
 .btn {
@@ -605,6 +636,11 @@ const goToAccept = () => {
 
 .btn.primary {
     background-color: #2196f3;
+    color: #fff;
+}
+
+.btn.service {
+    background-color: #ff9800;
     color: #fff;
 }
 
