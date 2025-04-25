@@ -1,1 +1,1 @@
-<view class="detail-page"><text>订单详情 - ID: {{a}}</text></view>
+<view class="detail-page"><text class="order-title">订单详情 - ID: {{a}}</text><view class="order-info"><text>分类: {{b}}</text><text>日期: {{c}}</text><text>时间: {{d}}</text><text>地区: {{e}}</text><text>发布: {{f}}</text><text>备注: {{g}}</text></view><view class="order-footer"><text class="detail-text" bindtap="{{h}}">返回列表</text></view></view>

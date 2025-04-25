@@ -28,3 +28,19 @@
   font-size: 16px;
   color: #333;
 }
+.order-info {
+  margin-top: 10rpx;
+}
+.order-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.order-footer {
+  margin-top: 20rpx;
+}
+.detail-text {
+  color: #4b7bec;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
