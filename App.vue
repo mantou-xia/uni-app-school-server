@@ -23,10 +23,4 @@ page {
 	box-sizing: border-box;
 }
 
-/* 容器通用样式 */
-.container {
-	width: 100%;
-	padding: 20rpx;
-	box-sizing: border-box;
-}
 </style>

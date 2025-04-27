@@ -319,7 +319,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     b: common_vendor.f($options.currentOrders, (order, index, i0) => {
       return common_vendor.e({
-        a: "74daabc3-0-" + i0,
+        a: "2beac40b-0-" + i0,
         b: common_vendor.p({
           type: $options.getOrderIcon(order.type),
           size: "18",

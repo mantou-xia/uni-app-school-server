@@ -281,7 +281,7 @@ const _sfc_main = {
       } : {
         d: common_vendor.f(filteredOrders.value, (item, index, i0) => {
           return common_vendor.e({
-            a: "a02da2fc-0-" + i0,
+            a: "fbc8318c-0-" + i0,
             b: common_vendor.p({
               type: getOrderIcon(item.type),
               size: "18",

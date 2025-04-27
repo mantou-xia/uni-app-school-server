@@ -30,7 +30,7 @@ page {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #f5f5f5;
 }
 .toggle-block {
   background-color: #4b7bec;
@@ -92,68 +92,228 @@ page {
 .dropdown-item:hover {
   background-color: #e0e0e0;
 }
-.order-list {
+.content-area {
   flex: 1;
-  padding: 20rpx;
+  padding: 30rpx;
+  overflow-y: auto;
+}
+.order-list {
+  height: 100%;
 }
 .order-item {
   background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
   margin-bottom: 20rpx;
-  border-radius: 10rpx;
-  padding: 20rpx 40rpx 20rpx 20rpx;
-  border-left: 6rpx solid #4b7bec;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+  border-left: 6rpx solid #2196f3;
+  position: relative;
+}
+.fee-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 20rpx;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 6rpx rgba(255, 71, 87, 0.3);
+  position: relative;
+  top: -2rpx;
+}
+.fee-amount {
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.fee-fetch {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+}
+.fee-delivery {
+  background: linear-gradient(135deg, #40c463, #2ecc71);
+}
+.fee-class {
+  background: linear-gradient(135deg, #4b7bec, #3b5998);
+}
+.fee-other {
+  background: linear-gradient(135deg, #a4a4a4, #777777);
+}
+.order-item.category-fetch .fee-badge {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+}
+.order-item.category-delivery .fee-badge {
+  background: linear-gradient(135deg, #40c463, #2ecc71);
+}
+.order-item.category-class .fee-badge {
+  background: linear-gradient(135deg, #4b7bec, #3b5998);
+}
+.order-item.category-other .fee-badge {
+  background: linear-gradient(135deg, #a4a4a4, #777777);
+}
+.order-item.category-fetch {
+  border-left-color: #ff6b6b;
+}
+.order-item.category-delivery {
+  border-left-color: #40c463;
+}
+.order-item.category-class {
+  border-left-color: #4b7bec;
+}
+.order-item.category-other {
+  border-left-color: #a4a4a4;
 }
 .order-header {
-  flex-direction: row;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
 }
-.order-title {
-  font-size: 20px;
-  font-weight: bold;
+.order-type {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 30rpx;
+  font-weight: 500;
   color: #333;
 }
-.order-category {
-  font-size: 16px;
-  padding: 4rpx 8rpx;
-  border-radius: 60rpx;
+.order-status {
+  font-size: 26rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+  color: #fff;
 }
-.order-meta {
+.order-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.info-item {
+  display: flex;
+  align-items: center;
+}
+.info-item.location {
+  position: relative;
+  padding-left: 30rpx;
+}
+.info-item.location::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #2196f3;
+}
+.info-item.location-fetch::before {
+  background-color: #ff6b6b;
+}
+.info-item.location-delivery::before {
+  background-color: #40c463;
+}
+.info-item.location-class::before {
+  background-color: #4b7bec;
+}
+.info-item.location-other::before {
+  background-color: #a4a4a4;
+}
+.label {
+  font-size: 26rpx;
   color: #999;
-  margin-bottom: 15rpx;
-  flex-direction: row;
+  margin-right: 20rpx;
+  min-width: 120rpx;
 }
-.order-meta text {
-  display: block;
-}
-.left-meta {
+.value {
+  font-size: 28rpx;
+  color: #333;
   flex: 1;
-}
-.right-meta {
-  color: #999;
 }
 .order-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5rpx;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #f5f5f5;
 }
-.order-remarks {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 15rpx;
+.time {
+  font-size: 24rpx;
+  color: #999;
 }
-.detail-text {
-  color: #4b7bec;
-  font-size: 14px;
-  font-weight: bold;
+.btn-group {
+  display: flex;
+  gap: 20rpx;
 }
-.toggle-text {
-  font-size: 16px;
-  font-weight: bold;
+.btn {
+  font-size: 26rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+  color: #fff;
+  background-color: #2196f3;
+}
+.btn.fetch {
+  background-color: #ff6b6b;
+}
+.btn.delivery {
+  background-color: #40c463;
+}
+.btn.class {
+  background-color: #4b7bec;
+}
+.btn.other {
+  background-color: #a4a4a4;
+}
+.location-row {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 16rpx;
+  border-radius: 8rpx;
+  margin: 10rpx 0;
+}
+.location-item {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.location-icon {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rpx;
+}
+.location-icon.start {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+.location-icon.end {
+  background-color: rgba(255, 71, 87, 0.1);
+}
+.location-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.location-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+/* 为代课类型订单添加特定样式 */
+.order-item.category-class .location-icon.end {
+  background-color: rgba(75, 123, 236, 0.1);
+}
+.order-item.category-class .location-row {
+  background-color: rgba(75, 123, 236, 0.05);
 }

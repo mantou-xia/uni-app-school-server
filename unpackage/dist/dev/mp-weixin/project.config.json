@@ -15,11 +15,12 @@
             "ignore": [],
             "disablePlugins": [],
             "outputPath": ""
-        }
+        },
+        "ignoreUploadUnusedFiles": false
     },
     "compileType": "miniprogram",
     "libVersion": "",
-    "appid": "wx0cec78a6b27d067e",
+    "appid": "wxa3f450fa8973faba",
     "projectname": "school-server-demo",
     "condition": {},
     "editorSetting": {

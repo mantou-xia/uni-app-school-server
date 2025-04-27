@@ -40,7 +40,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       content: $props.noticeContent,
       ["before-close"]: true
     }),
-    g: common_vendor.sr("popup", "714189e8-0"),
+    g: common_vendor.sr("popup", "9dc85ac0-0"),
     h: common_vendor.p({
       type: "dialog"
     })
