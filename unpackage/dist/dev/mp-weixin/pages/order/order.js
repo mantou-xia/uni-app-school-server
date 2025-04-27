@@ -33,7 +33,7 @@ const _sfc_main = {
         {
           type: "快递代取",
           status: "processing",
-          statusText: "配送中",
+          statusText: "正在帮助",
           pickupAddress: "快递点-菜鸟驿站（3号柜台）",
           deliveryAddress: "学生宿舍8栋-B305",
           items: "快递包裹 1件",
@@ -45,7 +45,7 @@ const _sfc_main = {
         {
           type: "食堂打饭",
           status: "completed",
-          statusText: "已完成",
+          statusText: "已帮助",
           pickupAddress: "第一食堂-2楼",
           deliveryAddress: "图书馆-3楼自习室",
           items: "黄焖鸡米饭 1份",
@@ -57,7 +57,7 @@ const _sfc_main = {
         {
           type: "快递代取",
           status: "rewarding",
-          statusText: "悬赏中",
+          statusText: "正在悬赏",
           pickupAddress: "快递点-京东快递站点",
           deliveryAddress: "教学楼-A栋201",
           items: "大件快递 1个",
@@ -65,6 +65,84 @@ const _sfc_main = {
           tip: "3.00",
           time: "2024-03-10 16:20",
           orderNo: "100250425143509600675"
+        },
+        {
+          type: "校园跑腿",
+          status: "pending",
+          statusText: "待帮助",
+          pickupAddress: "图书馆-1楼打印店",
+          deliveryAddress: "教学楼-C栋405",
+          items: "打印资料 20页",
+          fee: "2.00",
+          tip: "1.00",
+          time: "2024-03-10 17:00",
+          orderNo: "100250425143509600676",
+          remark: "双面打印，彩印"
+        },
+        {
+          type: "食堂打饭",
+          status: "rewarding",
+          statusText: "正在悬赏",
+          pickupAddress: "第二食堂-1楼",
+          deliveryAddress: "实验楼-B区203",
+          items: "麻辣香锅套餐 1份",
+          fee: "4.00",
+          tip: "5.00",
+          time: "2024-03-10 11:30",
+          orderNo: "100250425143509600677",
+          remark: "不要太辣，多加青菜"
+        },
+        {
+          type: "校园跑腿",
+          status: "processing",
+          statusText: "正在帮助",
+          pickupAddress: "校医院",
+          deliveryAddress: "女生宿舍-6栋-504",
+          items: "药品",
+          fee: "5.00",
+          tip: "3.00",
+          time: "2024-03-10 09:15",
+          orderNo: "100250425143509600678",
+          remark: "帮取感冒药，已开好处方"
+        },
+        {
+          type: "快递代取",
+          status: "completed",
+          statusText: "已帮助",
+          pickupAddress: "快递点-顺丰快递点（西门店）",
+          deliveryAddress: "教师公寓-3号楼-502",
+          items: "快递包裹 2件",
+          fee: "6.00",
+          tip: "2.00",
+          time: "2024-03-10 08:30",
+          orderNo: "100250425143509600679",
+          remark: "易碎物品，请小心搬运"
+        },
+        {
+          type: "食堂打饭",
+          status: "processing",
+          statusText: "正在帮助",
+          pickupAddress: "第三食堂-3楼",
+          deliveryAddress: "体育馆-羽毛球场",
+          items: "水饺 2份，可乐 1瓶",
+          fee: "3.50",
+          tip: "2.50",
+          time: "2024-03-10 18:45",
+          orderNo: "100250425143509600680",
+          remark: "水饺要韭菜馅的"
+        },
+        {
+          type: "校园跑腿",
+          status: "rewarding",
+          statusText: "正在悬赏",
+          pickupAddress: "学生活动中心",
+          deliveryAddress: "音乐厅",
+          items: "乐器搬运",
+          fee: "10.00",
+          tip: "8.00",
+          time: "2024-03-10 13:20",
+          orderNo: "100250425143509600681",
+          remark: "小提琴一个，需要小心搬运"
         }
       ]
     };
@@ -94,7 +172,7 @@ const _sfc_main = {
         "pending": "待帮助",
         "processing": "正在帮助",
         "completed": "已帮助",
-        "rewarding": "悬赏中"
+        "rewarding": "正在悬赏"
       };
       return statusMap[status] || "未知状态";
     },
@@ -107,7 +185,7 @@ const _sfc_main = {
           eventChannel.emit("acceptOrderData", { order });
         },
         fail: (err) => {
-          common_vendor.index.__f__("error", "at pages/order/order.vue:189", "跳转失败：", err);
+          common_vendor.index.__f__("error", "at pages/order/order.vue:267", "跳转失败：", err);
           common_vendor.index.showToast({
             title: "跳转失败，请重试",
             icon: "none"
@@ -150,6 +228,8 @@ const _sfc_main = {
             content: "确认接此订单吗？",
             success: (res) => {
               if (res.confirm) {
+                order.status = "processing";
+                order.statusText = "配送中";
                 common_vendor.index.showToast({
                   title: "接单成功",
                   icon: "success"
@@ -164,6 +244,8 @@ const _sfc_main = {
             content: "确认已完成配送？",
             success: (res) => {
               if (res.confirm) {
+                order.status = "completed";
+                order.statusText = "已完成";
                 common_vendor.index.showToast({
                   title: "订单已完成",
                   icon: "success"
@@ -172,15 +254,27 @@ const _sfc_main = {
             }
           });
           break;
-        default:
+        case "completed":
           common_vendor.index.navigateTo({
-            url: `/pages/order/order_detail/order_detail?orderNo=${order.orderNo}`
+            url: `/pages/order/orderDetail/orderDetail?orderNo=${order.orderNo}`,
+            success: () => {
+              const eventChannel = this.getOpenerEventChannel();
+              eventChannel.emit("acceptOrderData", { order });
+            },
+            fail: (err) => {
+              common_vendor.index.__f__("error", "at pages/order/order.vue:347", "跳转失败：", err);
+              common_vendor.index.showToast({
+                title: "跳转失败，请重试",
+                icon: "none"
+              });
+            }
           });
+          break;
       }
     },
     // 刷新订单列表
     refreshOrderList() {
-      common_vendor.index.__f__("log", "at pages/order/order.vue:264", "刷新订单列表");
+      common_vendor.index.__f__("log", "at pages/order/order.vue:360", "刷新订单列表");
       common_vendor.index.showLoading({
         title: "刷新中..."
       });
@@ -225,7 +319,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     b: common_vendor.f($options.currentOrders, (order, index, i0) => {
       return common_vendor.e({
-        a: "2beac40b-0-" + i0,
+        a: "74daabc3-0-" + i0,
         b: common_vendor.p({
           type: $options.getOrderIcon(order.type),
           size: "18",

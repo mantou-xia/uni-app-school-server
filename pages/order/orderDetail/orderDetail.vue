@@ -18,35 +18,45 @@
 				<view class="status-btn" :class="orderInfo.status">{{getStatusText}}</view>
 			</view>
 
-			<view class="order-type">
-				<text>快递类型：{{orderInfo.expressType}}</text>
-				<text>快递数量：{{orderInfo.expressCount}}个</text>
-				<text>备注：{{orderInfo.remark}}</text>
-				<text>期望送达：{{orderInfo.expectedDelivery}}</text>
+			<view class="order-type" v-if="orderInfo.type === '快递代取'">
+				<text v-if="orderInfo.expressType">快递类型：{{orderInfo.expressType}}</text>
+				<text v-if="orderInfo.expressCount">快递数量：{{orderInfo.expressCount}}个</text>
+				<text v-if="orderInfo.remark">备注：{{orderInfo.remark}}</text>
+				<text v-if="orderInfo.expectedDelivery">期望送达：{{orderInfo.expectedDelivery}}</text>
+			</view>
+			
+			<view class="order-type" v-else>
+				<text v-if="orderInfo.items">物品信息：{{orderInfo.items}}</text>
+				<text v-if="orderInfo.remark">备注：{{orderInfo.remark}}</text>
 			</view>
 
 			<view class="location-info">
 				<view class="location start">
 					<text class="tag">起</text>
-					<text class="address">快递点-科技园快递点（南信一号楼数学楼东侧店）</text>
+					<text class="address">{{orderInfo.pickupAddress}}</text>
 				</view>
 				<view class="location end">
 					<text class="tag">终</text>
-					<text class="address">男生宿舍-学生公寓2栋-2单元2-304d</text>
+					<text class="address">{{orderInfo.deliveryAddress}}</text>
 				</view>
 			</view>
 
-			<view class="price">
-				<text>金额 ¥3</text>
+			<view class="fee-section">
+				<view class="price">
+					<text>配送费 ¥{{orderInfo.fee}}</text>
+				</view>
+				<view class="price highlight" v-if="orderInfo.tip && orderInfo.tip !== '0.00'">
+					<text>小费 +¥{{orderInfo.tip}}</text>
+				</view>
 			</view>
 		</view>
 
 		<!-- 接单人信息 -->
-		<view class="rider-info">
+		<view class="rider-info" v-if="orderInfo.status === 'processing' || orderInfo.status === 'completed'">
 			<view class="rider-title">接单人</view>
 			<view class="rider-content">
 				<image class="avatar" src="/static/logo.png"></image>
-				<text class="name">用户</text>
+				<text class="name">配送员</text>
 				<view class="contact-btns">
 					<button class="contact-btn chat" @click="handleChat">
 						<uni-icons type="chat" size="20"></uni-icons>
@@ -63,10 +73,11 @@
 		<!-- 订单信息 -->
 		<view class="order-details">
 			<text class="order-number">订单号：{{orderInfo.orderNo}}</text>
-			<text class="order-time">支付时间：{{orderInfo.payTime}}</text>
-			<text class="accept-time">接单时间：{{orderInfo.acceptTime}}</text>
+			<text class="order-time">下单时间：{{orderInfo.time}}</text>
+			<text class="pay-time" v-if="orderInfo.payTime">支付时间：{{orderInfo.payTime}}</text>
+			<text class="accept-time" v-if="orderInfo.acceptTime">接单时间：{{orderInfo.acceptTime}}</text>
 			<text class="contact">联系管理员：联系校区管理员</text>
-			<button class="history-btn" @click="goToHistory">前往订单池</button>
+			<button class="history-btn" @click="goToHistory">返回订单列表</button>
 		</view>
 	</view>
 </template>
@@ -75,20 +86,23 @@
 export default {
 	data() {
 		return {
-			countdown: '1天20时56分14秒',
+			countdown: '',
 			orderInfo: {
-				orderNo: '100250425143509600672',
-				payTime: '2025-04-25 14:35:24',
-				acceptTime: '2025-04-25 14:39:25',
-				type: '快递代取',
-				status: 'pending', // 可能的状态: pending(待接单), processing(配送中), completed(已完成), rewarding(悬赏中)
-				expressType: '中件',
-				expressCount: 1,
-				remark: '一件衣服',
-				expectedDelivery: '尽快送达',
-				pickupAddress: '快递点-科技园快递点（南信一号楼数学楼东侧店）',
-				deliveryAddress: '男生宿舍-学生公寓2栋-2单元2-304d',
-				fee: '3.00'
+				orderNo: '',
+				payTime: '',
+				acceptTime: '',
+				type: '',
+				status: '',
+				expressType: '',
+				expressCount: 0,
+				remark: '',
+				expectedDelivery: '',
+				pickupAddress: '',
+				deliveryAddress: '',
+				fee: '',
+				tip: '',
+				items: '',
+				time: ''
 			}
 		}
 	},
@@ -98,7 +112,7 @@ export default {
 				'pending': '待帮助',
 				'processing': '正在帮助',
 				'completed': '已帮助',
-				'rewarding': '悬赏中'
+				'rewarding': '正在悬赏'
 			};
 			return statusMap[this.orderInfo.status] || '未知状态';
 		}
@@ -107,32 +121,52 @@ export default {
 		// 获取路由参数
 		const { orderNo } = options;
 		const eventChannel = this.getOpenerEventChannel();
+		
 		// 监听acceptOrderData事件,接收上一页面传递的数据
-		eventChannel.on('acceptOrderData', ({ order }) => {
-			this.orderInfo = order;
-			// 开始倒计时
-			this.startCountdown();
+		eventChannel.on('acceptOrderData', (data) => {
+			console.log('接收到的订单数据：', data);
+			if (data && data.order) {
+				// 将接收到的订单数据赋值给orderInfo
+				this.orderInfo = { ...data.order };
+				
+				// 如果订单状态是processing，则开始倒计时
+				if (this.orderInfo.status === 'processing' && this.orderInfo.acceptTime) {
+					this.startCountdown();
+				}
+			} else {
+				// 如果没有收到数据，显示提示
+				uni.showToast({
+					title: '订单数据加载失败',
+					icon: 'none'
+				});
+				// 2秒后返回上一页
+				setTimeout(() => {
+					uni.navigateBack();
+				}, 2000);
+			}
 		});
 	},
 	methods: {
 		startCountdown() {
+			if (!this.orderInfo.acceptTime) return;
+			
 			// 计算倒计时
 			const now = new Date();
 			const acceptTime = new Date(this.orderInfo.acceptTime);
-			const diff = acceptTime.getTime() - now.getTime();
+			// 设置30分钟的配送时限
+			const deliveryTime = new Date(acceptTime.getTime() + 30 * 60 * 1000);
+			const diff = deliveryTime.getTime() - now.getTime();
 			
 			if (diff > 0) {
-				const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-				const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+				const minutes = Math.floor(diff / (1000 * 60));
 				const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 				
-				this.countdown = `${days}天${hours}时${minutes}分${seconds}秒`;
+				this.countdown = `${minutes}分${seconds}秒`;
 				
 				// 更新倒计时
 				setTimeout(this.startCountdown, 1000);
 			} else {
-				this.countdown = '已过期';
+				this.countdown = '配送时间已到';
 			}
 		},
 		handleChat() {
@@ -186,7 +220,7 @@ export default {
 <style>
 .order-detail {
 	min-height: 100vh;
-	background-color: #000000;
+	background-color: #f8f9fd;
 	padding-bottom: 40rpx;
 }
 
@@ -194,133 +228,160 @@ export default {
 	display: flex;
 	align-items: center;
 	gap: 10rpx;
-	padding: 20rpx;
-	background-color: rgba(0, 0, 0, 0.8);
+	padding: 24rpx 32rpx;
+	background: linear-gradient(to right, #4a6fee, #5b7af9);
 	color: #fff;
 	font-size: 24rpx;
 }
 
 .status-card {
-	margin: 20rpx;
-	background-color: #1c1c1e;
-	border-radius: 20rpx;
-	padding: 30rpx;
-	color: #fff;
+	margin: 24rpx;
+	background-color: #ffffff;
+	border-radius: 16rpx;
+	padding: 32rpx;
+	color: #333;
+	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
 }
 
 .countdown {
+	text-align: center;
+	padding: 16rpx;
+	background: #e8f4ff;
+	color: #4a6fee;
+	border-radius: 8rpx;
+	margin-bottom: 24rpx;
 	font-size: 28rpx;
-	color: #fff;
-	margin-bottom: 30rpx;
+	font-weight: 500;
 }
 
 .order-info {
 	display: flex;
 	align-items: center;
-	margin-bottom: 30rpx;
+	margin-bottom: 32rpx;
+	padding-bottom: 24rpx;
+	border-bottom: 2rpx solid #f5f6fa;
 }
 
 .avatar {
-	width: 80rpx;
-	height: 80rpx;
-	border-radius: 40rpx;
-	margin-right: 20rpx;
+	width: 88rpx;
+	height: 88rpx;
+	border-radius: 44rpx;
+	margin-right: 24rpx;
+	box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.05);
 }
 
 .title {
 	font-size: 32rpx;
-	font-weight: 500;
+	font-weight: 600;
 	flex: 1;
+	color: #333;
 }
 
 .status-btn {
-	padding: 10rpx 30rpx;
-	border-radius: 30rpx;
+	padding: 12rpx 32rpx;
+	border-radius: 32rpx;
 	font-size: 26rpx;
-	background-color: #ff9800;
-	color: #fff;
+	font-weight: 500;
 }
 
 .status-btn.pending {
-	background-color: #ff9800;
-	color: #fff;
+	background-color: #fff5e6;
+	color: #ff9800;
 }
 
 .status-btn.processing {
-	background-color: #2196f3;
-	color: #fff;
+	background-color: #e8f4ff;
+	color: #4a6fee;
 }
 
 .status-btn.completed {
-	background-color: #4caf50;
-	color: #fff;
+	background-color: #e8f5e9;
+	color: #4caf50;
 }
 
 .status-btn.rewarding {
-	background-color: #e91e63;
-	color: #fff;
+	background-color: #fce4ec;
+	color: #e91e63;
 }
 
 .order-type {
-	display: flex;
-	flex-direction: column;
-	gap: 10rpx;
+	background-color: #f8f9fd;
+	padding: 20rpx;
+	border-radius: 12rpx;
+	margin: 20rpx 0;
+}
+
+.order-type text {
+	display: block;
 	font-size: 28rpx;
-	margin-bottom: 30rpx;
+	color: #666;
+	line-height: 1.8;
 }
 
 .location-info {
-	display: flex;
-	flex-direction: column;
-	gap: 20rpx;
-	margin-bottom: 30rpx;
+	margin: 24rpx 0;
 }
 
 .location {
-	display: flex;
-	align-items: flex-start;
-	gap: 20rpx;
+	padding: 16rpx 0;
 }
 
-.tag {
-	width: 40rpx;
+.location .tag {
+	min-width: 40rpx;
 	height: 40rpx;
 	line-height: 40rpx;
 	text-align: center;
-	border-radius: 20rpx;
+	border-radius: 8rpx;
 	font-size: 24rpx;
+	color: #fff;
+	margin-right: 16rpx;
+}
+
+.location .address {
+	flex: 1;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	color: #333;
 }
 
 .start .tag {
-	background-color: #4cd964;
+	background: linear-gradient(135deg, #4caf50, #45a049);
 }
 
 .end .tag {
-	background-color: #007aff;
+	background: linear-gradient(135deg, #4a6fee, #5b7af9);
 }
 
-.address {
-	flex: 1;
-	font-size: 28rpx;
-	line-height: 1.4;
+.fee-section {
+	margin-top: 24rpx;
+	padding-top: 24rpx;
+	border-top: 2rpx solid #f5f6fa;
 }
 
 .price {
 	font-size: 32rpx;
 	font-weight: 500;
+	color: #333;
+}
+
+.price.highlight {
+	color: #ff9800;
+	font-size: 28rpx;
 }
 
 .rider-info {
-	margin: 20rpx;
-	background-color: #1c1c1e;
-	border-radius: 20rpx;
-	padding: 30rpx;
-	color: #fff;
+	margin: 24rpx;
+	background-color: #ffffff;
+	border-radius: 16rpx;
+	padding: 32rpx;
+	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
 }
 
 .rider-title {
 	font-size: 30rpx;
-	margin-bottom: 20rpx;
+	margin-bottom: 24rpx;
+	font-weight: 600;
+	color: #333;
 }
 
 .rider-content {
@@ -331,6 +392,8 @@ export default {
 .rider-content .name {
 	flex: 1;
 	font-size: 28rpx;
+	color: #333;
+	font-weight: 500;
 }
 
 .contact-btns {
@@ -342,46 +405,54 @@ export default {
 	display: flex;
 	align-items: center;
 	gap: 10rpx;
-	padding: 10rpx 30rpx;
-	border-radius: 30rpx;
+	padding: 12rpx 32rpx;
+	border-radius: 32rpx;
 	font-size: 26rpx;
-	background-color: #007aff;
-	color: #fff;
 }
 
 .contact-btn.chat {
-	background-color: #007aff;
+	background: linear-gradient(to right, #4a6fee, #5b7af9);
+	color: #fff;
 }
 
 .contact-btn.phone {
-	background-color: #007aff;
+	background: #e8f4ff;
+	color: #4a6fee;
 }
 
 .order-details {
-	margin: 20rpx;
-	background-color: #1c1c1e;
-	border-radius: 20rpx;
-	padding: 30rpx;
-	color: #fff;
+	margin: 24rpx;
+	background-color: #ffffff;
+	border-radius: 16rpx;
+	padding: 32rpx;
+	color: #333;
 	display: flex;
 	flex-direction: column;
 	gap: 20rpx;
+	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
 }
 
 .order-details text {
 	font-size: 28rpx;
-	color: #8e8e93;
+	color: #666;
+	line-height: 1.6;
 }
 
 .history-btn {
-	margin-top: 20rpx;
+	margin-top: 32rpx;
 	width: 100%;
-	height: 80rpx;
-	line-height: 80rpx;
+	height: 88rpx;
+	line-height: 88rpx;
 	text-align: center;
-	background-color: #1c1c1e;
+	background: linear-gradient(to right, #4a6fee, #5b7af9);
 	color: #fff;
-	border-radius: 40rpx;
+	border-radius: 44rpx;
 	font-size: 28rpx;
+	font-weight: 500;
+	box-shadow: 0 4rpx 12rpx rgba(74, 111, 238, 0.2);
+}
+
+.history-btn:active {
+	transform: scale(0.98);
 }
 </style> 

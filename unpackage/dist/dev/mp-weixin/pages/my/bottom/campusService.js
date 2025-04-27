@@ -92,7 +92,7 @@ const _sfc_main = {
         f: common_vendor.f(commonProblems.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.question),
-            b: "170b0e33-2-" + i0,
+            b: "1a8521eb-2-" + i0,
             c: index,
             d: common_vendor.o(($event) => showAnswer(item), index)
           };

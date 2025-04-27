@@ -169,7 +169,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       return common_vendor.e({
         a: $data.currentStep > index
       }, $data.currentStep > index ? {
-        b: "1a679abc-0-" + i0,
+        b: "3f240ff8-0-" + i0,
         c: common_vendor.p({
           type: "checkmarkempty",
           size: "14",
@@ -273,7 +273,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     R: common_vendor.f($data.rules, (rule, index, i0) => {
       return {
-        a: "1a679abc-7-" + i0,
+        a: "3f240ff8-7-" + i0,
         b: common_vendor.p({
           type: rule.icon,
           size: "24",
@@ -307,7 +307,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       message: $data.messageContent,
       duration: 2e3
     }),
-    ah: common_vendor.sr("messagePopup", "1a679abc-8"),
+    ah: common_vendor.sr("messagePopup", "3f240ff8-8"),
     ai: common_vendor.p({
       type: "message"
     })
