@@ -6,14 +6,14 @@
                     <view class="icon-wrapper">
                         <uni-icons type="list" size="24" color="#3498db"></uni-icons>
                     </view>
-                    <text class="function-text">我的订单</text>
+                    <text class="function-text">我的发布</text>
                 </view>
-                <view class="function-item" @click="navigateTo('/pages/my/function/myPublish')">
+                <!-- <view class="function-item" @click="navigateTo('/pages/my/function/myPublish')">
                     <view class="icon-wrapper">
                         <uni-icons type="paperplane" size="24" color="#e74c3c"></uni-icons>
                     </view>
                     <text class="function-text">我的发布</text>
-                </view>
+                </view> -->
                 <view class="function-item" @click="navigateTo('/pages/my/function/myAccept')">
                     <view class="icon-wrapper">
                         <uni-icons type="hand-up" size="24" color="#2ecc71"></uni-icons>
@@ -26,12 +26,12 @@
                     </view>
                     <text class="function-text">我的钱包</text>
                 </view>
-                <view class="function-item" @click="navigateTo('/pages/my/function/myCoupon')">
+                <!-- <view class="function-item" @click="navigateTo('/pages/my/function/myCoupon')">
                     <view class="icon-wrapper">
                         <uni-icons type="gift" size="24" color="#e67e22"></uni-icons>
                     </view>
                     <text class="function-text">我的优惠券</text>
-                </view>
+                </view> -->
                 <view class="function-item" @click="navigateTo('/pages/my/function/settings')">
                     <view class="icon-wrapper">
                         <uni-icons type="gear" size="24" color="#95a5a6"></uni-icons>

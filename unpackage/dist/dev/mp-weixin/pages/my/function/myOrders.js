@@ -12,155 +12,193 @@ if (!Math) {
 const _sfc_main = {
   __name: "myOrders",
   setup(__props) {
+    const tabs = [
+      { name: "全部", count: 0 },
+      { name: "待接单", count: 0 },
+      { name: "进行中", count: 0 },
+      { name: "已完成", count: 0 },
+      { name: "已取消", count: 0 }
+    ];
     const currentTab = common_vendor.ref(0);
     const isRefreshing = common_vendor.ref(false);
-    const publishList = common_vendor.ref([
+    const orderList = common_vendor.ref([
       {
-        id: "FB20240310001",
-        type: "快递代取",
-        status: "待接单",
-        location: "第一教学楼",
-        contact: "138****1234",
-        description: "快递在菜鸟驿站，取件码12345",
+        id: 300001,
+        user_id: 3001,
+        rider_id: null,
+        category: "快递代取",
         fee: "5.00",
-        extraFee: "0.00",
-        time: "2024-03-10 14:30"
-      },
-      {
-        id: "FB20240310002",
-        type: "食堂打包",
-        status: "进行中",
-        location: "学生宿舍8栋",
-        contact: "159****5678",
-        description: "一食堂二楼麻辣烫，中辣，加葱花",
-        fee: "8.00",
+        tip: "2.00",
+        title: "取顺丰快递",
+        date: "2024-04-20 14:30:22",
+        deadline: "2024-04-20 17:30:00",
+        finish_time: null,
+        time_interval: "3小时内",
+        remarks: "取件码1234，轻拿轻放",
+        region: "学校",
+        pickupAddress: "菜鸟驿站 (3号柜台)",
+        deliveryAddress: "学生宿舍8栋 B305",
+        contact: "138****1234",
+        status: "pending",
+        statusText: "待接单",
+        items: "快递包裹 2件",
+        baseFee: "5.00",
         extraFee: "2.00",
-        time: "2024-03-10 12:00"
+        orderNo: "KD20240420143022",
+        time: "2024-04-20 14:30",
+        create_time: "2024-04-20 14:30:22",
+        modify_time: "2024-04-20 14:30:22"
       },
       {
-        id: "FB20240309001",
-        type: "校园跑腿",
-        status: "已完成",
-        location: "图书馆",
-        contact: "186****9012",
-        description: "去打印店打印论文30页并装订",
-        fee: "10.00",
-        extraFee: "0.00",
-        time: "2024-03-09 16:30"
-      },
-      {
-        id: "FB20240309002",
-        type: "快递代取",
-        status: "已取消",
-        location: "研究生宿舍楼",
-        contact: "139****3456",
-        description: "顺丰快递，大件需要搬运",
+        id: 300002,
+        user_id: 3001,
+        rider_id: 2002,
+        category: "食堂打饭",
         fee: "6.00",
-        extraFee: "3.00",
-        time: "2024-03-09 09:15"
+        tip: "2.00",
+        title: "午餐打包",
+        date: "2024-04-20 12:00:12",
+        deadline: "2024-04-20 13:00:00",
+        finish_time: null,
+        time_interval: "1小时内",
+        remarks: "微辣，多点米饭",
+        region: "学校",
+        pickupAddress: "第一食堂 2楼",
+        deliveryAddress: "图书馆 3楼自习室",
+        contact: "139****5678",
+        status: "processing",
+        statusText: "进行中",
+        items: "黄焖鸡米饭 1份, 可乐 1瓶",
+        baseFee: "6.00",
+        extraFee: "2.00",
+        orderNo: "ST20240420120012",
+        time: "2024-04-20 12:00",
+        create_time: "2024-04-20 12:00:12",
+        modify_time: "2024-04-20 12:05:18"
       },
       {
-        id: "FB20240308001",
-        type: "食堂打包",
-        status: "待接单",
-        location: "行政楼",
-        contact: "158****7890",
-        description: "二食堂一楼水煮鱼套餐，不要辣",
-        fee: "7.50",
-        extraFee: "0.00",
-        time: "2024-03-08 18:00"
-      },
-      {
-        id: "FB20240308002",
-        type: "校园跑腿",
-        status: "已完成",
-        location: "体育馆",
-        contact: "187****1234",
-        description: "从超市购买水和零食送到体育馆",
-        fee: "12.00",
+        id: 300003,
+        user_id: 3001,
+        rider_id: 2003,
+        category: "代跑腿",
+        fee: "8.00",
+        tip: "5.00",
+        title: "水果购买",
+        date: "2024-04-19 15:30:44",
+        deadline: "2024-04-19 17:30:00",
+        finish_time: "2024-04-19 16:45:32",
+        time_interval: "2小时内",
+        remarks: "挑选新鲜的水果",
+        region: "校外",
+        pickupAddress: "校外 - 水果店",
+        deliveryAddress: "学生宿舍 6栋 A404",
+        contact: "186****9012",
+        status: "completed",
+        statusText: "已完成",
+        items: "车厘子 2斤, 橙子 3个",
+        baseFee: "8.00",
         extraFee: "5.00",
-        time: "2024-03-08 15:20"
+        orderNo: "PT20240419153044",
+        time: "2024-04-19 15:30",
+        create_time: "2024-04-19 15:30:44",
+        modify_time: "2024-04-19 16:45:32"
       },
       {
-        id: "FB20240307001",
-        type: "快递代取",
-        status: "已取消",
-        location: "实验楼",
-        contact: "135****5678",
-        description: "京东快递，小件，易碎物品",
-        fee: "4.50",
-        extraFee: "0.00",
-        time: "2024-03-07 11:40"
+        id: 300004,
+        user_id: 3001,
+        rider_id: null,
+        category: "快递代取",
+        fee: "4.00",
+        tip: "1.00",
+        title: "京东快递取书",
+        date: "2024-04-19 16:20:33",
+        deadline: "2024-04-19 18:20:00",
+        finish_time: null,
+        time_interval: "2小时内",
+        remarks: "小心轻放，易碎物品",
+        region: "学校",
+        pickupAddress: "京东快递站点",
+        deliveryAddress: "教学楼 A栋 201",
+        contact: "139****3456",
+        status: "cancelled",
+        statusText: "已取消",
+        items: "图书 3本",
+        baseFee: "4.00",
+        extraFee: "1.00",
+        orderNo: "KD20240419162033",
+        time: "2024-04-19 16:20",
+        create_time: "2024-04-19 16:20:33",
+        modify_time: "2024-04-19 16:25:44"
       },
       {
-        id: "FB20240307002",
-        type: "食堂打包",
-        status: "已完成",
-        location: "学生活动中心",
-        contact: "156****9012",
-        description: "三食堂二楼黄焖鸡米饭加一瓶可乐",
-        fee: "9.00",
-        extraFee: "1.50",
-        time: "2024-03-07 10:30"
+        id: 300005,
+        user_id: 3001,
+        rider_id: null,
+        category: "食堂打饭",
+        fee: "7.00",
+        tip: "3.00",
+        title: "晚餐打包",
+        date: "2024-04-20 17:10:55",
+        deadline: "2024-04-20 18:10:00",
+        finish_time: null,
+        time_interval: "1小时内",
+        remarks: "不要放辣椒，带餐具",
+        region: "学校",
+        pickupAddress: "第二食堂 1楼",
+        deliveryAddress: "实验楼 C栋 505",
+        contact: "158****7890",
+        status: "pending",
+        statusText: "待接单",
+        items: "麻辣香锅 1份, 米饭 1份, 雪碧 1瓶",
+        baseFee: "7.00",
+        extraFee: "3.00",
+        orderNo: "ST20240420171055",
+        time: "2024-04-20 17:10",
+        create_time: "2024-04-20 17:10:55",
+        modify_time: "2024-04-20 17:10:55"
       }
     ]);
-    const filteredPublishList = common_vendor.computed(() => {
-      const allItems = publishList.value;
+    const filteredOrders = common_vendor.computed(() => {
       switch (currentTab.value) {
-        case 0:
-          return allItems;
         case 1:
-          return allItems.filter((item) => item.status === "待接单");
+          return orderList.value.filter((order) => order.status === "pending");
         case 2:
-          return allItems.filter((item) => item.status === "进行中");
+          return orderList.value.filter((order) => order.status === "processing");
         case 3:
-          return allItems.filter((item) => item.status === "已完成");
+          return orderList.value.filter((order) => order.status === "completed");
         case 4:
-          return allItems.filter((item) => item.status === "已取消");
+          return orderList.value.filter((order) => order.status === "cancelled");
         default:
-          return allItems;
+          return orderList.value;
       }
     });
-    const tabs = common_vendor.computed(() => {
-      const allItems = publishList.value;
-      return [
-        {
-          name: "全部",
-          count: allItems.length
-        },
-        {
-          name: "待接单",
-          count: allItems.filter((item) => item.status === "待接单").length
-        },
-        {
-          name: "进行中",
-          count: allItems.filter((item) => item.status === "进行中").length
-        },
-        {
-          name: "已完成",
-          count: allItems.filter((item) => item.status === "已完成").length
-        },
-        {
-          name: "已取消",
-          count: allItems.filter((item) => item.status === "已取消").length
-        }
-      ];
-    });
-    const getStatusClass = (status) => {
-      const statusMap = {
-        "待接单": "waiting",
-        "进行中": "processing",
-        "已完成": "completed",
-        "已取消": "cancelled"
+    const updateTabCounts = () => {
+      const counts = {
+        all: orderList.value.length,
+        pending: orderList.value.filter((order) => order.status === "pending").length,
+        processing: orderList.value.filter((order) => order.status === "processing").length,
+        completed: orderList.value.filter((order) => order.status === "completed").length,
+        cancelled: orderList.value.filter((order) => order.status === "cancelled").length
       };
-      return statusMap[status] || "";
+      tabs[0].count = counts.all;
+      tabs[1].count = counts.pending;
+      tabs[2].count = counts.processing;
+      tabs[3].count = counts.completed;
+      tabs[4].count = counts.cancelled;
     };
     const switchTab = (index) => {
       currentTab.value = index;
+      common_vendor.index.showLoading({
+        title: "加载中"
+      });
+      setTimeout(() => {
+        common_vendor.index.hideLoading();
+      }, 500);
     };
     const onRefresh = () => {
       isRefreshing.value = true;
       setTimeout(() => {
+        updateTabCounts();
         isRefreshing.value = false;
         common_vendor.index.showToast({
           title: "刷新成功",
@@ -168,31 +206,38 @@ const _sfc_main = {
         });
       }, 1e3);
     };
-    const cancelPublish = (id) => {
+    updateTabCounts();
+    const getOrderIcon = (type) => {
+      switch (type) {
+        case "快递代取":
+          return "paperplane";
+        case "食堂打饭":
+          return "shop";
+        case "代跑腿":
+        case "校园跑腿":
+          return "person-filled";
+        default:
+          return "bars";
+      }
+    };
+    const cancelOrder = (order) => {
       common_vendor.index.showModal({
-        title: "取消发布",
-        content: "确定要取消该发布吗？取消后不可恢复",
+        title: "取消订单",
+        content: "确认取消该订单吗？",
         success: (res) => {
           if (res.confirm) {
-            common_vendor.index.showLoading({
-              title: "处理中"
+            order.status = "cancelled";
+            order.statusText = "已取消";
+            updateTabCounts();
+            common_vendor.index.showToast({
+              title: "订单已取消",
+              icon: "success"
             });
-            setTimeout(() => {
-              const item = publishList.value.find((i) => i.id === id);
-              if (item) {
-                item.status = "已取消";
-              }
-              common_vendor.index.hideLoading();
-              common_vendor.index.showToast({
-                title: "已取消",
-                icon: "success"
-              });
-            }, 1e3);
           }
         }
       });
     };
-    const contactRider = (id) => {
+    const contactRider = (order) => {
       common_vendor.index.showActionSheet({
         itemList: ["拨打电话", "发送消息"],
         success: (res) => {
@@ -202,41 +247,58 @@ const _sfc_main = {
             });
           } else {
             common_vendor.index.navigateTo({
-              url: "/pages/my/function/OrdersPage/chat"
+              url: `/pages/my/function/OrdersPage/chat?orderNo=${order.orderNo}`
             });
           }
         }
       });
     };
-    const editPublish = (id) => {
-      common_vendor.index.navigateTo({
-        url: `/pages/my/function/OrdersPage/edit?id=${id}`
+    const contactService = (order) => {
+      common_vendor.index.showModal({
+        title: "联系客服",
+        content: "是否进入在线客服聊天？",
+        success: (res) => {
+          if (res.confirm) {
+            common_vendor.index.navigateTo({
+              url: `/pages/my/function/OrdersPage/chat?orderNo=${order.orderNo}`,
+              success: () => {
+                common_vendor.index.__f__("log", "at pages/my/function/myOrders.vue:386", "跳转到客服聊天页面成功");
+              },
+              fail: (err) => {
+                common_vendor.index.__f__("error", "at pages/my/function/myOrders.vue:389", "跳转到客服聊天页面失败：", err);
+                common_vendor.index.showToast({
+                  title: "跳转失败，请重试",
+                  icon: "none"
+                });
+              }
+            });
+          }
+        }
       });
-    };
-    const republish = (id) => {
-      common_vendor.index.showLoading({
-        title: "处理中"
-      });
-      setTimeout(() => {
-        common_vendor.index.hideLoading();
-        common_vendor.index.showToast({
-          title: "发布成功",
-          icon: "success"
-        });
-      }, 1e3);
     };
     const goToPublish = () => {
+      common_vendor.index.getStorageSync("token");
       common_vendor.index.navigateTo({
-        url: "/pages/my/function/OrdersPage/publish"
+        url: "/pages/my/function/OrdersPage/publish",
+        success: () => {
+          common_vendor.index.__f__("log", "at pages/my/function/myOrders.vue:421", "跳转到发布订单页面成功");
+        },
+        fail: (err) => {
+          common_vendor.index.__f__("error", "at pages/my/function/myOrders.vue:424", "跳转到发布订单页面失败：", err);
+          common_vendor.index.showToast({
+            title: "跳转失败，请重试",
+            icon: "none"
+          });
+        }
       });
     };
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_vendor.f(tabs.value, (tab, index, i0) => {
+        a: common_vendor.f(tabs, (tab, index, i0) => {
           return common_vendor.e({
             a: common_vendor.t(tab.name),
-            b: tab.count > 0
-          }, tab.count > 0 ? {
+            b: tab.count
+          }, tab.count ? {
             c: common_vendor.t(tab.count)
           } : {}, {
             d: index,
@@ -244,48 +306,53 @@ const _sfc_main = {
             f: common_vendor.o(($event) => switchTab(index), index)
           });
         }),
-        b: filteredPublishList.value.length === 0
-      }, filteredPublishList.value.length === 0 ? {
+        b: !filteredOrders.value.length
+      }, !filteredOrders.value.length ? {
         c: common_assets._imports_0
-      } : {}, {
-        d: common_vendor.f(filteredPublishList.value, (item, idx, i0) => {
+      } : {
+        d: common_vendor.f(filteredOrders.value, (item, index, i0) => {
           return common_vendor.e({
-            a: common_vendor.t(item.type),
-            b: common_vendor.t(item.status),
-            c: common_vendor.n(getStatusClass(item.status)),
-            d: common_vendor.t(item.location),
-            e: common_vendor.t(item.contact),
-            f: common_vendor.t(item.description),
-            g: common_vendor.t(item.fee),
-            h: item.extraFee > 0
+            a: "ed59b6ca-0-" + i0,
+            b: common_vendor.p({
+              type: getOrderIcon(item.category),
+              size: "18",
+              color: "#666"
+            }),
+            c: common_vendor.t(item.category),
+            d: common_vendor.t(item.statusText),
+            e: common_vendor.n(item.status),
+            f: common_vendor.t(item.pickupAddress),
+            g: common_vendor.t(item.deliveryAddress),
+            h: item.items
+          }, item.items ? {
+            i: common_vendor.t(item.items)
+          } : {}, {
+            j: common_vendor.t(item.baseFee),
+            k: item.extraFee > 0
           }, item.extraFee > 0 ? {
-            i: common_vendor.t(item.extraFee)
+            l: common_vendor.t(item.extraFee)
           } : {}, {
-            j: common_vendor.t(item.time),
-            k: item.status === "待接单"
-          }, item.status === "待接单" ? {
-            l: common_vendor.o(($event) => cancelPublish(item.id), item.id)
+            m: common_vendor.t((Number(item.baseFee) + Number(item.extraFee)).toFixed(2)),
+            n: common_vendor.t(item.orderNo),
+            o: common_vendor.t(item.time),
+            p: item.status === "pending"
+          }, item.status === "pending" ? {
+            q: common_vendor.o(($event) => cancelOrder(item), index)
           } : {}, {
-            m: item.status === "进行中"
-          }, item.status === "进行中" ? {
-            n: common_vendor.o(($event) => contactRider(item.id), item.id)
+            r: item.status === "processing"
+          }, item.status === "processing" ? {
+            s: common_vendor.o(($event) => contactRider(item), index)
           } : {}, {
-            o: item.status === "待接单"
-          }, item.status === "待接单" ? {
-            p: common_vendor.o(($event) => editPublish(item.id), item.id)
-          } : {}, {
-            q: item.status === "待接单"
-          }, item.status === "待接单" ? {
-            r: common_vendor.o(($event) => republish(item.id), item.id)
-          } : {}, {
-            s: item.id
+            t: common_vendor.o(($event) => contactService(item), index),
+            v: index
           });
-        }),
-        e: isRefreshing.value,
-        f: common_vendor.o(onRefresh),
+        })
+      }, {
+        e: common_vendor.o(onRefresh),
+        f: isRefreshing.value,
         g: common_vendor.p({
           type: "plusempty",
-          size: "24",
+          size: "20",
           color: "#fff"
         }),
         h: common_vendor.o(goToPublish)

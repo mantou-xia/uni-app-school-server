@@ -212,7 +212,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         e: common_vendor.t(item.publishTime),
         f: common_vendor.t(item.description),
         g: common_vendor.t(item.seller.name),
-        h: "13de1ca6-2-" + i0,
+        h: "4b2d3829-2-" + i0,
         i: common_vendor.t(item.likes),
         j: index,
         k: common_vendor.o(($event) => $options.viewItemDetail(item.id), index)

@@ -21,134 +21,112 @@ const _sfc_main = {
     const isRefreshing = common_vendor.ref(false);
     const orderList = common_vendor.ref([
       {
-        type: "快递代取",
-        status: "accepted",
-        statusText: "进行中",
+        id: 200001,
+        user_id: 1001,
+        rider_id: 2001,
+        category: "快递代取",
+        fee: "5.00",
+        tip: "2.00",
+        title: "取快递包裹",
+        date: "2024-04-10 14:30:22",
+        deadline: "2024-04-10 17:30:00",
+        finish_time: null,
+        time_interval: "3小时内",
+        remarks: "轻拿轻放，易碎物品",
+        region: "学校",
         pickupAddress: "菜鸟驿站 (3号柜台)",
         deliveryAddress: "学生宿舍8栋 B305",
+        contact: "张同学 13800138000",
+        status: "accepted",
+        statusText: "进行中",
         items: "快递包裹 2件",
         baseFee: "5.00",
         extraFee: "2.00",
-        orderNo: "KD20240310143022",
-        time: "2024-03-10 14:30",
-        contactInfo: "张同学 13800138000"
+        orderNo: "KD20240410143022",
+        time: "2024-04-10 14:30",
+        create_time: "2024-04-10 14:30:22",
+        modify_time: "2024-04-10 14:35:10"
       },
       {
-        type: "食堂打饭",
-        status: "completed",
-        statusText: "已完成",
+        id: 200002,
+        user_id: 1002,
+        rider_id: 2001,
+        category: "食堂打饭",
+        fee: "6.00",
+        tip: "2.00",
+        title: "午餐打包",
+        date: "2024-04-10 12:00:12",
+        deadline: "2024-04-10 13:00:00",
+        finish_time: "2024-04-10 12:40:18",
+        time_interval: "1小时内",
+        remarks: "微辣，多加米饭",
+        region: "学校",
         pickupAddress: "第一食堂 2楼",
         deliveryAddress: "图书馆 3楼自习室",
+        contact: "李同学 13900139000",
+        status: "completed",
+        statusText: "已完成",
         items: "黄焖鸡米饭 1份, 可乐 1瓶",
         baseFee: "6.00",
         extraFee: "2.00",
-        orderNo: "ST20240310120012",
-        time: "2024-03-10 12:00",
-        contactInfo: "李同学 13900139000"
+        orderNo: "ST20240410120012",
+        time: "2024-04-10 12:00",
+        create_time: "2024-04-10 12:00:12",
+        modify_time: "2024-04-10 12:40:18"
       },
       {
-        type: "代跑腿",
-        status: "accepted",
-        statusText: "进行中",
+        id: 200003,
+        user_id: 1003,
+        rider_id: 2001,
+        category: "代跑腿",
+        fee: "8.00",
+        tip: "5.00",
+        title: "水果购买",
+        date: "2024-04-10 15:30:44",
+        deadline: "2024-04-10 17:30:00",
+        finish_time: null,
+        time_interval: "2小时内",
+        remarks: "车厘子要新鲜的，橙子选大点的",
+        region: "校外",
         pickupAddress: "校外 - 水果店",
         deliveryAddress: "学生宿舍 6栋 A404",
+        contact: "王同学 13700137000",
+        status: "accepted",
+        statusText: "进行中",
         items: "车厘子 2斤, 橙子 3个",
         baseFee: "8.00",
         extraFee: "5.00",
-        orderNo: "PT20240310153044",
-        time: "2024-03-10 15:30",
-        contactInfo: "王同学 13700137000"
+        orderNo: "PT20240410153044",
+        time: "2024-04-10 15:30",
+        create_time: "2024-04-10 15:30:44",
+        modify_time: "2024-04-10 15:40:22"
       },
       {
-        type: "快递代取",
-        status: "completed",
-        statusText: "已完成",
+        id: 200004,
+        user_id: 1004,
+        rider_id: 2001,
+        category: "快递代取",
+        fee: "4.00",
+        tip: "1.00",
+        title: "京东快递取书",
+        date: "2024-04-10 16:20:33",
+        deadline: "2024-04-10 18:20:00",
+        finish_time: "2024-04-10 17:15:42",
+        time_interval: "2小时内",
+        remarks: "三本教材，不要淋湿",
+        region: "学校",
         pickupAddress: "京东快递站点",
         deliveryAddress: "教学楼 A栋 201",
+        contact: "赵同学 13600136000",
+        status: "completed",
+        statusText: "已完成",
         items: "图书 3本",
         baseFee: "4.00",
         extraFee: "1.00",
-        orderNo: "KD20240310162033",
-        time: "2024-03-10 16:20",
-        contactInfo: "赵同学 13600136000"
-      },
-      {
-        type: "食堂打饭",
-        status: "accepted",
-        statusText: "进行中",
-        pickupAddress: "第二食堂 1楼",
-        deliveryAddress: "实验楼 C栋 505",
-        items: "麻辣香锅 1份, 米饭 1份, 雪碧 1瓶",
-        baseFee: "7.00",
-        extraFee: "3.00",
-        orderNo: "ST20240310171055",
-        time: "2024-03-10 17:10",
-        contactInfo: "陈同学 13500135000"
-      },
-      {
-        type: "代跑腿",
-        status: "completed",
-        statusText: "已完成",
-        pickupAddress: "校外 - 打印店",
-        deliveryAddress: "学生宿舍 3栋 C202",
-        items: "论文打印 30页, 装订 1份",
-        baseFee: "6.00",
-        extraFee: "0.00",
-        orderNo: "PT20240310144023",
-        time: "2024-03-10 14:40",
-        contactInfo: "孙同学 13400134000"
-      },
-      {
-        type: "快递代取",
-        status: "accepted",
-        statusText: "进行中",
-        pickupAddress: "顺丰快递点",
-        deliveryAddress: "学生宿舍 12栋 A506",
-        items: "大件包裹 1个 (5kg)",
-        baseFee: "8.00",
-        extraFee: "4.00",
-        orderNo: "KD20240310182011",
-        time: "2024-03-10 18:20",
-        contactInfo: "周同学 13300133000"
-      },
-      {
-        type: "食堂打饭",
-        status: "completed",
-        statusText: "已完成",
-        pickupAddress: "第三食堂 3楼",
-        deliveryAddress: "体育馆",
-        items: "水煮鱼 1份, 米饭 2份, 果汁 1杯",
-        baseFee: "8.00",
-        extraFee: "2.00",
-        orderNo: "ST20240310134077",
-        time: "2024-03-10 13:40",
-        contactInfo: "吴同学 13200132000"
-      },
-      {
-        type: "代跑腿",
-        status: "accepted",
-        statusText: "进行中",
-        pickupAddress: "校外 - 奶茶店",
-        deliveryAddress: "学生活动中心",
-        items: "奶茶 3杯 (不同口味)",
-        baseFee: "5.00",
-        extraFee: "3.00",
-        orderNo: "PT20240310155099",
-        time: "2024-03-10 15:50",
-        contactInfo: "郑同学 13100131000"
-      },
-      {
-        type: "代跑腿",
-        status: "completed",
-        statusText: "已完成",
-        pickupAddress: "校外 - 药店",
-        deliveryAddress: "学生宿舍 5栋 B103",
-        items: "感冒药 1盒, 退烧贴 2贴",
-        baseFee: "7.00",
-        extraFee: "5.00",
-        orderNo: "PT20240310163088",
-        time: "2024-03-10 16:30",
-        contactInfo: "黄同学 13000130000"
+        orderNo: "KD20240410162033",
+        time: "2024-04-10 16:20",
+        create_time: "2024-04-10 16:20:33",
+        modify_time: "2024-04-10 17:15:42"
       }
     ]);
     const filteredOrders = common_vendor.computed(() => {
@@ -227,10 +205,10 @@ const _sfc_main = {
             common_vendor.index.navigateTo({
               url: `/pages/my/function/myAcceptPage/chat?orderNo=${order.orderNo}`,
               success: () => {
-                common_vendor.index.__f__("log", "at pages/my/function/myAccept.vue:351", "跳转到客服聊天页面成功");
+                common_vendor.index.__f__("log", "at pages/my/function/myAccept.vue:329", "跳转到客服聊天页面成功");
               },
               fail: (err) => {
-                common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:354", "跳转到客服聊天页面失败：", err);
+                common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:332", "跳转到客服聊天页面失败：", err);
                 common_vendor.index.showToast({
                   title: "跳转失败，请重试",
                   icon: "none"
@@ -243,8 +221,8 @@ const _sfc_main = {
     };
     const goToAccept = () => {
       common_vendor.index.getStorageSync("token");
-      common_vendor.index.switchTab({
-        url: "/pages/index/index",
+      common_vendor.index.navigateTo({
+        url: "/pages/index_campusErrand/index_campusErrand",
         //跳转购买页面
         success: () => {
           common_vendor.index.showToast({
@@ -253,7 +231,7 @@ const _sfc_main = {
           });
         },
         fail: (err) => {
-          common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:409", "跳转失败：", err);
+          common_vendor.index.__f__("error", "at pages/my/function/myAccept.vue:387", "跳转失败：", err);
           common_vendor.index.showToast({
             title: "跳转失败，请重试",
             icon: "none"
@@ -281,13 +259,13 @@ const _sfc_main = {
       } : {
         d: common_vendor.f(filteredOrders.value, (item, index, i0) => {
           return common_vendor.e({
-            a: "fbc8318c-0-" + i0,
+            a: "120fad3e-0-" + i0,
             b: common_vendor.p({
-              type: getOrderIcon(item.type),
+              type: getOrderIcon(item.category),
               size: "18",
               color: "#666"
             }),
-            c: common_vendor.t(item.type),
+            c: common_vendor.t(item.category),
             d: common_vendor.t(item.statusText),
             e: common_vendor.n(item.status),
             f: common_vendor.t(item.pickupAddress),
@@ -296,7 +274,7 @@ const _sfc_main = {
           }, item.items ? {
             i: common_vendor.t(item.items)
           } : {}, {
-            j: common_vendor.t(item.contactInfo),
+            j: common_vendor.t(item.contact),
             k: common_vendor.t(item.baseFee),
             l: item.extraFee > 0
           }, item.extraFee > 0 ? {

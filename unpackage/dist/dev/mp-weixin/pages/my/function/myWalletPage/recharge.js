@@ -94,14 +94,14 @@ const _sfc_main = {
         }),
         d: common_vendor.f(paymentMethods, (method, index, i0) => {
           return {
-            a: "281858ec-0-" + i0,
+            a: "6c6d7968-0-" + i0,
             b: common_vendor.p({
               type: method.icon,
               size: "24",
               color: method.color
             }),
             c: common_vendor.t(method.name),
-            d: "281858ec-1-" + i0,
+            d: "6c6d7968-1-" + i0,
             e: common_vendor.p({
               type: selectedPayment.value === index ? "checkbox-filled" : "circle",
               size: "20",

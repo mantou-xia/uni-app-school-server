@@ -131,9 +131,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }, {
       name: "d",
       path: "a",
-      vueId: "ddae7040-0"
+      vueId: "44a0b038-0"
     }),
-    b: common_vendor.sr("gridSwiper", "ddae7040-0"),
+    b: common_vendor.sr("gridSwiper", "44a0b038-0"),
     c: common_vendor.o($options.handleGridItemClick),
     d: common_vendor.p({
       ["grid-data"]: $data.gridData,

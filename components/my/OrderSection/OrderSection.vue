@@ -2,7 +2,7 @@
      <!-- 接单功能区 -->
      <view class="order-section">
             <view class="section-title">
-                <text>接单功能</text>
+                <text>功能</text>
             </view>
             <view class="order-grid">
                 <view class="order-item" @click="navigateTo('/pages/my/order/rateDetails')">

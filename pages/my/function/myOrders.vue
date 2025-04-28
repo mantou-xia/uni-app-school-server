@@ -1,558 +1,689 @@
 <template>
-    <!-- 待完善 -->
-    <view class="my-publish">
-        <view class="tabs">
-            <view v-for="(tab, index) in tabs" :key="index" :class="['tab-item', currentTab === index ? 'active' : '']"
-                @click="switchTab(index)">
-                <text>{{tab.name}}</text>
-                <text class="tab-badge" v-if="tab.count > 0">{{tab.count}}</text>
+    <view class="accept">
+        <view class="header">
+            <view class="tabs">
+                <view 
+                    v-for="(tab, index) in tabs" 
+                    :key="index"
+                    :class="['tab-item', currentTab === index ? 'active' : '']"
+                    @click="switchTab(index)"
+                >
+                    <text>{{tab.name}}</text>
+                    <text class="tab-count" v-if="tab.count">({{tab.count}})</text>
+                </view>
             </view>
         </view>
 
-        <scroll-view scroll-y="true" class="publish-list" refresher-enabled="true" :refresher-triggered="isRefreshing"
-            @refresherrefresh="onRefresh">
-            <view class="empty" v-if="filteredPublishList.length === 0">
+        <scroll-view 
+            scroll-y 
+            class="content" 
+            :refresher-enabled="true"
+            @refresherrefresh="onRefresh"
+            :refresher-triggered="isRefreshing"
+        >
+            <view class="empty" v-if="!filteredOrders.length">
                 <image src="/static/logo.png" mode="aspectFit" class="empty-img"></image>
-                <text class="empty-text">暂无发布记录</text>
+                <text class="empty-text">暂无相关订单</text>
             </view>
+            <view v-else class="order-list">
+                <view class="order-item" v-for="(item, index) in filteredOrders" :key="index">
+                    <view class="order-header">
+                        <view class="order-type">
+                            <uni-icons :type="getOrderIcon(item.category)" size="18" color="#666"></uni-icons>
+                            <text>{{item.category}}</text>
+                        </view>
+                        <text class="order-status" :class="item.status">{{item.statusText}}</text>
+                    </view>
+                    
+                    <view class="order-content">
+                        <view class="info-row">
+                            <view class="info-item location">
+                                <text class="label">取件地点</text>
+                                <text class="value">{{item.pickupAddress}}</text>
+                            </view>
+                            <view class="info-item location">
+                                <text class="label">送达地点</text>
+                                <text class="value">{{item.deliveryAddress}}</text>
+                            </view>
+                        </view>
+                        
+                        <view class="info-row" v-if="item.items">
+                            <view class="info-item">
+                                <text class="label">物品信息</text>
+                                <text class="value">{{item.items}}</text>
+                            </view>
+                        </view>
 
-            <view class="publish-item" v-for="(item, idx) in filteredPublishList" :key="item.id">
-                <view class="publish-header">
-                    <view class="publish-type">
-                        <text>{{item.type}}</text>
-                    </view>
-                    <text class="publish-status" :class="getStatusClass(item.status)">{{item.status}}</text>
-                </view>
+                        <view class="fee-section">
+                            <view class="fee-item">
+                                <text>基础配送费</text>
+                                <text class="fee">¥{{item.baseFee}}</text>
+                            </view>
+                            <view class="fee-item" v-if="item.extraFee > 0">
+                                <text>追加金额</text>
+                                <text class="fee highlight">+¥{{item.extraFee}}</text>
+                            </view>
+                            <view class="fee-item total">
+                                <text>总计</text>
+                                <text class="fee">¥{{(Number(item.baseFee) + Number(item.extraFee)).toFixed(2)}}</text>
+                            </view>
+                        </view>
 
-                <view class="publish-content">
-                    <view class="info-row">
-                        <text class="info-label">配送地点：</text>
-                        <text class="info-value">{{item.location}}</text>
+                        <view class="info-row">
+                            <view class="info-item">
+                                <text class="label">订单编号</text>
+                                <text class="value">{{item.orderNo}}</text>
+                            </view>
+                            <view class="info-item">
+                                <text class="label">下单时间</text>
+                                <text class="value">{{item.time}}</text>
+                            </view>
+                        </view>
                     </view>
-                    <view class="info-row">
-                        <text class="info-label">联系方式：</text>
-                        <text class="info-value">{{item.contact}}</text>
-                    </view>
-                    <view class="info-row">
-                        <text class="info-label">委托内容：</text>
-                        <text class="info-value">{{item.description}}</text>
-                    </view>
-                    <view class="info-row">
-                        <text class="info-label">配送费用：</text>
-                        <text class="fee-value">¥{{item.fee}}</text>
-                    </view>
-                    <view class="info-row" v-if="item.extraFee > 0">
-                        <text class="info-label">追加金额：</text>
-                        <text class="extra-fee-value">+¥{{item.extraFee}}</text>
-                    </view>
-                    <view class="info-row">
-                        <text class="info-label">发布时间：</text>
-                        <text class="info-value">{{item.time}}</text>
-                    </view>
-                </view>
 
-                <view class="publish-actions">
-                    <button class="action-btn" size="mini" v-if="item.status === '待接单'"
-                        @click="cancelPublish(item.id)">取消发布</button>
-                    <button class="action-btn" size="mini" v-if="item.status === '进行中'"
-                        @click="contactRider(item.id)">联系骑手</button>
-                    <button class="action-btn primary" size="mini" v-if="item.status === '待接单'"
-                        @click="editPublish(item.id)">修改信息</button>
-                    <button class="action-btn primary" size="mini" v-if="item.status === '待接单'"
-                        @click="republish(item.id)">重新发布</button>
+                    <view class="order-footer">
+                        <button 
+                            class="btn primary" 
+                            size="mini"
+                            v-if="item.status === 'pending'"
+                            @click="cancelOrder(item)"
+                        >取消订单</button>
+                        <button 
+                            class="btn primary" 
+                            size="mini"
+                            v-if="item.status === 'processing'"
+                            @click="contactRider(item)"
+                        >联系骑手</button>
+                        <button 
+                            class="btn service" 
+                            size="mini"
+                            @click="contactService(item)"
+                        >联系客服</button>
+                    </view>
                 </view>
             </view>
         </scroll-view>
 
-        <view class="publish-btn" @click="goToPublish">
-            <uni-icons type="plusempty" size="24" color="#fff"></uni-icons>
-            <text>发布订单</text>
+        <view class="float-btn" @click="goToPublish">
+            <uni-icons type="plusempty" size="20" color="#fff"></uni-icons>
+            <text class="btn-text">发布订单</text>
         </view>
     </view>
 </template>
 
 <script setup>
-    import {
-        ref,
-        computed
-    } from 'vue'
+import { ref, computed } from 'vue'
 
-    const currentTab = ref(0)
-    const isRefreshing = ref(false)
+const tabs = [
+    { name: '全部', count: 0 },
+    { name: '待接单', count: 0 },
+    { name: '进行中', count: 0 },
+    { name: '已完成', count: 0 },
+    { name: '已取消', count: 0 }
+]
+const currentTab = ref(0)
+const isRefreshing = ref(false)
 
-    // 发布列表数据
-    const publishList = ref([{
-            id: 'FB20240310001',
-            type: '快递代取',
-            status: '待接单',
-            location: '第一教学楼',
-            contact: '138****1234',
-            description: '快递在菜鸟驿站，取件码12345',
-            fee: '5.00',
-            extraFee: '0.00',
-            time: '2024-03-10 14:30'
-        },
-        {
-            id: 'FB20240310002',
-            type: '食堂打包',
-            status: '进行中',
-            location: '学生宿舍8栋',
-            contact: '159****5678',
-            description: '一食堂二楼麻辣烫，中辣，加葱花',
-            fee: '8.00',
-            extraFee: '2.00',
-            time: '2024-03-10 12:00'
-        },
-        {
-            id: 'FB20240309001',
-            type: '校园跑腿',
-            status: '已完成',
-            location: '图书馆',
-            contact: '186****9012',
-            description: '去打印店打印论文30页并装订',
-            fee: '10.00',
-            extraFee: '0.00',
-            time: '2024-03-09 16:30'
-        },
-        {
-            id: 'FB20240309002',
-            type: '快递代取',
-            status: '已取消',
-            location: '研究生宿舍楼',
-            contact: '139****3456',
-            description: '顺丰快递，大件需要搬运',
-            fee: '6.00',
-            extraFee: '3.00',
-            time: '2024-03-09 09:15'
-        },
-        {
-            id: 'FB20240308001',
-            type: '食堂打包',
-            status: '待接单',
-            location: '行政楼',
-            contact: '158****7890',
-            description: '二食堂一楼水煮鱼套餐，不要辣',
-            fee: '7.50',
-            extraFee: '0.00',
-            time: '2024-03-08 18:00'
-        },
-        {
-            id: 'FB20240308002',
-            type: '校园跑腿',
-            status: '已完成',
-            location: '体育馆',
-            contact: '187****1234',
-            description: '从超市购买水和零食送到体育馆',
-            fee: '12.00',
-            extraFee: '5.00',
-            time: '2024-03-08 15:20'
-        },
-        {
-            id: 'FB20240307001',
-            type: '快递代取',
-            status: '已取消',
-            location: '实验楼',
-            contact: '135****5678',
-            description: '京东快递，小件，易碎物品',
-            fee: '4.50',
-            extraFee: '0.00',
-            time: '2024-03-07 11:40'
-        },
-        {
-            id: 'FB20240307002',
-            type: '食堂打包',
-            status: '已完成',
-            location: '学生活动中心',
-            contact: '156****9012',
-            description: '三食堂二楼黄焖鸡米饭加一瓶可乐',
-            fee: '9.00',
-            extraFee: '1.50',
-            time: '2024-03-07 10:30'
-        }
-    ])
+const orderList = ref([
+    {
+        id: 300001,
+        user_id: 3001,
+        rider_id: null,
+        category: '快递代取',
+        fee: '5.00',
+        tip: '2.00',
+        title: '取顺丰快递',
+        date: '2024-04-20 14:30:22',
+        deadline: '2024-04-20 17:30:00',
+        finish_time: null,
+        time_interval: '3小时内',
+        remarks: '取件码1234，轻拿轻放',
+        region: '学校',
+        pickupAddress: '菜鸟驿站 (3号柜台)',
+        deliveryAddress: '学生宿舍8栋 B305',
+        contact: '138****1234',
+        status: 'pending',
+        statusText: '待接单',
+        items: '快递包裹 2件',
+        baseFee: '5.00',
+        extraFee: '2.00',
+        orderNo: 'KD20240420143022',
+        time: '2024-04-20 14:30',
+        create_time: '2024-04-20 14:30:22',
+        modify_time: '2024-04-20 14:30:22'
+    },
+    {
+        id: 300002,
+        user_id: 3001,
+        rider_id: 2002,
+        category: '食堂打饭',
+        fee: '6.00',
+        tip: '2.00',
+        title: '午餐打包',
+        date: '2024-04-20 12:00:12',
+        deadline: '2024-04-20 13:00:00',
+        finish_time: null,
+        time_interval: '1小时内',
+        remarks: '微辣，多点米饭',
+        region: '学校',
+        pickupAddress: '第一食堂 2楼',
+        deliveryAddress: '图书馆 3楼自习室',
+        contact: '139****5678',
+        status: 'processing',
+        statusText: '进行中',
+        items: '黄焖鸡米饭 1份, 可乐 1瓶',
+        baseFee: '6.00',
+        extraFee: '2.00',
+        orderNo: 'ST20240420120012',
+        time: '2024-04-20 12:00',
+        create_time: '2024-04-20 12:00:12',
+        modify_time: '2024-04-20 12:05:18'
+    },
+    {
+        id: 300003,
+        user_id: 3001,
+        rider_id: 2003,
+        category: '代跑腿',
+        fee: '8.00',
+        tip: '5.00',
+        title: '水果购买',
+        date: '2024-04-19 15:30:44',
+        deadline: '2024-04-19 17:30:00',
+        finish_time: '2024-04-19 16:45:32',
+        time_interval: '2小时内',
+        remarks: '挑选新鲜的水果',
+        region: '校外',
+        pickupAddress: '校外 - 水果店',
+        deliveryAddress: '学生宿舍 6栋 A404',
+        contact: '186****9012',
+        status: 'completed',
+        statusText: '已完成',
+        items: '车厘子 2斤, 橙子 3个',
+        baseFee: '8.00',
+        extraFee: '5.00',
+        orderNo: 'PT20240419153044',
+        time: '2024-04-19 15:30',
+        create_time: '2024-04-19 15:30:44',
+        modify_time: '2024-04-19 16:45:32'
+    },
+    {
+        id: 300004,
+        user_id: 3001,
+        rider_id: null,
+        category: '快递代取',
+        fee: '4.00',
+        tip: '1.00',
+        title: '京东快递取书',
+        date: '2024-04-19 16:20:33',
+        deadline: '2024-04-19 18:20:00',
+        finish_time: null,
+        time_interval: '2小时内',
+        remarks: '小心轻放，易碎物品',
+        region: '学校',
+        pickupAddress: '京东快递站点',
+        deliveryAddress: '教学楼 A栋 201',
+        contact: '139****3456',
+        status: 'cancelled',
+        statusText: '已取消',
+        items: '图书 3本',
+        baseFee: '4.00',
+        extraFee: '1.00',
+        orderNo: 'KD20240419162033',
+        time: '2024-04-19 16:20',
+        create_time: '2024-04-19 16:20:33',
+        modify_time: '2024-04-19 16:25:44'
+    },
+    {
+        id: 300005,
+        user_id: 3001,
+        rider_id: null,
+        category: '食堂打饭',
+        fee: '7.00',
+        tip: '3.00',
+        title: '晚餐打包',
+        date: '2024-04-20 17:10:55',
+        deadline: '2024-04-20 18:10:00',
+        finish_time: null,
+        time_interval: '1小时内',
+        remarks: '不要放辣椒，带餐具',
+        region: '学校',
+        pickupAddress: '第二食堂 1楼',
+        deliveryAddress: '实验楼 C栋 505',
+        contact: '158****7890',
+        status: 'pending',
+        statusText: '待接单',
+        items: '麻辣香锅 1份, 米饭 1份, 雪碧 1瓶',
+        baseFee: '7.00',
+        extraFee: '3.00',
+        orderNo: 'ST20240420171055',
+        time: '2024-04-20 17:10',
+        create_time: '2024-04-20 17:10:55',
+        modify_time: '2024-04-20 17:10:55'
+    }
+])
 
-    // 按当前标签筛选的发布列表
-    const filteredPublishList = computed(() => {
-        const allItems = publishList.value
-        switch (currentTab.value) {
-            case 0: // 全部
-                return allItems
-            case 1: // 待接单
-                return allItems.filter(item => item.status === '待接单')
-            case 2: // 进行中
-                return allItems.filter(item => item.status === '进行中')
-            case 3: // 已完成
-                return allItems.filter(item => item.status === '已完成')
-            case 4: // 已取消
-                return allItems.filter(item => item.status === '已取消')
-            default:
-                return allItems
-        }
+// 根据当前选中的标签筛选订单
+const filteredOrders = computed(() => {
+    switch (currentTab.value) {
+        case 1: // 待接单
+            return orderList.value.filter(order => order.status === 'pending')
+        case 2: // 进行中
+            return orderList.value.filter(order => order.status === 'processing')
+        case 3: // 已完成
+            return orderList.value.filter(order => order.status === 'completed')
+        case 4: // 已取消
+            return orderList.value.filter(order => order.status === 'cancelled')
+        default: // 全部
+            return orderList.value
+    }
+})
+
+// 更新标签页数量
+const updateTabCounts = () => {
+    const counts = {
+        all: orderList.value.length,
+        pending: orderList.value.filter(order => order.status === 'pending').length,
+        processing: orderList.value.filter(order => order.status === 'processing').length,
+        completed: orderList.value.filter(order => order.status === 'completed').length,
+        cancelled: orderList.value.filter(order => order.status === 'cancelled').length
+    }
+    
+    tabs[0].count = counts.all
+    tabs[1].count = counts.pending
+    tabs[2].count = counts.processing
+    tabs[3].count = counts.completed
+    tabs[4].count = counts.cancelled
+}
+
+// 切换标签页
+const switchTab = (index) => {
+    currentTab.value = index
+    // 切换标签时显示加载动画
+    uni.showLoading({
+        title: '加载中'
     })
+    setTimeout(() => {
+        uni.hideLoading()
+    }, 500)
+}
 
-    // 标签页数据
-    const tabs = computed(() => {
-        const allItems = publishList.value
-        return [{
-                name: '全部',
-                count: allItems.length
-            },
-            {
-                name: '待接单',
-                count: allItems.filter(item => item.status === '待接单').length
-            },
-            {
-                name: '进行中',
-                count: allItems.filter(item => item.status === '进行中').length
-            },
-            {
-                name: '已完成',
-                count: allItems.filter(item => item.status === '已完成').length
-            },
-            {
-                name: '已取消',
-                count: allItems.filter(item => item.status === '已取消').length
+// 下拉刷新
+const onRefresh = () => {
+    isRefreshing.value = true
+    setTimeout(() => {
+        updateTabCounts() // 刷新时更新数量统计
+        isRefreshing.value = false
+        uni.showToast({
+            title: '刷新成功',
+            icon: 'success'
+        })
+    }, 1000)
+}
+
+// 初始化
+updateTabCounts()
+
+const getOrderIcon = (type) => {
+    switch (type) {
+        case '快递代取':
+            return 'paperplane'
+        case '食堂打饭':
+            return 'shop'
+        case '代跑腿':
+        case '校园跑腿':
+            return 'person-filled'
+        default:
+            return 'bars'
+    }
+}
+
+const cancelOrder = (order) => {
+    uni.showModal({
+        title: '取消订单',
+        content: '确认取消该订单吗？',
+        success: (res) => {
+            if (res.confirm) {
+                // TODO: 调用取消订单接口
+                order.status = 'cancelled'
+                order.statusText = '已取消'
+                updateTabCounts()
+                uni.showToast({
+                    title: '订单已取消',
+                    icon: 'success'
+                })
             }
-        ]
-    })
-
-    // 获取状态对应的样式类
-    const getStatusClass = (status) => {
-        const statusMap = {
-            '待接单': 'waiting',
-            '进行中': 'processing',
-            '已完成': 'completed',
-            '已取消': 'cancelled'
         }
-        return statusMap[status] || ''
-    }
+    })
+}
 
-    const switchTab = (index) => {
-        currentTab.value = index
-    }
+const contactRider = (order) => {
+    uni.showActionSheet({
+        itemList: ['拨打电话', '发送消息'],
+        success: (res) => {
+            if (res.tapIndex === 0) {
+                uni.makePhoneCall({
+                    phoneNumber: '10000000000'
+                })
+            } else {
+                uni.navigateTo({
+                    url: `/pages/my/function/OrdersPage/chat?orderNo=${order.orderNo}`
+                })
+            }
+        }
+    })
+}
 
-    const onRefresh = () => {
-        isRefreshing.value = true
-        // 模拟刷新数据
-        setTimeout(() => {
-            isRefreshing.value = false
-            uni.showToast({
-                title: '刷新成功',
-                icon: 'success'
-            })
-        }, 1000)
-    }
-
-    // 取消发布
-    const cancelPublish = (id) => {
-        uni.showModal({
-            title: '取消发布',
-            content: '确定要取消该发布吗？取消后不可恢复',
-            success: (res) => {
-                if (res.confirm) {
-                    uni.showLoading({
-                        title: '处理中'
-                    })
-                    setTimeout(() => {
-                        const item = publishList.value.find(i => i.id === id)
-                        if (item) {
-                            item.status = '已取消'
-                        }
-                        uni.hideLoading()
+const contactService = (order) => {
+    uni.showModal({
+        title: '联系客服',
+        content: '是否进入在线客服聊天？',
+        success: (res) => {
+            if (res.confirm) {
+                // 跳转到在线客服聊天页面
+                uni.navigateTo({
+                    url: `/pages/my/function/OrdersPage/chat?orderNo=${order.orderNo}`,
+                    success: () => {
+                        console.log('跳转到客服聊天页面成功')
+                    },
+                    fail: (err) => {
+                        console.error('跳转到客服聊天页面失败：', err)
                         uni.showToast({
-                            title: '已取消',
-                            icon: 'success'
+                            title: '跳转失败，请重试',
+                            icon: 'none'
                         })
-                    }, 1000)
-                }
+                    }
+                })
             }
-        })
-    }
+        }
+    })
+}
 
-    // 联系骑手
-    const contactRider = (id) => {
-        uni.showActionSheet({
-            itemList: ['拨打电话', '发送消息'],
-            success: (res) => {
-                if (res.tapIndex === 0) {
-                    uni.makePhoneCall({
-                        phoneNumber: '10000000000'
-                    })
-                } else {
-                    uni.navigateTo({
-                        url: '/pages/my/function/OrdersPage/chat'
-                    })
-                }
-            }
-        })
-    }
+const goToPublish = () => {
+    // 检查用户是否已登录
+    const token = uni.getStorageSync('token')
+    // if (!token) {
+    //     uni.showToast({
+    //         title: '请先登录',
+    //         icon: 'none'
+    //     })
+    //     setTimeout(() => {
+    //         uni.switchTab({
+    //             url: '/pages/my/my'
+    //         })
+    //     }, 1500)
+    //     return
+    // }
 
-    // 修改发布信息
-    const editPublish = (id) => {
-        uni.navigateTo({
-            url: `/pages/my/function/OrdersPage/edit?id=${id}`
-        })
-    }
-
-    // 重新发布
-    const republish = (id) => {
-        uni.showLoading({
-            title: '处理中'
-        })
-        setTimeout(() => {
-            uni.hideLoading()
+    // 跳转到发布订单页面
+    uni.navigateTo({
+        url: '/pages/my/function/OrdersPage/publish',
+        success: () => {
+            console.log('跳转到发布订单页面成功')
+        },
+        fail: (err) => {
+            console.error('跳转到发布订单页面失败：', err)
             uni.showToast({
-                title: '发布成功',
-                icon: 'success'
+                title: '跳转失败，请重试',
+                icon: 'none'
             })
-        }, 1000)
-    }
-
-    // 前往发布页面
-    const goToPublish = () => {
-        uni.navigateTo({
-            url: '/pages/my/function/OrdersPage/publish'
-        })
-    }
+        }
+    })
+}
 </script>
 
 <style>
-    .my-publish {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        background-color: #f8f9fa;
-        position: relative;
-    }
+.accept {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
 
-    .tabs {
-        display: flex;
-        background-color: #fff;
-        padding: 20rpx 30rpx;
-        border-bottom: 2rpx solid #f0f0f0;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
-    }
+.header {
+    background-color: #fff;
+    padding: 10rpx 0;
+    box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
 
-    .tab-item {
-        flex: 1;
-        text-align: center;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8rpx;
-    }
+.tabs {
+    display: flex;
+    padding: 0 30rpx;
+}
 
-    .tab-item text {
-        font-size: 28rpx;
-        color: #666;
-        transition: all 0.3s ease;
-    }
+.tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 20rpx 0;
+    font-size: 28rpx;
+    color: #666;
+    position: relative;
+}
 
-    .tab-badge {
-        font-size: 20rpx;
-        color: #999;
-        background-color: #f5f5f5;
-        padding: 2rpx 12rpx;
-        border-radius: 20rpx;
-    }
+.tab-count {
+    font-size: 24rpx;
+    color: #999;
+    margin-left: 4rpx;
+}
 
-    .tab-item.active text {
-        color: #3498db;
-        font-weight: 500;
-    }
+.tab-item.active {
+    color: #2196f3;
+    font-weight: 500;
+}
 
-    .tab-item.active .tab-badge {
-        background-color: rgba(52, 152, 219, 0.1);
-        color: #3498db;
-    }
+.tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40rpx;
+    height: 4rpx;
+    background-color: #2196f3;
+    border-radius: 2rpx;
+}
 
-    .tab-item.active::after {
-        content: '';
-        position: absolute;
-        bottom: -20rpx;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40rpx;
-        height: 4rpx;
-        background-color: #3498db;
-        border-radius: 2rpx;
-    }
+.content {
+    flex: 1;
+    padding: 30rpx;
+}
 
-    .publish-list {
-        flex: 1;
-        height: calc(100vh - 100rpx);
-        padding: 30rpx;
-        box-sizing: border-box;
-        padding-bottom: 150rpx;
-    }
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 200rpx;
+}
 
-    .empty {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-top: 200rpx;
-    }
+.empty-img {
+    width: 240rpx;
+    height: 240rpx;
+    margin-bottom: 30rpx;
+}
 
-    .empty-img {
-        width: 240rpx;
-        height: 240rpx;
-        margin-bottom: 30rpx;
-    }
+.empty-text {
+    font-size: 28rpx;
+    color: #999;
+}
 
-    .empty-text {
-        font-size: 28rpx;
-        color: #999;
-    }
+.order-list {
+    padding-bottom: 120rpx;
+}
 
-    .publish-item {
-        background-color: #fff;
-        border-radius: 16rpx;
-        margin-bottom: 30rpx;
-        padding: 30rpx;
-        box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
-    }
+.order-item {
+    background-color: #fff;
+    border-radius: 16rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
 
-    .publish-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30rpx;
-    }
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30rpx;
+}
 
-    .publish-type {
-        display: flex;
-        align-items: center;
-    }
+.order-type {
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #333;
+}
 
-    .publish-type text {
-        font-size: 32rpx;
-        color: #333;
-        font-weight: 500;
-    }
+.order-status {
+    font-size: 28rpx;
+    padding: 4rpx 16rpx;
+    border-radius: 24rpx;
+}
 
-    .publish-status {
-        font-size: 28rpx;
-        padding: 4rpx 16rpx;
-        border-radius: 24rpx;
-    }
+.order-status.pending {
+    color: #e67e22;
+    background-color: rgba(230, 126, 34, 0.1);
+}
 
-    .publish-status.waiting {
-        color: #e67e22;
-        background-color: rgba(230, 126, 34, 0.1);
-    }
+.order-status.processing {
+    color: #2196f3;
+    background-color: rgba(33, 150, 243, 0.1);
+}
 
-    .publish-status.processing {
-        color: #3498db;
-        background-color: rgba(52, 152, 219, 0.1);
-    }
+.order-status.completed {
+    color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
 
-    .publish-status.completed {
-        color: #2ecc71;
-        background-color: rgba(46, 204, 113, 0.1);
-    }
+.order-status.cancelled {
+    color: #95a5a6;
+    background-color: rgba(149, 165, 166, 0.1);
+}
 
-    .publish-status.cancelled {
-        color: #95a5a6;
-        background-color: rgba(149, 165, 166, 0.1);
-    }
+.order-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24rpx;
+}
 
-    .publish-content {
-        padding: 20rpx 0;
-        border-top: 2rpx solid #f5f5f5;
-        border-bottom: 2rpx solid #f5f5f5;
-    }
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16rpx;
+}
 
-    .info-row {
-        display: flex;
-        margin-bottom: 20rpx;
-        font-size: 28rpx;
-        align-items: center;
-    }
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8rpx;
+}
 
-    .info-row:last-child {
-        margin-bottom: 0;
-    }
+.info-item.location {
+    position: relative;
+    padding-left: 40rpx;
+}
 
-    .info-label {
-        color: #999;
-        width: 160rpx;
-        flex-shrink: 0;
-    }
+.info-item.location::before {
+    content: '';
+    position: absolute;
+    left: 8rpx;
+    top: 8rpx;
+    width: 16rpx;
+    height: 16rpx;
+    border-radius: 50%;
+    background-color: #2196f3;
+}
 
-    .info-value {
-        color: #333;
-        flex: 1;
-        line-height: 1.4;
-    }
+.info-item.location:last-child::before {
+    background-color: #4caf50;
+}
 
-    .fee-value {
-        color: #e74c3c;
-        font-size: 32rpx;
-        font-weight: bold;
-    }
+.label {
+    font-size: 24rpx;
+    color: #999;
+}
 
-    .extra-fee-value {
-        color: #e67e22;
-        font-size: 30rpx;
-        font-weight: bold;
-    }
+.value {
+    font-size: 28rpx;
+    color: #333;
+}
 
-    .publish-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 20rpx;
-        margin-top: 30rpx;
-        flex-wrap: wrap;
-    }
+.fee-section {
+    background-color: #f8f9fa;
+    border-radius: 12rpx;
+    padding: 20rpx;
+}
 
-    .action-btn {
-        font-size: 24rpx;
-        padding: 0 30rpx;
-        height: 60rpx;
-        line-height: 60rpx;
-        border-radius: 30rpx;
-        background-color: #f8f9fa;
-        color: #666;
-        margin: 0;
-    }
+.fee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 26rpx;
+    color: #666;
+    margin-bottom: 12rpx;
+}
 
-    .action-btn.primary {
-        background-color: #3498db;
-        color: #fff;
-    }
+.fee-item:last-child {
+    margin-bottom: 0;
+}
 
-    .action-btn:active {
-        transform: scale(0.98);
-    }
+.fee-item.total {
+    margin-top: 16rpx;
+    padding-top: 16rpx;
+    border-top: 2rpx solid #eee;
+    font-weight: 500;
+    color: #333;
+}
 
-    .publish-btn {
-        position: fixed;
-        bottom: 60rpx;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 300rpx;
-        height: 90rpx;
-        background-color: #3498db;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 45rpx;
-        box-shadow: 0 4rpx 16rpx rgba(52, 152, 219, 0.3);
-        z-index: 2;
-    }
+.fee {
+    font-weight: 500;
+    color: #333;
+}
 
-    .publish-btn text {
-        font-size: 30rpx;
-        margin-left: 12rpx;
-    }
+.fee.highlight {
+    color: #ff9800;
+}
 
-    .publish-btn:active {
-        transform: translateX(-50%) scale(0.98);
-    }
+.order-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30rpx;
+    padding-top: 30rpx;
+    border-top: 2rpx solid #f5f5f5;
+    gap: 20rpx;
+}
+
+.btn {
+    font-size: 28rpx;
+    padding: 12rpx 32rpx;
+    border-radius: 32rpx;
+}
+
+.btn.primary {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+.btn.service {
+    background-color: #ff9800;
+    color: #fff;
+}
+
+.float-btn {
+    position: fixed;
+    right: 40rpx;
+    bottom: 60rpx;
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: #fff;
+    border-radius: 36rpx;
+    padding: 20rpx 32rpx;
+    display: flex;
+    align-items: center;
+    gap: 12rpx;
+    box-shadow: 0 4rpx 16rpx rgba(33, 150, 243, 0.3);
+}
+
+.btn-text {
+    font-size: 28rpx;
+}
 </style>
